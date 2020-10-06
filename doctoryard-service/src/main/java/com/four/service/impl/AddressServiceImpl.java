@@ -1,9 +1,11 @@
 package com.four.service.impl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.four.dao.AddressDao;
 import com.four.entity.Address;
 import com.four.service.AddressService;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -14,9 +16,10 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:28:51
  */
-@Service("addressService")
+@Service
+@Component
 public class AddressServiceImpl implements AddressService {
-    @Resource
+    @Autowired
     private AddressDao addressDao;
 
     /**

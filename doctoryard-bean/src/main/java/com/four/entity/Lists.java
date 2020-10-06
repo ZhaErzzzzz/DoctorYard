@@ -3,13 +3,13 @@ package com.four.entity;
 import java.io.Serializable;
 
 /**
- * 总订单(List)实体类
+ * 总订单(Lists)实体类
  *
  * @author makejava
- * @since 2020-10-06 15:14:02
+ * @since 2020-10-06 16:50:56
  */
-public class List implements Serializable {
-    private static final long serialVersionUID = 212600830242101478L;
+public class Lists implements Serializable {
+    private static final long serialVersionUID = 293754225706319864L;
 
     private Integer listId;
 

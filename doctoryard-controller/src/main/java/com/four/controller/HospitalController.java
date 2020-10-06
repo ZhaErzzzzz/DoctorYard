@@ -1,5 +1,6 @@
 package com.four.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.four.entity.Hospital;
 import com.four.service.HospitalService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,8 @@ public class HospitalController {
     /**
      * 服务对象
      */
-    @Resource
+//    @Resource
+    @Reference
     private HospitalService hospitalService;
 
     /**

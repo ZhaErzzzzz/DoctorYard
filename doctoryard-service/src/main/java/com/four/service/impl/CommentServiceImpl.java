@@ -1,9 +1,11 @@
 package com.four.service.impl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.four.dao.CommentDao;
 import com.four.entity.Comment;
 import com.four.service.CommentService;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -14,9 +16,10 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:29:01
  */
-@Service("commentService")
+@Service
+@Component
 public class CommentServiceImpl implements CommentService {
-    @Resource
+    @Autowired
     private CommentDao commentDao;
 
     /**

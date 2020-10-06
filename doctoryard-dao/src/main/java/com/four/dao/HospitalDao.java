@@ -1,7 +1,10 @@
 package com.four.dao;
 
 import com.four.entity.Hospital;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -11,6 +14,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 11:33:06
  */
+@Mapper
+@Repository
 public interface HospitalDao {
 
     /**
@@ -19,6 +24,7 @@ public interface HospitalDao {
      * @param hospitalId 主键
      * @return 实例对象
      */
+    @Select("select * from hospital where hospital_id=#{hospitalId}")
     Hospital queryById(Integer hospitalId);
 
     /**
@@ -37,6 +43,7 @@ public interface HospitalDao {
      * @param hospital 实例对象
      * @return 对象列表
      */
+    @Select("select * from hospital")
     List<Hospital> queryAll(Hospital hospital);
 
     /**

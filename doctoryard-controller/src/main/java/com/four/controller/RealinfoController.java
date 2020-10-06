@@ -1,5 +1,6 @@
 package com.four.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.four.entity.Realinfo;
 import com.four.service.RealinfoService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,7 @@ public class RealinfoController {
     /**
      * 服务对象
      */
-    @Resource
+    @Reference
     private RealinfoService realinfoService;
 
     /**

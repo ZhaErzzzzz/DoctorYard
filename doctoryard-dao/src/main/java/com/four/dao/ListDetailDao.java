@@ -1,7 +1,9 @@
 package com.four.dao;
 
 import com.four.entity.ListDetail;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -11,6 +13,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:23:56
  */
+@Mapper
+@Repository
 public interface ListDetailDao {
 
     /**

@@ -1,15 +1,21 @@
 package com.four.dao;
 
-import com.four.entity.List;
+import com.four.entity.Lists;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
- * 总订单(List)表数据库访问层
+ * 总订单(Lists)表数据库访问层
  *
  * @author makejava
- * @since 2020-10-06 15:23:50
+ * @since 2020-10-06 16:50:07
  */
-public interface ListDao {
+@Mapper
+@Repository
+public interface ListsDao {
 
     /**
      * 通过ID查询单条数据
@@ -17,7 +23,7 @@ public interface ListDao {
      * @param listId 主键
      * @return 实例对象
      */
-    List queryById(Integer listId);
+    Lists queryById(Integer listId);
 
     /**
      * 查询指定行数据
@@ -26,32 +32,32 @@ public interface ListDao {
      * @param limit  查询条数
      * @return 对象列表
      */
-    List<List> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
+    List<Lists> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
 
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param list 实例对象
+     * @param lists 实例对象
      * @return 对象列表
      */
-    List<List> queryAll(List list);
+    List<Lists> queryAll(Lists lists);
 
     /**
      * 新增数据
      *
-     * @param list 实例对象
+     * @param lists 实例对象
      * @return 影响行数
      */
-    int insert(List list);
+    int insert(Lists lists);
 
     /**
      * 修改数据
      *
-     * @param list 实例对象
+     * @param lists 实例对象
      * @return 影响行数
      */
-    int update(List list);
+    int update(Lists lists);
 
     /**
      * 通过主键删除数据

@@ -1,5 +1,6 @@
 package com.four.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.four.entity.Dhonor;
 import com.four.service.DhonorService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,7 @@ public class DhonorController {
     /**
      * 服务对象
      */
-    @Resource
+    @Reference
     private DhonorService dhonorService;
 
     /**

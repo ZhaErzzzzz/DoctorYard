@@ -1,9 +1,11 @@
 package com.four.service.impl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.four.dao.UserDoctorDao;
 import com.four.entity.UserDoctor;
 import com.four.service.UserDoctorService;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -14,9 +16,10 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:35:08
  */
-@Service("userDoctorService")
+@Service
+@Component
 public class UserDoctorServiceImpl implements UserDoctorService {
-    @Resource
+    @Autowired
     private UserDoctorDao userDoctorDao;
 
     /**

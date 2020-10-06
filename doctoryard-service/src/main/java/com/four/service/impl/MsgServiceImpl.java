@@ -1,9 +1,11 @@
 package com.four.service.impl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.four.dao.MsgDao;
 import com.four.entity.Msg;
 import com.four.service.MsgService;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -14,9 +16,10 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:34:19
  */
-@Service("msgService")
+@Service
+@Component
 public class MsgServiceImpl implements MsgService {
-    @Resource
+    @Autowired
     private MsgDao msgDao;
 
     /**

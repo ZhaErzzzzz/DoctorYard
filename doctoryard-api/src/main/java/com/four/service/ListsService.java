@@ -1,14 +1,16 @@
 package com.four.service;
 
-import com.four.entity.List;
+import com.four.entity.Lists;
+
+import java.util.List;
 
 /**
- * 总订单(List)表服务接口
+ * 总订单(Lists)表服务接口
  *
  * @author makejava
- * @since 2020-10-06 15:27:01
+ * @since 2020-10-06 16:50:27
  */
-public interface ListService {
+public interface ListsService {
 
     /**
      * 通过ID查询单条数据
@@ -16,7 +18,7 @@ public interface ListService {
      * @param listId 主键
      * @return 实例对象
      */
-    List queryById(Integer listId);
+    Lists queryById(Integer listId);
 
     /**
      * 查询多条数据
@@ -25,23 +27,23 @@ public interface ListService {
      * @param limit  查询条数
      * @return 对象列表
      */
-    List<List> queryAllByLimit(int offset, int limit);
+    List<Lists> queryAllByLimit(int offset, int limit);
 
     /**
      * 新增数据
      *
-     * @param list 实例对象
+     * @param lists 实例对象
      * @return 实例对象
      */
-    List insert(List list);
+    Lists insert(Lists lists);
 
     /**
      * 修改数据
      *
-     * @param list 实例对象
+     * @param lists 实例对象
      * @return 实例对象
      */
-    List update(List list);
+    Lists update(Lists lists);
 
     /**
      * 通过主键删除数据

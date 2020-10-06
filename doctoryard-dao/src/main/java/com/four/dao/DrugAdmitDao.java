@@ -1,7 +1,9 @@
 package com.four.dao;
 
 import com.four.entity.DrugAdmit;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -9,17 +11,19 @@ import java.util.List;
  * 用户可购处方药(DrugAdmit)表数据库访问层
  *
  * @author makejava
- * @since 2020-10-06 15:23:22
+ * @since 2020-10-06 17:00:53
  */
+@Mapper
+@Repository
 public interface DrugAdmitDao {
 
     /**
      * 通过ID查询单条数据
      *
-     * @param 主键
+     * @param drugAdmitId 主键
      * @return 实例对象
      */
-    DrugAdmit queryById();
+    DrugAdmit queryById(Integer drugAdmitId);
 
     /**
      * 查询指定行数据
@@ -58,9 +62,9 @@ public interface DrugAdmitDao {
     /**
      * 通过主键删除数据
      *
-     * @param 主键
+     * @param drugAdmitId 主键
      * @return 影响行数
      */
-    int deleteById();
+    int deleteById(Integer drugAdmitId);
 
 }

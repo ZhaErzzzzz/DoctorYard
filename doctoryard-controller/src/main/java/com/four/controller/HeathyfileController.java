@@ -1,5 +1,6 @@
 package com.four.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.four.entity.Heathyfile;
 import com.four.service.HeathyfileService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,7 @@ public class HeathyfileController {
     /**
      * 服务对象
      */
-    @Resource
+    @Reference
     private HeathyfileService heathyfileService;
 
     /**

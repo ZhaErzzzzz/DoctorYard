@@ -12,7 +12,7 @@ import java.util.List;
  * 用户可购处方药(DrugAdmit)表服务实现类
  *
  * @author makejava
- * @since 2020-10-06 15:31:26
+ * @since 2020-10-06 17:01:12
  */
 @Service("drugAdmitService")
 public class DrugAdmitServiceImpl implements DrugAdmitService {
@@ -22,12 +22,12 @@ public class DrugAdmitServiceImpl implements DrugAdmitService {
     /**
      * 通过ID查询单条数据
      *
-     * @param 主键
+     * @param drugAdmitId 主键
      * @return 实例对象
      */
     @Override
-    public DrugAdmit queryById() {
-        return this.drugAdmitDao.queryById();
+    public DrugAdmit queryById(Integer drugAdmitId) {
+        return this.drugAdmitDao.queryById(drugAdmitId);
     }
 
     /**
@@ -63,17 +63,17 @@ public class DrugAdmitServiceImpl implements DrugAdmitService {
     @Override
     public DrugAdmit update(DrugAdmit drugAdmit) {
         this.drugAdmitDao.update(drugAdmit);
-        return this.queryById(drugAdmit.get());
+        return this.queryById(drugAdmit.getDrugAdmitId());
     }
 
     /**
      * 通过主键删除数据
      *
-     * @param 主键
+     * @param drugAdmitId 主键
      * @return 是否成功
      */
     @Override
-    public boolean deleteById() {
-        return this.drugAdmitDao.deleteById() > 0;
+    public boolean deleteById(Integer drugAdmitId) {
+        return this.drugAdmitDao.deleteById(drugAdmitId) > 0;
     }
 }

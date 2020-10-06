@@ -1,7 +1,8 @@
 package com.four.controller;
 
-import com.four.entity.List;
-import com.four.service.ListService;
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.four.entity.Lists;
+import com.four.service.ListsService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,19 +10,19 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 /**
- * 总订单(List)表控制层
+ * 总订单(Lists)表控制层
  *
  * @author makejava
- * @since 2020-10-06 15:36:29
+ * @since 2020-10-06 16:49:44
  */
 @RestController
-@RequestMapping("list")
-public class ListController {
+@RequestMapping("lists")
+public class ListsController {
     /**
      * 服务对象
      */
-    @Resource
-    private ListService listService;
+    @Reference
+    private ListsService listsService;
 
     /**
      * 通过主键查询单条数据
@@ -30,8 +31,8 @@ public class ListController {
      * @return 单条数据
      */
     @GetMapping("selectOne")
-    public List selectOne(Integer id) {
-        return this.listService.queryById(id);
+    public Lists selectOne(Integer id) {
+        return this.listsService.queryById(id);
     }
 
 }

@@ -6,10 +6,10 @@ import java.io.Serializable;
  * 用户可购处方药(DrugAdmit)实体类
  *
  * @author makejava
- * @since 2020-10-06 15:11:43
+ * @since 2020-10-06 17:00:33
  */
 public class DrugAdmit implements Serializable {
-    private static final long serialVersionUID = -49781792403696847L;
+    private static final long serialVersionUID = -18708021449319178L;
 
     private Integer drugId;
 

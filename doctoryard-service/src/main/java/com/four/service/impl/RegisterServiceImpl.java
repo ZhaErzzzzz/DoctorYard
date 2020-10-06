@@ -1,9 +1,11 @@
 package com.four.service.impl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.four.dao.RegisterDao;
 import com.four.entity.Register;
 import com.four.service.RegisterService;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -14,9 +16,10 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:34:47
  */
-@Service("registerService")
+@Service
+@Component
 public class RegisterServiceImpl implements RegisterService {
-    @Resource
+    @Autowired
     private RegisterDao registerDao;
 
     /**

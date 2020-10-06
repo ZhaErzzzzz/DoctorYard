@@ -4,6 +4,7 @@ import com.four.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * @since 2020-10-05 16:29:37
  */
 @Mapper
+@Repository
 public interface UserDao {
 
     /**
