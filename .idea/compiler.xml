@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="DoctorYard" />
+        <module name="doctoryard-service" />
+        <module name="doctoryard-dao" />
+        <module name="doctoryard-controller" />
+        <module name="doctoryard-bean" />
+        <module name="doctoryard-api" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="DoctorYard" target="1.8" />
+      <module name="doctoryard-api" target="1.8" />
+      <module name="doctoryard-bean" target="1.8" />
+      <module name="doctoryard-controller" target="1.8" />
+      <module name="doctoryard-dao" target="1.8" />
+      <module name="doctoryard-service" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="DoctorYard" options="-parameters" />
+      <module name="doctoryard-api" options="-parameters" />
+      <module name="doctoryard-bean" options="-parameters" />
+      <module name="doctoryard-controller" options="-parameters" />
+      <module name="doctoryard-dao" options="-parameters" />
+      <module name="doctoryard-service" options="-parameters" />
+    </option>
+  </component>
+</project>

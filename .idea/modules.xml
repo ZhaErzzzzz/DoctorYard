@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DoctorYard.iml" filepath="$PROJECT_DIR$/DoctorYard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/doctoryard-api/doctoryard-api.iml" filepath="$PROJECT_DIR$/doctoryard-api/doctoryard-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/doctoryard-bean/doctoryard-bean.iml" filepath="$PROJECT_DIR$/doctoryard-bean/doctoryard-bean.iml" />
+      <module fileurl="file://$PROJECT_DIR$/doctoryard-controller/doctoryard-controller.iml" filepath="$PROJECT_DIR$/doctoryard-controller/doctoryard-controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/doctoryard-dao/doctoryard-dao.iml" filepath="$PROJECT_DIR$/doctoryard-dao/doctoryard-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/doctoryard-service/doctoryard-service.iml" filepath="$PROJECT_DIR$/doctoryard-service/doctoryard-service.iml" />
+    </modules>
+  </component>
+</project>
