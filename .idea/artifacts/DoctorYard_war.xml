@@ -1,14 +1,14 @@
 <component name="ArtifactManager">
-  <artifact type="war" name="DoctorYard:war">
+  <artifact type="war" name="doctoryard:war">
     <output-path>$PROJECT_DIR$/target</output-path>
     <properties id="maven-jee-properties">
       <options>
-        <module>DoctorYard</module>
+        <module>doctoryard</module>
         <packaging>war</packaging>
       </options>
     </properties>
     <root id="archive" name="doctoryard-0.0.1-SNAPSHOT.war">
-      <element id="artifact" artifact-name="DoctorYard:war exploded" />
+      <element id="artifact" artifact-name="doctoryard:war exploded" />
     </root>
   </artifact>
 </component>

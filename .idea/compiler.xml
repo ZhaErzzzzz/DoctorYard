@@ -7,15 +7,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="DoctorYard" />
         <module name="doctoryard-service" />
         <module name="doctoryard-dao" />
         <module name="doctoryard-controller" />
+        <module name="doctoryard" />
         <module name="doctoryard-bean" />
         <module name="doctoryard-api" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="doctoryard" target="1.8" />
       <module name="DoctorYard" target="1.8" />
       <module name="doctoryard-api" target="1.8" />
       <module name="doctoryard-bean" target="1.8" />
@@ -27,6 +28,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="DoctorYard" options="-parameters" />
+      <module name="doctoryard" options="-parameters" />
       <module name="doctoryard-api" options="-parameters" />
       <module name="doctoryard-bean" options="-parameters" />
       <module name="doctoryard-controller" options="-parameters" />
