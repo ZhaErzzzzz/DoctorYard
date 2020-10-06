@@ -1,45 +1,31 @@
 {
-  "name" : "User",
+  "name" : "ListDetail",
   "preName" : "",
-  "comment" : "用户",
+  "comment" : "订单详情",
   "templateGroupName" : "Default",
   "fullColumn" : [ {
-    "name" : "userId",
+    "name" : "listDetailId",
     "comment" : null,
     "type" : null,
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userName",
+    "name" : "listId",
     "comment" : null,
     "type" : null,
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userPwd",
+    "name" : "drugId",
     "comment" : null,
     "type" : null,
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userImg",
-    "comment" : null,
-    "type" : null,
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
-  }, {
-    "name" : "userTel",
-    "comment" : null,
-    "type" : null,
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
-  }, {
-    "name" : "userNickname",
+    "name" : "listDetailCount",
     "comment" : null,
     "type" : null,
     "shortType" : null,
@@ -49,6 +35,6 @@
   "pkColumn" : null,
   "otherColumn" : null,
   "savePackageName" : "com.four",
-  "savePath" : "./doctoryard-service/src/main/java/com/four",
-  "saveModelName" : "doctoryard-service"
+  "savePath" : "./doctoryard-controller/src/main/java/com/four",
+  "saveModelName" : "doctoryard-controller"
 }

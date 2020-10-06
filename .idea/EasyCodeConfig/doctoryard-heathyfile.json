@@ -1,45 +1,45 @@
 {
-  "name" : "User",
+  "name" : "Heathyfile",
   "preName" : "",
-  "comment" : "用户",
+  "comment" : "健康档案",
   "templateGroupName" : "Default",
   "fullColumn" : [ {
-    "name" : "userId",
+    "name" : "heathyfileId",
     "comment" : null,
     "type" : null,
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userName",
+    "name" : "realinfoId",
     "comment" : null,
     "type" : null,
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userPwd",
+    "name" : "doctorId",
     "comment" : null,
     "type" : null,
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userImg",
+    "name" : "heathyfileCreatdate",
     "comment" : null,
     "type" : null,
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userTel",
+    "name" : "heathyfileHistory",
     "comment" : null,
     "type" : null,
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userNickname",
+    "name" : "heathyfileNow",
     "comment" : null,
     "type" : null,
     "shortType" : null,
@@ -49,6 +49,6 @@
   "pkColumn" : null,
   "otherColumn" : null,
   "savePackageName" : "com.four",
-  "savePath" : "./doctoryard-service/src/main/java/com/four",
-  "saveModelName" : "doctoryard-service"
+  "savePath" : "./doctoryard-controller/src/main/java/com/four",
+  "saveModelName" : "doctoryard-controller"
 }

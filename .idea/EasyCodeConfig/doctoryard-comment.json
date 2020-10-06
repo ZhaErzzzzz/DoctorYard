@@ -1,9 +1,23 @@
 {
-  "name" : "User",
+  "name" : "Comment",
   "preName" : "",
-  "comment" : "用户",
+  "comment" : "留言",
   "templateGroupName" : "Default",
   "fullColumn" : [ {
+    "name" : "commentId",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "msgId",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
     "name" : "userId",
     "comment" : null,
     "type" : null,
@@ -11,35 +25,42 @@
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userName",
+    "name" : "doctorId",
     "comment" : null,
     "type" : null,
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userPwd",
+    "name" : "commentName",
     "comment" : null,
     "type" : null,
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userImg",
+    "name" : "commentDate",
     "comment" : null,
     "type" : null,
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userTel",
+    "name" : "commentLike",
     "comment" : null,
     "type" : null,
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userNickname",
+    "name" : "commentLabel",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "commentText",
     "comment" : null,
     "type" : null,
     "shortType" : null,
@@ -49,6 +70,6 @@
   "pkColumn" : null,
   "otherColumn" : null,
   "savePackageName" : "com.four",
-  "savePath" : "./doctoryard-service/src/main/java/com/four",
-  "saveModelName" : "doctoryard-service"
+  "savePath" : "./doctoryard-controller/src/main/java/com/four",
+  "saveModelName" : "doctoryard-controller"
 }

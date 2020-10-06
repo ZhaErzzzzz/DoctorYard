@@ -1,7 +1,7 @@
 {
-  "name" : "User",
+  "name" : "Address",
   "preName" : "",
-  "comment" : "用户",
+  "comment" : "收货信息",
   "templateGroupName" : "Default",
   "fullColumn" : [ {
     "name" : "userId",
@@ -11,35 +11,35 @@
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userName",
+    "name" : "addressId",
     "comment" : null,
     "type" : null,
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userPwd",
+    "name" : "addressName",
     "comment" : null,
     "type" : null,
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userImg",
+    "name" : "addressTel",
     "comment" : null,
     "type" : null,
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userTel",
+    "name" : "addressCity",
     "comment" : null,
     "type" : null,
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userNickname",
+    "name" : "addressLocation",
     "comment" : null,
     "type" : null,
     "shortType" : null,
@@ -49,6 +49,6 @@
   "pkColumn" : null,
   "otherColumn" : null,
   "savePackageName" : "com.four",
-  "savePath" : "./doctoryard-service/src/main/java/com/four",
-  "saveModelName" : "doctoryard-service"
+  "savePath" : "./doctoryard-controller/src/main/java/com/four",
+  "saveModelName" : "doctoryard-controller"
 }

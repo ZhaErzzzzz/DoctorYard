@@ -1,9 +1,16 @@
 {
-  "name" : "User",
+  "name" : "DrugAdmit",
   "preName" : "",
-  "comment" : "用户",
+  "comment" : "用户可购处方药",
   "templateGroupName" : "Default",
   "fullColumn" : [ {
+    "name" : "drugId",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
     "name" : "userId",
     "comment" : null,
     "type" : null,
@@ -11,35 +18,14 @@
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userName",
+    "name" : "doctorId",
     "comment" : null,
     "type" : null,
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userPwd",
-    "comment" : null,
-    "type" : null,
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
-  }, {
-    "name" : "userImg",
-    "comment" : null,
-    "type" : null,
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
-  }, {
-    "name" : "userTel",
-    "comment" : null,
-    "type" : null,
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
-  }, {
-    "name" : "userNickname",
+    "name" : "drugAdmitId",
     "comment" : null,
     "type" : null,
     "shortType" : null,
@@ -49,6 +35,6 @@
   "pkColumn" : null,
   "otherColumn" : null,
   "savePackageName" : "com.four",
-  "savePath" : "./doctoryard-service/src/main/java/com/four",
-  "saveModelName" : "doctoryard-service"
+  "savePath" : "./doctoryard-controller/src/main/java/com/four",
+  "saveModelName" : "doctoryard-controller"
 }

@@ -1,45 +1,31 @@
 {
-  "name" : "User",
+  "name" : "Department",
   "preName" : "",
-  "comment" : "用户",
+  "comment" : "科室",
   "templateGroupName" : "Default",
   "fullColumn" : [ {
-    "name" : "userId",
+    "name" : "departmentId",
     "comment" : null,
     "type" : null,
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userName",
+    "name" : "hospitalId",
     "comment" : null,
     "type" : null,
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userPwd",
+    "name" : "departmentNum",
     "comment" : null,
     "type" : null,
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "userImg",
-    "comment" : null,
-    "type" : null,
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
-  }, {
-    "name" : "userTel",
-    "comment" : null,
-    "type" : null,
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
-  }, {
-    "name" : "userNickname",
+    "name" : "departmentName",
     "comment" : null,
     "type" : null,
     "shortType" : null,
@@ -49,6 +35,6 @@
   "pkColumn" : null,
   "otherColumn" : null,
   "savePackageName" : "com.four",
-  "savePath" : "./doctoryard-service/src/main/java/com/four",
-  "saveModelName" : "doctoryard-service"
+  "savePath" : "./doctoryard-bean/src/main/java/com/four",
+  "saveModelName" : "doctoryard-bean"
 }
