@@ -3,6 +3,7 @@ package com.four.dao;
 import com.four.entity.Msg;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,8 +24,11 @@ public interface MsgDao {
      * @param msgId 主键
      * @return 实例对象
      */
+    @Select("select * from msg where msg_id=#{msgId}")
     Msg queryById(Integer msgId);
 
+    @Select("select * from msg where msg_title=#{msgTitle}")
+    Msg queryByMsgTitle(String msgTitle);
     /**
      * 查询指定行数据
      *

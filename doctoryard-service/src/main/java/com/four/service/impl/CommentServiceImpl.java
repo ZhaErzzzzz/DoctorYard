@@ -33,6 +33,11 @@ public class CommentServiceImpl implements CommentService {
         return this.commentDao.queryById(commentId);
     }
 
+    @Override
+    public List<Comment> queryByMsgId(Integer msgId) {
+        return commentDao.queryByMsgId(msgId);
+    }
+
     /**
      * 查询多条数据
      *

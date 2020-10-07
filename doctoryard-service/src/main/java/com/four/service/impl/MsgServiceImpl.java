@@ -33,6 +33,11 @@ public class MsgServiceImpl implements MsgService {
         return this.msgDao.queryById(msgId);
     }
 
+    @Override
+    public Msg queryByMsgTitle(String msgTitle) {
+        return msgDao.queryByMsgTitle(msgTitle);
+    }
+
     /**
      * 查询多条数据
      *

@@ -20,6 +20,8 @@ public interface CommentService {
      */
     Comment queryById(Integer commentId);
 
+    List<Comment> queryByMsgId(Integer msgId);
+
     /**
      * 查询多条数据
      *

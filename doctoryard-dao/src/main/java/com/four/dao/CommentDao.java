@@ -3,6 +3,7 @@ package com.four.dao;
 import com.four.entity.Comment;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,6 +26,8 @@ public interface CommentDao {
      */
     Comment queryById(Integer commentId);
 
+    @Select("select * from comment where msg_id=#{msgId}")
+    List<Comment> queryByMsgId(Integer msgId);
     /**
      * 查询指定行数据
      *

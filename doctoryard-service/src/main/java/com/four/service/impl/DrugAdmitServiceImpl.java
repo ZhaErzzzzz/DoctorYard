@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.four.dao.DrugAdmitDao;
 import com.four.entity.DrugAdmit;
 import com.four.service.DrugAdmitService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -19,7 +20,7 @@ import java.util.List;
 @Service
 @Component
 public class DrugAdmitServiceImpl implements DrugAdmitService {
-    @Resource
+    @Autowired
     private DrugAdmitDao drugAdmitDao;
 
     /**
