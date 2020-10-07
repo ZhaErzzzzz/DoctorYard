@@ -3,6 +3,7 @@ package com.four.dao;
 import com.four.entity.Dhonor;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,8 +24,16 @@ public interface DhonorDao {
      * @param dhonorId 主键
      * @return 实例对象
      */
+
     Dhonor queryById(Integer dhonorId);
 
+    /**
+     *
+     * @param doctorId
+     * @return
+     */
+    @Select("select * from dhonor where doctor_id=#{doctorId}")
+    Dhonor queryByDoctorId(Integer doctorId);
     /**
      * 查询指定行数据
      *

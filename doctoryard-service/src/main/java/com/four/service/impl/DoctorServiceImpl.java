@@ -46,6 +46,22 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     /**
+     *
+     * @param hospitalId
+     * @return
+     */
+    @Override
+    public List<Doctor> queryByHospitalId(Integer hospitalId) {
+        return doctorDao.queryByHospitalId(hospitalId);
+    }
+
+    @Override
+    public List<Doctor> queryByDepartmentId(Integer departmentId) {
+
+        return doctorDao.queryByDepartmentId(departmentId);
+    }
+
+    /**
      * 新增数据
      *
      * @param doctor 实例对象
@@ -78,5 +94,10 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public boolean deleteById(Integer doctorId) {
         return this.doctorDao.deleteById(doctorId) > 0;
+    }
+
+    @Override
+    public Integer queryHospitalIdByDoctorId(Integer doctorId) {
+        return doctorDao.queryHospitalIdBydoctorId(doctorId);
     }
 }

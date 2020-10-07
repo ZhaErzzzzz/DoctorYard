@@ -79,4 +79,9 @@ public class DepartmentServiceImpl implements DepartmentService {
     public boolean deleteById(Integer departmentId) {
         return this.departmentDao.deleteById(departmentId) > 0;
     }
+
+    @Override
+    public List<Integer> queryDepartmentIdByDepartmentName(String departmentName) {
+       return departmentDao.queryByDepartmentName(departmentName);
+    }
 }

@@ -36,7 +36,13 @@ public interface HospitalDao {
      */
     List<Hospital> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
-
+//    /**
+//     * 根据医生id查医院信息
+//     * @param doctorId
+//     * @return
+//     */
+//    @Select("select * from hospital where hospital_id=#{}")
+//    Hospital queryByDoctorId(Integer doctorId);
     /**
      * 通过实体作为筛选条件查询
      *

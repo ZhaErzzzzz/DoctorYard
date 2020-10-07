@@ -7,7 +7,6 @@ import com.four.service.DhonorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -21,6 +20,7 @@ import java.util.List;
 public class DhonorServiceImpl implements DhonorService {
     @Autowired
     private DhonorDao dhonorDao;
+
 
     /**
      * 通过ID查询单条数据
@@ -43,6 +43,16 @@ public class DhonorServiceImpl implements DhonorService {
     @Override
     public List<Dhonor> queryAllByLimit(int offset, int limit) {
         return this.dhonorDao.queryAllByLimit(offset, limit);
+    }
+
+    /**
+     *
+     * @param doctorId
+     * @return
+     */
+    @Override
+    public Dhonor queryByDoctorId(Integer doctorId) {
+        return dhonorDao.queryByDoctorId(doctorId);
     }
 
     /**

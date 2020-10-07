@@ -35,4 +35,9 @@ public class DhonorController {
         return this.dhonorService.queryById(id);
     }
 
+    @GetMapping("selectByDoctorId")
+    public Dhonor queryByDoctorId(Integer doctorId){
+      return   dhonorService.queryByDoctorId(doctorId);
+    };
+
 }

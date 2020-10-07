@@ -1,6 +1,7 @@
 package com.four.service;
 
 import com.four.entity.Doctor;
+import com.four.entity.Hospital;
 
 import java.util.List;
 
@@ -30,6 +31,15 @@ public interface DoctorService {
     List<Doctor> queryAllByLimit(int offset, int limit);
 
     /**
+     * 根据医院ID查看该医院的所有医生
+     * @param hospitalId
+     * @return
+     */
+    List<Doctor> queryByHospitalId(Integer hospitalId);
+
+    //通过科室id查医生
+    List<Doctor> queryByDepartmentId(Integer departmentId);
+    /**
      * 新增数据
      *
      * @param doctor 实例对象
@@ -52,5 +62,5 @@ public interface DoctorService {
      * @return 是否成功
      */
     boolean deleteById(Integer doctorId);
-
+    Integer queryHospitalIdByDoctorId(Integer doctorId);
 }

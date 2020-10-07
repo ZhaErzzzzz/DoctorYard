@@ -1,6 +1,7 @@
 package com.four.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.four.dao.DoctorDao;
 import com.four.dao.HospitalDao;
 import com.four.entity.Hospital;
 import com.four.service.HospitalService;
@@ -21,7 +22,8 @@ import java.util.List;
 public class HospitalServiceImpl implements HospitalService {
     @Autowired
     private HospitalDao hospitalDao;
-
+    @Autowired
+    private DoctorDao doctorDao;
     /**
      * 通过ID查询单条数据
      *
@@ -32,6 +34,9 @@ public class HospitalServiceImpl implements HospitalService {
     public Hospital queryById(Integer hospitalId) {
         return this.hospitalDao.queryById(hospitalId);
     }
+
+
+
 
     /**
      * 查询多条数据

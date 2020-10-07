@@ -53,4 +53,6 @@ public interface DepartmentService {
      */
     boolean deleteById(Integer departmentId);
 
+    //通过科室名字查所有科室id
+    List<Integer> queryDepartmentIdByDepartmentName(String departmentName);
 }

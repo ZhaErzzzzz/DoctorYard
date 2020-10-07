@@ -30,6 +30,13 @@ public interface DhonorService {
     List<Dhonor> queryAllByLimit(int offset, int limit);
 
     /**
+     * 通过医生id查找医生荣誉
+     * @param doctorId
+     * @return
+     */
+    Dhonor queryByDoctorId(Integer doctorId);
+
+    /**
      * 新增数据
      *
      * @param dhonor 实例对象

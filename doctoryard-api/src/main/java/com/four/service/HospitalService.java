@@ -21,6 +21,13 @@ public interface HospitalService {
     Hospital queryById(Integer hospitalId);
 
     /**
+     *
+     * @param doctorId
+     * @return
+     */
+
+
+    /**
      * 查询多条数据
      *
      * @param offset 查询起始位置

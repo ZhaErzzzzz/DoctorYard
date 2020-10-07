@@ -3,6 +3,7 @@ package com.four.dao;
 import com.four.entity.Doctor;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public interface DoctorDao {
      * @param doctorId 主键
      * @return 实例对象
      */
+    @Select("select * from doctor where doctor_id=#{doctorId}")
     Doctor queryById(Integer doctorId);
 
     /**
@@ -34,7 +36,13 @@ public interface DoctorDao {
      */
     List<Doctor> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
-
+    /**
+     *
+     * @param hospitalId
+     * @return
+     */
+    @Select("select * from doctor where hospital_id=#{hospitalId}")
+    List<Doctor> queryByHospitalId(Integer hospitalId);
     /**
      * 通过实体作为筛选条件查询
      *
@@ -66,5 +74,16 @@ public interface DoctorDao {
      * @return 影响行数
      */
     int deleteById(Integer doctorId);
+
+    /**
+     * 根据医生id查医生所在医院id
+     * @param doctorId
+     * @return
+     */
+    @Select("select hospital_id from doctor where doctor_id=#{doctorId}")
+    Integer queryHospitalIdBydoctorId(Integer doctorId);
+
+    @Select("select * from doctor where department_id=#{departmentId}")
+    List<Doctor> queryByDepartmentId(Integer departmentId);
 
 }

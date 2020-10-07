@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 科室(Department)表控制层
@@ -33,6 +34,11 @@ public class DepartmentController {
     @GetMapping("selectOne")
     public Department selectOne(Integer id) {
         return this.departmentService.queryById(id);
+    }
+
+    @GetMapping("selectDepartmentId")
+    public List<Integer> queryByDepartmentName(String departmentName){
+      return   departmentService.queryDepartmentIdByDepartmentName(departmentName);
     }
 
 }
