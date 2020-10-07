@@ -1,0 +1,33 @@
+{
+  "name" : "UserDoctor",
+  "preName" : "",
+  "comment" : "收藏医生",
+  "templateGroupName" : "Default",
+  "fullColumn" : [ {
+    "name" : "doctorId",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "userId",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "userDoctorId",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  } ],
+  "pkColumn" : null,
+  "otherColumn" : null,
+  "savePackageName" : "com.four",
+  "savePath" : "./doctoryard-controller/src/main/java/com/four",
+  "saveModelName" : "doctoryard-controller"
+}

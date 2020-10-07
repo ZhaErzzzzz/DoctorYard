@@ -1,0 +1,33 @@
+{
+  "name" : "RegistPay",
+  "preName" : "",
+  "comment" : "挂号单",
+  "templateGroupName" : "Default",
+  "fullColumn" : [ {
+    "name" : "registPayId",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "registPayPrice",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "registPayStatus",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  } ],
+  "pkColumn" : null,
+  "otherColumn" : null,
+  "savePackageName" : "com.four",
+  "savePath" : "./doctoryard-controller/src/main/java/com/four",
+  "saveModelName" : "doctoryard-controller"
+}
