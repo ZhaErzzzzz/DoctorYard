@@ -1,5 +1,8 @@
 package com.four.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +11,8 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-10-07 15:56:57
  */
+@AllArgsConstructor
+@NoArgsConstructor
 public class User implements Serializable {
     private static final long serialVersionUID = 429821661800416111L;
 
@@ -28,6 +33,9 @@ public class User implements Serializable {
     private String userTel;
 
     private String userNickname;
+
+
+    private String userEmail;
 
 
     public Integer getUserId() {
@@ -76,6 +84,15 @@ public class User implements Serializable {
 
     public void setUserNickname(String userNickname) {
         this.userNickname = userNickname;
+    }
+
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
 }

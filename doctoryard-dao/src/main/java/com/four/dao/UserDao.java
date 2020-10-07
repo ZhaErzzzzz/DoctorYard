@@ -1,6 +1,7 @@
 package com.four.dao;
 
 import com.four.entity.User;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -17,6 +18,8 @@ import java.util.List;
 @Mapper
 @Repository
 public interface UserDao {
+    @Select("select * from user where user_name=#{userName}")
+    User queryByName(String userName);
 
     /**
      * 通过ID查询单条数据
@@ -26,6 +29,7 @@ public interface UserDao {
      */
     @Select("select * from user where user_id=#{userId}")
     User queryById(Integer userId);
+
 
     /**
      * 查询指定行数据
@@ -51,7 +55,24 @@ public interface UserDao {
      * @param user 实例对象
      * @return 影响行数
      */
-    int insert(User user);
+    @Insert("insert into user (user_name,user_pwd,user_tel,user_email) values(#{user.userName},#{user.userPwd},#{user.userTel},#{user.userEmail})")
+    int insert(@Param("user") User user);
+
+    /**
+     * 批量新增数据（MyBatis原生foreach方法）
+     *
+     * @param entities List<User> 实例对象列表
+     * @return 影响行数
+     */
+    int insertBatch(@Param("entities") List<User> entities);
+
+    /**
+     * 批量新增或按主键更新数据（MyBatis原生foreach方法）
+     *
+     * @param entities List<User> 实例对象列表
+     * @return 影响行数
+     */
+    int insertOrUpdateBatch(@Param("entities") List<User> entities);
 
     /**
      * 修改数据

@@ -139,7 +139,7 @@
   var isReservedAttribute = makeMap('key,ref,slot,slot-scope,is');
 
   /**
-   * Remove an item from an array.
+   * Remove an sku from an array.
    */
   function remove (arr, item) {
     if (arr.length) {
