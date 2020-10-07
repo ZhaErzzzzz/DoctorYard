@@ -52,24 +52,10 @@
     "shortType" : null,
     "custom" : false,
     "ext" : { }
-  }, {
-    "name" : "commentLabel",
-    "comment" : null,
-    "type" : null,
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
-  }, {
-    "name" : "commentText",
-    "comment" : null,
-    "type" : null,
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
   } ],
   "pkColumn" : null,
   "otherColumn" : null,
   "savePackageName" : "com.four",
-  "savePath" : "./doctoryard-controller/src/main/java/com/four",
-  "saveModelName" : "doctoryard-controller"
+  "savePath" : "./doctoryard-dao/src/main/java/com/four",
+  "saveModelName" : "doctoryard-dao"
 }

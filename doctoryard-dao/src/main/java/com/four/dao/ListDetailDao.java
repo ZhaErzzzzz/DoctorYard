@@ -11,7 +11,7 @@ import java.util.List;
  * 订单详情(ListDetail)表数据库访问层
  *
  * @author makejava
- * @since 2020-10-06 15:23:56
+ * @since 2020-10-07 19:15:26
  */
 @Mapper
 @Repository

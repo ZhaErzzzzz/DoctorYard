@@ -6,7 +6,7 @@ import java.io.Serializable;
  * 订单详情(ListDetail)实体类
  *
  * @author makejava
- * @since 2020-10-06 15:14:29
+ * @since 2020-10-07 19:15:00
  */
 public class ListDetail implements Serializable {
     private static final long serialVersionUID = 614246488449964159L;
@@ -20,6 +20,8 @@ public class ListDetail implements Serializable {
      * 数量
      */
     private Integer listDetailCount;
+
+    private Double listDetailPrice;
 
 
     public Integer getListDetailId() {
@@ -52,6 +54,14 @@ public class ListDetail implements Serializable {
 
     public void setListDetailCount(Integer listDetailCount) {
         this.listDetailCount = listDetailCount;
+    }
+
+    public Double getListDetailPrice() {
+        return listDetailPrice;
+    }
+
+    public void setListDetailPrice(Double listDetailPrice) {
+        this.listDetailPrice = listDetailPrice;
     }
 
 }

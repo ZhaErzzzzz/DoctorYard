@@ -8,7 +8,7 @@ import java.util.List;
  * 订单详情(ListDetail)表服务接口
  *
  * @author makejava
- * @since 2020-10-06 15:27:13
+ * @since 2020-10-07 19:15:54
  */
 public interface ListDetailService {
 

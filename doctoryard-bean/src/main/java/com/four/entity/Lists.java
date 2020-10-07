@@ -6,7 +6,7 @@ import java.io.Serializable;
  * 总订单(Lists)实体类
  *
  * @author makejava
- * @since 2020-10-06 16:50:56
+ * @since 2020-10-07 19:14:31
  */
 public class Lists implements Serializable {
     private static final long serialVersionUID = 293754225706319864L;

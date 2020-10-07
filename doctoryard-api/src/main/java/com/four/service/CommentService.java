@@ -1,6 +1,7 @@
 package com.four.service;
 
 import com.four.entity.Comment;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -21,6 +22,8 @@ public interface CommentService {
     Comment queryById(Integer commentId);
 
     List<Comment> queryByMsgId(Integer msgId);
+
+//    public PageInfo<Comment>  showComment(int pageNum, int pageSize);
 
     /**
      * 查询多条数据

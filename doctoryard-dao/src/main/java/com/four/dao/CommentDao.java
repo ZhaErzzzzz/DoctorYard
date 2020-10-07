@@ -12,7 +12,7 @@ import java.util.List;
  * 留言(Comment)表数据库访问层
  *
  * @author makejava
- * @since 2020-10-06 15:22:45
+ * @since 2020-10-07 19:25:09
  */
 @Mapper
 @Repository
@@ -40,11 +40,11 @@ public interface CommentDao {
 
     /**
      * 通过实体作为筛选条件查询
-     *
-     * @param comment 实例对象
+     * 这个就是分页
      * @return 对象列表
      */
-    List<Comment> queryAll(Comment comment);
+    @Select("select * from commnet order by comment_id desc")
+    List<Comment> queryAll();
 
     /**
      * 新增数据

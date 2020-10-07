@@ -1,13 +1,13 @@
 package com.four.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * 文章(Msg)实体类
  *
  * @author makejava
- * @since 2020-10-06 15:14:59
+ * @since 2020-10-07 19:26:20
  */
 public class Msg implements Serializable {
     private static final long serialVersionUID = -56221846352117301L;

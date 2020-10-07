@@ -1,13 +1,13 @@
 package com.four.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * 留言(Comment)实体类
  *
  * @author makejava
- * @since 2020-10-06 14:34:17
+ * @since 2020-10-07 19:23:19
  */
 public class Comment implements Serializable {
     private static final long serialVersionUID = -68534615824272679L;
@@ -15,6 +15,7 @@ public class Comment implements Serializable {
     private Integer commentId;
 
     private Integer msgId;
+
     private Integer userId;
 
     private Integer doctorId;
@@ -30,14 +31,6 @@ public class Comment implements Serializable {
      * 点赞
      */
     private String commentLike;
-    /**
-     * 标签
-     */
-    private String commentLabel;
-    /**
-     * 内容
-     */
-    private String commentText;
 
 
     public Integer getCommentId() {
@@ -94,22 +87,6 @@ public class Comment implements Serializable {
 
     public void setCommentLike(String commentLike) {
         this.commentLike = commentLike;
-    }
-
-    public String getCommentLabel() {
-        return commentLabel;
-    }
-
-    public void setCommentLabel(String commentLabel) {
-        this.commentLabel = commentLabel;
-    }
-
-    public String getCommentText() {
-        return commentText;
-    }
-
-    public void setCommentText(String commentText) {
-        this.commentText = commentText;
     }
 
 }

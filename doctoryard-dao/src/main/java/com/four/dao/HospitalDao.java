@@ -46,11 +46,10 @@ public interface HospitalDao {
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param hospital 实例对象
      * @return 对象列表
      */
-    @Select("select * from hospital")
-    List<Hospital> queryAll(Hospital hospital);
+    @Select("select * from hospital order by hospital_id desc")
+    List<Hospital> queryAll();
 
     /**
      * 新增数据

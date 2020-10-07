@@ -2,6 +2,7 @@ package com.four.service;
 
 import com.four.entity.Doctor;
 import com.four.entity.Hospital;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -30,6 +31,8 @@ public interface DoctorService {
      */
     List<Doctor> queryAllByLimit(int offset, int limit);
 
+
+    PageInfo<Doctor> showAllDoctor(int pageNum, int pageSize);
     /**
      * 根据医院ID查看该医院的所有医生
      * @param hospitalId

@@ -3,7 +3,10 @@ package com.four.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.four.dao.DoctorDao;
 import com.four.entity.Doctor;
+import com.four.entity.Msg;
 import com.four.service.DoctorService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -43,6 +46,15 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public List<Doctor> queryAllByLimit(int offset, int limit) {
         return this.doctorDao.queryAllByLimit(offset, limit);
+    }
+
+    @Override
+    public PageInfo<Doctor> showAllDoctor(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Doctor> list = doctorDao.queryAll();
+        PageInfo<Doctor> pageInfo = new PageInfo<>(list);
+
+        return pageInfo;
     }
 
     /**

@@ -4,6 +4,13 @@
   "comment" : "用户可购处方药",
   "templateGroupName" : "Default",
   "fullColumn" : [ {
+    "name" : "drugAdmitId",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
     "name" : "drugId",
     "comment" : null,
     "type" : null,
@@ -24,17 +31,10 @@
     "shortType" : null,
     "custom" : false,
     "ext" : { }
-  }, {
-    "name" : "drugAdmitId",
-    "comment" : null,
-    "type" : null,
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
   } ],
   "pkColumn" : null,
   "otherColumn" : null,
   "savePackageName" : "com.four",
-  "savePath" : "./doctoryard-controller/src/main/java/com/four",
-  "saveModelName" : "doctoryard-controller"
+  "savePath" : "./doctoryard-bean/src/main/java/com/four",
+  "saveModelName" : "doctoryard-bean"
 }

@@ -1,6 +1,7 @@
 package com.four.service;
 
 import com.four.entity.Msg;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ public interface MsgService {
      */
     List<Msg> queryAllByLimit(int offset, int limit);
 
+    PageInfo<Msg> showAllMsg(int pageNum, int pageSize );
     /**
      * 新增数据
      *

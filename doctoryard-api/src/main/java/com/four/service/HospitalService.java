@@ -1,6 +1,7 @@
 package com.four.service;
 
 import com.four.entity.Hospital;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -20,12 +21,8 @@ public interface HospitalService {
      */
     Hospital queryById(Integer hospitalId);
 
-    /**
-     *
-     * @param doctorId
-     * @return
-     */
 
+    PageInfo<Hospital> showAllHospital(int pageNum, int pageSize);
 
     /**
      * 查询多条数据

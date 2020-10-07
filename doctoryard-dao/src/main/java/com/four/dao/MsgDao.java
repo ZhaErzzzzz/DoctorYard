@@ -12,7 +12,7 @@ import java.util.List;
  * 文章(Msg)表数据库访问层
  *
  * @author makejava
- * @since 2020-10-06 15:24:05
+ * @since 2020-10-07 19:27:42
  */
 @Mapper
 @Repository
@@ -41,11 +41,12 @@ public interface MsgDao {
 
     /**
      * 通过实体作为筛选条件查询
+     * 就是分页查询
      *
-     * @param msg 实例对象
      * @return 对象列表
      */
-    List<Msg> queryAll(Msg msg);
+    @Select("select * from msg order by msg_id desc")
+    List<Msg> queryAll();
 
     /**
      * 新增数据

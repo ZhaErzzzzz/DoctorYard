@@ -49,6 +49,6 @@
   "pkColumn" : null,
   "otherColumn" : null,
   "savePackageName" : "com.four",
-  "savePath" : "./doctoryard-service/src/main/java/com/four",
-  "saveModelName" : "doctoryard-service"
+  "savePath" : "./doctoryard-controller/src/main/java/com/four",
+  "saveModelName" : "doctoryard-controller"
 }

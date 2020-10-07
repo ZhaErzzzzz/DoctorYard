@@ -46,10 +46,10 @@ public interface DoctorDao {
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param doctor 实例对象
      * @return 对象列表
      */
-    List<Doctor> queryAll(Doctor doctor);
+    @Select("select * from doctor order by doctor_id desc")
+    List<Doctor> queryAll();
 
     /**
      * 新增数据

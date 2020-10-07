@@ -1,12 +1,13 @@
 package com.four.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 /**
  * 真实信息(Realinfo)实体类
  *
  * @author makejava
- * @since 2020-10-06 15:15:55
+ * @since 2020-10-07 19:20:00
  */
 public class Realinfo implements Serializable {
     private static final long serialVersionUID = 206557264668639899L;
@@ -23,7 +24,7 @@ public class Realinfo implements Serializable {
     /**
      * 生日
      */
-    private String realinfoBirthday;
+    private Date realinfoBirthday;
     /**
      * 免冠照
      */
@@ -82,11 +83,11 @@ public class Realinfo implements Serializable {
         this.realinfoTel = realinfoTel;
     }
 
-    public String getRealinfoBirthday() {
+    public Date getRealinfoBirthday() {
         return realinfoBirthday;
     }
 
-    public void setRealinfoBirthday(String realinfoBirthday) {
+    public void setRealinfoBirthday(Date realinfoBirthday) {
         this.realinfoBirthday = realinfoBirthday;
     }
 

@@ -1,6 +1,7 @@
 package com.four.service;
 
 import com.four.entity.Drug;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -29,6 +30,9 @@ public interface DrugService {
      */
     List<Drug> queryAllByLimit(int offset, int limit);
 
+
+
+    PageInfo<Drug> showDrugByType(int pageNum, int pageSize,String drugType);
     /**
      * 新增数据
      *

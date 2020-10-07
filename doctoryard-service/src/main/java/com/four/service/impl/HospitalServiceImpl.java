@@ -4,7 +4,10 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.four.dao.DoctorDao;
 import com.four.dao.HospitalDao;
 import com.four.entity.Hospital;
+import com.four.entity.Msg;
 import com.four.service.HospitalService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -35,7 +38,14 @@ public class HospitalServiceImpl implements HospitalService {
         return this.hospitalDao.queryById(hospitalId);
     }
 
+    @Override
+    public PageInfo<Hospital> showAllHospital(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Hospital> list = hospitalDao.queryAll();
+        PageInfo<Hospital> pageInfo = new PageInfo<>(list);
 
+        return pageInfo;
+    }
 
 
     /**

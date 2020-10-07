@@ -8,7 +8,7 @@ import java.util.List;
  * 挂号(Register)表服务接口
  *
  * @author makejava
- * @since 2020-10-06 15:28:05
+ * @since 2020-10-07 19:17:33
  */
 public interface RegisterService {
 

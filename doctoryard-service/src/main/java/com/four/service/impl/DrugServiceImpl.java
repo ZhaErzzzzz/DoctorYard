@@ -3,7 +3,10 @@ package com.four.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.four.dao.DrugDao;
 import com.four.entity.Drug;
+import com.four.entity.Msg;
 import com.four.service.DrugService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -43,6 +46,15 @@ public class DrugServiceImpl implements DrugService {
     @Override
     public List<Drug> queryAllByLimit(int offset, int limit) {
         return this.drugDao.queryAllByLimit(offset, limit);
+    }
+
+    @Override
+    public PageInfo<Drug> showDrugByType(int pageNum, int pageSize, String drugType) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Drug> list = drugDao.queryByType(drugType);
+        PageInfo<Drug> pageInfo = new PageInfo<>(list);
+
+        return pageInfo;
     }
 
     /**

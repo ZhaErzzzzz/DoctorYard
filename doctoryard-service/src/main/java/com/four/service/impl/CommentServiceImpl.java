@@ -4,6 +4,8 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.four.dao.CommentDao;
 import com.four.entity.Comment;
 import com.four.service.CommentService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -37,6 +39,15 @@ public class CommentServiceImpl implements CommentService {
     public List<Comment> queryByMsgId(Integer msgId) {
         return commentDao.queryByMsgId(msgId);
     }
+
+//    @Override
+//    public PageInfo<Comment> showComment(int pageNum, int pageSize) {
+//        PageHelper.startPage(pageNum, pageSize);
+//        List<Comment> list = commentDao.queryAll();
+//        PageInfo<Comment> pageInfo = new PageInfo<>(list);
+//
+//        return pageInfo;
+//    }
 
     /**
      * 查询多条数据

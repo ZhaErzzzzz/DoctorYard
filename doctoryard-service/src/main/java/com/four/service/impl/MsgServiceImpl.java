@@ -4,6 +4,8 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.four.dao.MsgDao;
 import com.four.entity.Msg;
 import com.four.service.MsgService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -48,6 +50,15 @@ public class MsgServiceImpl implements MsgService {
     @Override
     public List<Msg> queryAllByLimit(int offset, int limit) {
         return this.msgDao.queryAllByLimit(offset, limit);
+    }
+
+    @Override
+    public PageInfo<Msg> showAllMsg(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Msg> list = msgDao.queryAll();
+        PageInfo<Msg> pageInfo = new PageInfo<>(list);
+
+        return pageInfo;
     }
 
     /**

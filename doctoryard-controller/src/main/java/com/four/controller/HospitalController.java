@@ -3,8 +3,11 @@ package com.four.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.four.entity.Hospital;
 import com.four.service.HospitalService;
+import com.github.pagehelper.PageInfo;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -36,5 +39,11 @@ public class HospitalController {
         return this.hospitalService.queryById(id);
     }
 
+
+    @GetMapping("showHospital")
+    public Object getHospital(@RequestParam(defaultValue = "1")int pageNum){
+        PageInfo pageInfo=hospitalService.showAllHospital(pageNum,6);
+        return pageInfo;
+    }
 
 }

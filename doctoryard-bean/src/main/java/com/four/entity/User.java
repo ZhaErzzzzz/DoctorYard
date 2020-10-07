@@ -6,7 +6,7 @@ import java.io.Serializable;
  * 用户(User)实体类
  *
  * @author makejava
- * @since 2020-10-05 16:28:40
+ * @since 2020-10-07 15:56:57
  */
 public class User implements Serializable {
     private static final long serialVersionUID = 429821661800416111L;
@@ -24,6 +24,10 @@ public class User implements Serializable {
      * 头像
      */
     private String userImg;
+
+    private String userTel;
+
+    private String userNickname;
 
 
     public Integer getUserId() {
@@ -56,6 +60,22 @@ public class User implements Serializable {
 
     public void setUserImg(String userImg) {
         this.userImg = userImg;
+    }
+
+    public String getUserTel() {
+        return userTel;
+    }
+
+    public void setUserTel(String userTel) {
+        this.userTel = userTel;
+    }
+
+    public String getUserNickname() {
+        return userNickname;
+    }
+
+    public void setUserNickname(String userNickname) {
+        this.userNickname = userNickname;
     }
 
 }
