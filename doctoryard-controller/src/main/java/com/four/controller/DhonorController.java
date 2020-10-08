@@ -1,8 +1,8 @@
 package com.four.controller;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.four.entity.Dhonor;
 import com.four.service.DhonorService;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

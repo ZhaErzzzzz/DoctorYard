@@ -35,14 +35,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // 配置拦截请求资源
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()  //表单登录默认登录页面是/login 默认登录处理路径（form action）也是也是/login
-                .loginPage("/login.html")//配置自定义登录页面
-                .successHandler(successHandler) //定义登录成功处理
+//                .loginPage("/login.html")//配置自定义登录页面
+//                .successHandler(successHandler) //定义登录成功处理
                 .failureHandler(failureHandler).and() //定义登录失败处理
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and() // 不需要session验证，加上token不好使。
                 .authorizeRequests()
-                .antMatchers("/*.html").permitAll()//不校验我们配置的登录页面
-                .antMatchers("/login").permitAll()//不校验我们配置的登录页面
+                .antMatchers("/*.html").permitAll()//不校验我们配置的html页面
                 .antMatchers("/user/*").permitAll()//不校验我们配置的userController
                 .anyRequest().authenticated().and() //其他页面都校验
                 .csrf()

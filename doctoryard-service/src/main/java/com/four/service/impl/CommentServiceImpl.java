@@ -1,11 +1,11 @@
 package com.four.service.impl;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.four.dao.CommentDao;
 import com.four.entity.Comment;
 import com.four.service.CommentService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

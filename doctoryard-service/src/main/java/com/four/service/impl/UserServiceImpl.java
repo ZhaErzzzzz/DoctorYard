@@ -1,9 +1,9 @@
 package com.four.service.impl;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.four.dao.UserDao;
 import com.four.entity.User;
 import com.four.service.UserService;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +22,16 @@ public class UserServiceImpl implements UserService {
 //    @Resource
     @Autowired
     private UserDao userDao;
+    /**
+     * 通过Name查询单条数据
+     *
+     * @param userName 主键
+     * @return 实例对象
+     */
+    @Override
+    public User queryByName(String userName) {
+        return userDao.queryByName(userName);
+    }
 
     /**
      * 通过ID查询单条数据

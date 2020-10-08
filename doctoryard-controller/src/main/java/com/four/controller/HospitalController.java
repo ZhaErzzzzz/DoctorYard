@@ -1,10 +1,10 @@
 package com.four.controller;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSONObject;
 import com.four.entity.Hospital;
 import com.four.service.HospitalService;
 import com.github.pagehelper.PageInfo;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +22,6 @@ public class HospitalController {
     /**
      * 服务对象
      */
-//    @Resource
     @Reference
     private HospitalService hospitalService;
 

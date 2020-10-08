@@ -1,6 +1,7 @@
 package com.four.service;
 
 import com.four.entity.User;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -11,7 +12,13 @@ import java.util.List;
  * @since 2020-10-05 16:29:12
  */
 public interface UserService {
-
+    /**
+     * 通过Name查询单条数据
+     *
+     * @param userName 主键
+     * @return 实例对象
+     */
+    User queryByName(String userName);
     /**
      * 通过ID查询单条数据
      *

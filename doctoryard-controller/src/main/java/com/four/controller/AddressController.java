@@ -1,13 +1,11 @@
 package com.four.controller;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.four.entity.Address;
 import com.four.service.AddressService;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
 
 /**
  * 收货信息(Address)表控制层

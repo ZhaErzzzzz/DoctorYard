@@ -27,28 +27,28 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
         String username=((User)authentication.getPrincipal()).getUsername();
         String token= BCrypt.hashpw(username,BCrypt.gensalt("username"));
 
-        //将token存入redis
+//        将token存入redis
         redisUtil.set(token,username,24*60*60*1000);//1天
 
-        //将token返回
+//        将token返回
         response.setContentType("application/json;charset=UTF-8");
         response.addHeader("Authorization", "Bearer " + token);
-//        response.getWriter().print("用户token：" + token);
-//        response.getHeaders(token);
+        response.getWriter().print("用户token：" + token);
+        response.getHeaders(token);
     }
 
     public static void main(String[] args) {
-        String username="admin";
+        String username="321";
         String token1= BCrypt.hashpw(username,BCrypt.gensalt());
         String token2= BCrypt.hashpw(username,BCrypt.gensalt());
-//        String token3= BCrypt.hashpw(username,BCrypt.gensalt());
-//        System.out.println(token1);
-//        System.out.println(BCrypt.checkpw(username,token1));
-//        System.out.println(token2);
-//        System.out.println(BCrypt.checkpw(username,token2));
+        String token3= BCrypt.hashpw(username,BCrypt.gensalt());
+        System.out.println(token1);
+        System.out.println(BCrypt.checkpw(username,token1));
+        System.out.println(token2);
+        System.out.println(BCrypt.checkpw(username,token2));
 
 
-//        System.out.println(token3);
-//        System.out.println(BCrypt.checkpw(username,token3));
+        System.out.println(token3);
+        System.out.println(BCrypt.checkpw(username,token3));
     }
 }

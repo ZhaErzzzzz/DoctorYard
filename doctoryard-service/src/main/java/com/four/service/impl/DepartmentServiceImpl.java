@@ -1,9 +1,9 @@
 package com.four.service.impl;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.four.dao.DepartmentDao;
 import com.four.entity.Department;
 import com.four.service.DepartmentService;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

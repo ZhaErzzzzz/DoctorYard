@@ -1,9 +1,9 @@
 package com.four.controller;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.four.entity.Doctor;
 import com.four.service.DepartmentService;
 import com.four.service.DoctorService;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +24,7 @@ public class DoctorController {
     /**
      * 服务对象
      */
-    @Reference
+    @org.apache.dubbo.config.annotation.Reference
     private DoctorService doctorService;
 
     @Reference

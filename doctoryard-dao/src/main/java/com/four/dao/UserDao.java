@@ -18,6 +18,12 @@ import java.util.List;
 @Mapper
 @Repository
 public interface UserDao {
+    /**
+     * 通过Name查询单条数据
+     *
+     * @param userName 主键
+     * @return 实例对象
+     */
     @Select("select * from user where user_name=#{userName}")
     User queryByName(String userName);
 
@@ -29,7 +35,6 @@ public interface UserDao {
      */
     @Select("select * from user where user_id=#{userId}")
     User queryById(Integer userId);
-
 
     /**
      * 查询指定行数据
