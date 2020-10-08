@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author makejava
  * @since 2020-10-06 17:01:20
  */
-@RestController
-@RequestMapping("drugAdmit")
+//@RestController
+//@RequestMapping("drugAdmit")
 public class DrugAdmitController {
     /**
      * 服务对象

@@ -43,27 +43,32 @@
 
     <script>
         $(function () {
-            //查询所有医院 目前没有分页
-        let vue1 = new Vue({
-         el:"#vue1",
-            data:{
-             hospitals:[],
-            },
-            methods: {
-
-            },
-        })
-            $.ajax({
-                url:"/hospital/showHospital",
-                type:"post",
-                // dataType:"json",
-                success:function (data) {
-                    console.log(data)
-                    vue1.hospitals=data.pageInfo.list;
-                    console.log(vue1.hospitals)
-                    // code=vm.nums.code;
-
-                }
+            let vue1 = new Vue({
+                el:"#vue1",
+                data:{
+                    pageInfo:[],
+                },
+                mounted:function(){
+                    $.ajax({
+                        url:"/hospital/showHospital",
+                        type:"get",
+                        success:function (data) {
+                            console.log(data)
+                            vue1.pageInfo=data;
+                        }
+                    })
+                },
+                methods:  {
+                    nextpage:function () {
+                        $.ajax({
+                            url:"hospital/showHospital/"+vue1.pageInfo.nextPage,
+                            type:"get",
+                            success:function (data) {
+                                vue1.pageInfo=data;
+                            }
+                        })
+                    }
+                },
             })
         })
     </script>
@@ -292,6 +297,7 @@
 <!-- ================================
     START BREADCRUMB AREA
 ================================= -->
+
 <section class="breadcrumb-area">
     <div class="container">
         <div class="row" >
@@ -320,36 +326,59 @@
     <div class="container">
         <div class="row speaker-content-wrap" >
 
-                <div class="col-lg-4" v-for="hospital in hospitals">
-                    <div class="speaker-item speaker-item6">
-                        <div class="speaker-img-box">
-                            <img src="images/team6.jpg" alt="">
-                            <ul class="speaker__profile">
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            </ul>
+            <div class="col-lg-4" v-for="list in pageInfo.list">
+                <div class="speaker-item speaker-item6">
+                    <div class="speaker-img-box">
+                        <img src="images/team6.jpg" alt="">
+                        <ul class="speaker__profile">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="speaker-detail">
+                        <div class="speaker-title-box">
+                            <h3 class="speaker__title"><a href="teacher-detail.html">{{list.hospitalName}}</a></h3>
+                            <p class="speaker__meta">{{list.hospitalAddress}}</p>
+                            <p class="speaker__text">
+                                {{list.hospitalBrief}}
+                            </p>
+                            <a href="teacher-detail.html" class="speaker__link">view profile</a><!-- 这里涉及到的跳转要加医生的id -->
                         </div>
-                        <div class="speaker-detail">
-                            <div class="speaker-title-box">
-                                <h3 class="speaker__title"><a href="teacher-detail.html">{{hospital.hospitalName}}</a></h3>
-                                <p class="speaker__meta">{{hospital.hospitalAddress}}</p>
-                                <p class="speaker__text">
-                                    {{hospital.hospitalBrief}}
-                                </p>
-                                <a href="teacher-detail.html" class="speaker__link">view profile</a><!-- 这里涉及到的跳转要加医生的id -->
-                            </div>
-                        </div>
-                    </div><!-- end speaker-item -->
-                </div><!-- end col-lg-4 -->
+                    </div>
+                </div><!-- end speaker-item -->
+            </div><!-- end col-lg-4 -->
+            <!--            <div class="col-lg-12">-->
+            <!--                <div class="pagination-wrap" id="vue2">-->
+            <!--                    <nav aria-label="Page navigation">-->
+            <!--                        <ul class="pagination">-->
+            <!--                            <li class="page-item">-->
+            <!--                                <a class="page-link" href="#" aria-label="Previous"  @click="nextpage()">-->
+            <!--                                    <span aria-hidden="true"><i class="fa fa-angle-double-left"></i></span>-->
+            <!--                                </a>-->
+            <!--                            </li>-->
+            <!--                            <li class="page-item active"><a class="page-link" href="#">1</a></li>-->
+            <!--                            <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+            <!--                            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+            <!--                            <li class="page-item"><a class="page-link" href="#">4</a></li>-->
+            <!--                            <li class="page-item">-->
+            <!--                                <a class="page-link" href="'teachers.html?pageNum='{{pageInfo.nextPage}}" aria-label="Next" id="next">-->
+            <!--                                    <span aria-hidden="true"><i class="fa fa-angle-double-right"></i></span>-->
+            <!--                                </a>-->
+            <!--                            </li>-->
+            <!--                        </ul>-->
+            <!--                    </nav>-->
+            <!--                </div>&lt;!&ndash; end pagination-wrap &ndash;&gt;-->
+            <!--            </div>&lt;!&ndash; end col-lg-12 &ndash;&gt;-->
+
 
 
         </div><!-- end row -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="button-shared text-center">
-                    <button type="button" class="theme-btn">查看更多医院</button>
+        <div class="row" >
+            <div class="col-lg-12" >
+                <div class="button-shared text-center" >
+                    <button type="button" class="theme-btn" @click="nextpage()">查看更多医院</button>
                 </div><!-- end button-shared -->
             </div><!-- end col-lg-12 -->
         </div><!-- end row -->

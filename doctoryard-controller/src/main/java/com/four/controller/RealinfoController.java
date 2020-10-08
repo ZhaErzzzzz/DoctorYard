@@ -15,8 +15,8 @@ import javax.annotation.Resource;
  * @author makejava
  * @since 2020-10-06 15:36:56
  */
-@RestController
-@RequestMapping("realinfo")
+//@RestController
+//@RequestMapping("realinfo")
 public class RealinfoController {
     /**
      * 服务对象

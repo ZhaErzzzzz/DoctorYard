@@ -16,8 +16,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:34:33
  */
-@Service
-@Component
+//@Service
+//@Component
 public class RealinfoServiceImpl implements RealinfoService {
     @Autowired
     private RealinfoDao realinfoDao;

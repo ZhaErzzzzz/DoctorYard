@@ -15,8 +15,8 @@ import javax.annotation.Resource;
  * @author makejava
  * @since 2020-10-06 15:35:56
  */
-@RestController
-@RequestMapping("dhonor")
+//@RestController
+//@RequestMapping("dhonor")
 public class DhonorController {
     /**
      * 服务对象

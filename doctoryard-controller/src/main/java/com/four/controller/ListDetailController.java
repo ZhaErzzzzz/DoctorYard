@@ -15,8 +15,8 @@ import javax.annotation.Resource;
  * @author makejava
  * @since 2020-10-06 15:36:35
  */
-@RestController
-@RequestMapping("listDetail")
+//@RestController
+//@RequestMapping("listDetail")
 public class ListDetailController {
     /**
      * 服务对象

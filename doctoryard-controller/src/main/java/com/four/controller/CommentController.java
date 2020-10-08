@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2020-10-06 15:35:47
  */
 //@DubboComponentScan(basePackages = "com.four.controller")
-@RestController
-@RequestMapping("comment")
+//@RestController
+//@RequestMapping("comment")
 public class CommentController {
     /**
      * 服务对象

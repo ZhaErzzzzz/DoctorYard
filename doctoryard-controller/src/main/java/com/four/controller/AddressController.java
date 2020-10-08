@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author makejava
  * @since 2020-10-06 15:35:38
  */
-@RestController
-@RequestMapping("address")
+//@RestController
+//@RequestMapping("address")
 public class AddressController {
     /**
      * 服务对象

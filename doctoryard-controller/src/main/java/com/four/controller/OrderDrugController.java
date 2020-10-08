@@ -15,8 +15,8 @@ import javax.annotation.Resource;
  * @author makejava
  * @since 2020-10-06 15:36:50
  */
-@RestController
-@RequestMapping("orderDrug")
+//@RestController
+//@RequestMapping("orderDrug")
 public class OrderDrugController {
     /**
      * 服务对象

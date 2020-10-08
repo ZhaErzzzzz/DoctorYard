@@ -5,10 +5,10 @@ import com.four.entity.Hospital;
 import com.four.service.HospitalService;
 import com.github.pagehelper.PageInfo;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.ui.Model;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * 医院(Hospital)表控制层
@@ -37,12 +37,15 @@ public class HospitalController {
     }
 
 
-    @RequestMapping("showHospital")
-    public Object getHospital(@RequestBody @RequestParam(defaultValue = "1")int pageNum){
-        PageInfo pageInfo=hospitalService.showAllHospital(pageNum,6);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("pageInfo",pageInfo);
-        return jsonObject;
+    @GetMapping("showHospital")
+    public Object getHospital1(){
+        PageInfo pageInfo=hospitalService.showAllHospital( 1,3);
+        return pageInfo;
+    }
+    @GetMapping(produces = "application/json; charset=utf-8",path ="showHospital/{pageNum}")
+    public Object getHospital2(@PathVariable int pageNum){
+        PageInfo     pageInfo=hospitalService.showAllHospital( pageNum,3);
+        return pageInfo;
     }
 
 }

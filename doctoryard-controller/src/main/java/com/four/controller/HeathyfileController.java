@@ -15,8 +15,8 @@ import javax.annotation.Resource;
  * @author makejava
  * @since 2020-10-06 15:36:22
  */
-@RestController
-@RequestMapping("heathyfile")
+//@RestController
+//@RequestMapping("heathyfile")
 public class HeathyfileController {
     /**
      * 服务对象

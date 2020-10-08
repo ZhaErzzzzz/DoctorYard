@@ -16,8 +16,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:34:25
  */
-@Service
-@Component
+//@Service
+//@Component
 public class OrderDrugServiceImpl implements OrderDrugService {
     @Autowired
     private OrderDrugDao orderDrugDao;

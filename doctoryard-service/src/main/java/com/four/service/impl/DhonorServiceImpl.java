@@ -15,8 +15,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:29:11
  */
-@Service
-@Component
+//@Service
+//@Component
 public class DhonorServiceImpl implements DhonorService {
     @Autowired
     private DhonorDao dhonorDao;

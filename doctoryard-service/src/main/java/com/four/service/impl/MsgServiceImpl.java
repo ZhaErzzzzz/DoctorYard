@@ -18,8 +18,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:34:19
  */
-@Service
-@Component
+//@Service
+//@Component
 public class MsgServiceImpl implements MsgService {
     @Autowired
     private MsgDao msgDao;
