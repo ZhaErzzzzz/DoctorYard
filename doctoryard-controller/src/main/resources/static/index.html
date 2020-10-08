@@ -24,6 +24,44 @@
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- end inject -->
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/magnific-popup.min.js"></script>
+    <script src="js/isotope.js"></script>
+    <script src="js/waypoint.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/lightgallery.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/smooth-scrolling.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
+
+    <script>
+        $(function () {
+            let vue1 = new Vue({
+                el:"#vue1",
+                data:{
+                    pageInfo:[],
+                },
+                mounted:function(){
+                    $.ajax({
+                        url:"/hospital/showHospital",
+                        type:"get",
+                        success:function (data) {
+                            console.log(data)
+                            vue1.pageInfo=data;
+                        }
+                    })
+                },
+                methods:  {
+
+                },
+            })
+        })
+    </script>
 </head>
 <body>
 
@@ -813,7 +851,7 @@
 <!--======================================
         START SPEAKER AREA
 ======================================-->
-<section class="speaker-area">
+<section class="speaker-area" id="vue1">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -829,7 +867,7 @@
 
 
 
-            <div class="col-lg-4">
+            <div class="col-lg-4" v-for="list in pageInfo.list">
                 <div class="speaker-item speaker-item6">
                     <div class="speaker-img-box">
                         <img src="images/team6.jpg" alt="">
@@ -842,13 +880,12 @@
                     </div>
                     <div class="speaker-detail">
                         <div class="speaker-title-box">
-                            <h3 class="speaker__title"><a href="teacher-detail.html">kevin martin</a></h3>
-                            <p class="speaker__meta">Teacher</p>
+                            <h3 class="speaker__title"><a href="teacher-detail.html">{{list.hospitalName}}</a></h3>
+                            <p class="speaker__meta">{{list.hospitalAddress}}</p>
                             <p class="speaker__text">
-                                Pellentesque tellus arcu, laoreet volutpavenenatis molest
-                                commodo lorem lectus pretium vehicula.
+                                {{list.hospitalBrief}}
                             </p>
-                            <a href="teacher-detail.html" class="speaker__link">view profile</a>
+                            <a href="teacher-detail.html" class="speaker__link">查看详情</a>
                         </div>
                     </div>
                 </div><!-- end speaker-item -->
@@ -857,7 +894,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="button-shared text-center">
-                    <a href="teachers.html" class="theme-btn">查看所有医院</a>
+                    <a href="teachers.html" class="theme-btn" >查看所有医院</a>
                 </div><!-- end button-shared -->
             </div><!-- end col-lg-12 -->
         </div><!-- end row -->
@@ -1640,26 +1677,6 @@
 
 
 <!-- theme js files -->
-<script src="js/jquery-1.10.2.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/magnific-popup.min.js"></script>
-<script src="js/isotope.js"></script>
-<script src="js/waypoint.min.js"></script>
-<script src="js/jquery.counterup.min.js"></script>
-<script src="js/particles.min.js"></script>
-<script src="js/particlesRun.js"></script>
-<script src="js/lightgallery.js"></script>
-<script src="js/wow.js"></script>
-<script src="js/smooth-scrolling.js"></script>
-<script src="js/main.js"></script>
-<script src="js/layer.js"></script>
-<script>
-    layer.alert('今日有预约，请在预定时间就诊', {
-        icon: 1,
-        skin: 'layer-ext-moon'
-    })
-</script>
+
 </body>
 </html>

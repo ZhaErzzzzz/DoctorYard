@@ -47,6 +47,7 @@
                 el:"#vue1",
                 data:{
                     pageInfo:[],
+                    lists:[]
                 },
                 mounted:function(){
                     $.ajax({
@@ -55,6 +56,7 @@
                         success:function (data) {
                             console.log(data)
                             vue1.pageInfo=data;
+                            vue1.lists=vue1.pageInfo.list;
                         }
                     })
                 },
@@ -64,7 +66,16 @@
                             url:"hospital/showHospital/"+vue1.pageInfo.nextPage,
                             type:"get",
                             success:function (data) {
+                                // alert(data);
                                 vue1.pageInfo=data;
+                                if(vue1.lists.length<vue1.pageInfo.total){
+                                    for(var i=0;i<vue1.pageInfo.list.length;i++){
+                                        vue1.lists.push(vue1.pageInfo.list[i]);
+                                    }
+                                }else {
+                                    alert("已经是最后一页了");
+                                }
+                                // vue1.pageInfo.pageSize=(parseInt(data.pageInfo.pageSize)+1).toString();
                             }
                         })
                     }
@@ -326,7 +337,7 @@
     <div class="container">
         <div class="row speaker-content-wrap" >
 
-            <div class="col-lg-4" v-for="list in pageInfo.list">
+            <div class="col-lg-4" v-for="list in lists">
                 <div class="speaker-item speaker-item6">
                     <div class="speaker-img-box">
                         <img src="images/team6.jpg" alt="">
