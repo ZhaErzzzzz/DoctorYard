@@ -16,8 +16,8 @@ import java.util.Map;
  * @author makejava
  * @since 2020-10-06 11:37:24
  */
-//@RestController
-//@RequestMapping("hospital")
+@RestController
+@RequestMapping("hospital")
 public class HospitalController {
     /**
      * 服务对象
