@@ -16,8 +16,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:32:00
  */
-@Service
-@Component
+//@Service
+//@Component
 public class HeathyfileServiceImpl implements HeathyfileService {
     @Autowired
     private HeathyfileDao heathyfileDao;

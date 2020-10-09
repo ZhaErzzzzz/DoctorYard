@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @since 2020-10-06 11:29:29
  */
 public class Hospital implements Serializable {
-    private static final long serialVersionUID = -33979830836283915L;
+    private static final long serialVersionUID = 765188809881964082L;
 
     private Integer hospitalId;
     /**
@@ -32,6 +32,8 @@ public class Hospital implements Serializable {
      * 医院简介
      */
     private String hospitalBrief;
+
+    private String hospitalImg;
 
 
     public Integer getHospitalId() {
@@ -80,6 +82,14 @@ public class Hospital implements Serializable {
 
     public void setHospitalBrief(String hospitalBrief) {
         this.hospitalBrief = hospitalBrief;
+    }
+
+    public String getHospitalImg() {
+        return hospitalImg;
+    }
+
+    public void setHospitalImg(String hospitalImg) {
+        this.hospitalImg = hospitalImg;
     }
 
 }

@@ -20,8 +20,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 11:36:03
  */
-@Service
-@Component
+//@Service
+//@Component
 public class HospitalServiceImpl implements HospitalService {
     @Autowired
     private HospitalDao hospitalDao;
