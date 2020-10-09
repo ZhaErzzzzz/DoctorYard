@@ -44,6 +44,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/*.html").permitAll()//不校验我们配置的html页面
                 .antMatchers("/user/*").permitAll()//不校验我们配置的userController
                 .antMatchers("/hospital/**").permitAll()//不校验我们配置的userController
+                .antMatchers("/department/**").permitAll()//不校验我们配置的userController
+                .antMatchers("/doctor/**").permitAll()//不校验我们配置的userController
+                .antMatchers("/drug/**").permitAll()//不校验我们配置的userController
+
                 .anyRequest().authenticated().and() //其他页面都校验
                 .csrf()
                 .disable() //不允许csr

@@ -16,8 +16,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 11:37:12
  */
-//@RestController
-//@RequestMapping("department")
+@RestController
+@RequestMapping("department")
 public class DepartmentController {
     /**
      * 服务对象
@@ -39,6 +39,11 @@ public class DepartmentController {
     @GetMapping("selectDepartmentId")
     public List<Integer> queryByDepartmentName(String departmentName){
       return   departmentService.queryDepartmentIdByDepartmentName(departmentName);
+    }
+
+    @GetMapping("showAllByType")
+    public List<Department>  queryAllType(){
+        return departmentService.queryByType();
     }
 
 }

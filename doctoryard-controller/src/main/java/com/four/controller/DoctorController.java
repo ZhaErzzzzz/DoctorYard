@@ -3,10 +3,9 @@ package com.four.controller;
 import com.four.entity.Doctor;
 import com.four.service.DepartmentService;
 import com.four.service.DoctorService;
+import com.github.pagehelper.PageInfo;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -18,8 +17,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 11:36:59
  */
-//@RestController
-//@RequestMapping("doctor")
+@RestController
+@RequestMapping("doctor")
 public class DoctorController {
     /**
      * 服务对象
@@ -62,6 +61,19 @@ public class DoctorController {
             doctorList.addAll(doctorService.queryByDepartmentId(1));
         }
         return doctorList;
+    }
+
+    @GetMapping("showAllDoctor")
+    public Object showAllDoctor1(){
+      PageInfo pageInfo= doctorService.showAllDoctor(1,3);
+      return  pageInfo;
+    }
+
+    @GetMapping(produces = "application/json; charset=utf-8",path = "showAllDoctor/{pageNum}")
+    public Object showAllDoctor2(@PathVariable int pageNum){
+        PageInfo pageInfo=doctorService.showAllDoctor(pageNum,3);
+        return  pageInfo;
+
     }
 
 }

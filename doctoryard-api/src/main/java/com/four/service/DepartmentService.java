@@ -29,6 +29,9 @@ public interface DepartmentService {
      */
     List<Department> queryAllByLimit(int offset, int limit);
 
+
+    List<Department>  queryByType();
+
     /**
      * 新增数据
      *

@@ -60,6 +60,26 @@
 
                 },
             })
+
+
+
+            let vue2 = new Vue({
+                el:"#vue2",
+                data:{
+                    departments:[],
+                },
+                mounted: function () {
+                  $.ajax({
+                      url:"/department/showAllByType",
+                      type:"get",
+                      success:function (data) {
+                          console.log("data");
+                          console.log(data);
+                          vue2.departments=data;
+                      }
+                  })
+                }
+            })
         })
     </script>
 </head>
@@ -395,7 +415,7 @@
     </div><!-- end container -->
 </section><!-- end feature-area -->
 <!--上面是三个大标题-->
-<section class="category-area">
+<section class="category-area" id="vue2">
     <div class="container">
         <div class="row">
             <div class="col-lg-9">
@@ -407,11 +427,11 @@
             </div><!-- end col-lg-9 -->
         </div><!-- end row -->
         <div class="row category-wrapper">
-            <div class="col-lg-4">
+            <div class="col-lg-4" v-for="department in departments">
                 <div class="category-item">
                     <img src="images/img1.jpg" alt="">
                     <div class="category-content">
-                        <h3 class="cat__title">business</h3>
+                        <h3 class="cat__title">{{department.departmentName}}</h3>
                         <p class="cat__meta">9 courses</p>
                         <a href="#" class="cat__link">explore now</a>
                     </div><!-- end category-content -->

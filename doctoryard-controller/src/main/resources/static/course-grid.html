@@ -24,6 +24,118 @@
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- end inject -->
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/magnific-popup.min.js"></script>
+    <script src="js/isotope.js"></script>
+    <script src="js/waypoint.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/lightgallery.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/smooth-scrolling.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script>
+        $(function () {
+
+            let vue1 = new Vue({
+             el:"#vue1",
+                data:{
+                 pageInfo:[],
+                 lists:[],
+                },
+                mounted:function () {
+
+                 $.ajax({
+                     url:"/doctor/showAllDoctor",
+                     type:"get",
+                     success:function (data) {
+                          vue1.pageInfo=data;
+                          vue1.lists=vue1.pageInfo.list;
+                          console.log("lists");
+                          console.log(lists);
+
+
+                     }
+                 })
+                },
+                methods:{
+                 nextpage:function () {
+                  $.ajax({
+                      url:"/doctor/showAllDoctor/"+vue1.pageInfo.nextPage,
+                      type:"get",
+                      success:function (data) {
+
+                          if(vue1.pageInfo.isLastPage!=true){
+                              vue1.pageInfo=data;
+                              vue1.lists=vue1.pageInfo.list;
+                          }else {
+                              alert("已经是最后一页")
+                          }
+
+                      }
+                  })
+                 },
+                 prepage:function () {
+                  $.ajax({
+                      url:"/doctor/showAllDoctor/"+vue1.pageInfo.prePage,
+                      type:"get",
+                      success:function (data) {
+                            if(vue1.pageInfo.isFirstPage!=true){
+                            vue1.pageInfo=data;
+                            vue1.lists=vue1.pageInfo.list;
+                            }else{
+                                alert("已经是第一页")
+                            }
+
+                      }
+                  })
+                 }
+
+                }
+            })
+
+
+            let vue2 = new Vue({
+                el:"#vue2",
+                data:{
+                    departments:[],
+                },
+                mounted: function () {
+                    $.ajax({
+                        url:"/department/showAllByType",
+                        type:"get",
+                        success:function (data) {
+                            console.log("data");
+                            console.log(data);
+                            vue2.departments=data;
+                        }
+                    })
+                }
+            })
+
+            let vue3 = new Vue({
+                el:"#vue3",
+                data:{
+                    departments:[],
+                },
+                mounted: function () {
+                    $.ajax({
+                        url:"/department/showAllByType",
+                        type:"get",
+                        success:function (data) {
+                            console.log("data");
+                            console.log(data);
+                            vue2.departments=data;
+                        }
+                    })
+                }
+            })
+        })
+    </script>
 </head>
 <body>
 
@@ -273,7 +385,7 @@
 <!--======================================
         START COURSE AREA
 ======================================-->
-<section class="course-area course-area4">
+<section class="course-area course-area4" >
     <div class="course-wrapper">
         <div class="container">
             <div class="row">
@@ -293,13 +405,13 @@
                             </li>
                             <li><span class="courses-showing-text"> 8 Courses Found</span></li>
                         </ul>
-                        <div class="course-filter d-flex align-items-center ml-auto">
-                            <div class="courses-ordering">
-                                <select class="target-course">
-                                    <option value="all-category">全部医生</option>
-                                    <option value="newest">某科的医生</option>
-                                    <option value="oldest">某科的医生</option>
-                                    <option value="Popular-courses">某科的医生</option>
+                        <div class="course-filter d-flex align-items-center ml-auto" id="vue2">
+                            <div class="courses-ordering" >
+                                <select class="target-course" >
+
+                                    <option >全部医生</option>
+
+                                    <option v-for="department in departments">{{department.departmentName}}</option>
                                 </select>
                             </div><!-- end courses-ordering -->
                         </div><!-- end course-filter -->
@@ -310,10 +422,10 @@
     </div><!-- end course-wrapper -->
     <div class="course-content-wrapper">
         <div class="container">
-            <div class="row course-item-wrap">
-                <div class="col-lg-8">
+            <div class="row course-item-wrap" id="vue1">
+                <div class="col-lg-8" >
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade show active" id="tab1">
+                        <div role="tabpanel" class="tab-pane fade show active" id="tab1" v-for="list in lists">
                             <div class="row course-block">
                                 <div class="col-lg-6">
                                     <div class="course-item">
@@ -329,10 +441,10 @@
                                                 <a href="#" class="course__collection-icon" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="la la-heart-o"></span></a>
                                             </p>
                                             <h3 class="course__title">
-                                                <a href="course-details.html">The Complete Digital finance Marketing Course</a>
+                                                <a href="course-details.html">{{list.doctorBrief}}</a>
                                             </h3>
                                             <p class="course__author">
-                                                <a href="#">jose purtila</a>
+                                                <a href="#">{{list.doctorLastname}}</a>
                                             </p>
                                             <div class="rating-wrap d-flex">
                                                 <ul class="review-stars d-flex">
@@ -351,7 +463,7 @@
                                                 <ul class="course__list d-flex">
                                                     <li>
                                                         <span class="meta__date">
-                                                            <i class="la la-play-circle"></i> 45 Classes
+                                                            <i class="la la-play-circle"></i>{{list.doctorTel}}
                                                         </span>
                                                     </li>
                                                     <li>
@@ -371,14 +483,8 @@
                             </div><!-- end course-block -->
                         </div><!-- end tab-pane 网格显示  结束位置-->
 
-                        <div role="tabpanel" class="tab-pane fade" id="tab2">
+                        <div role="tabpanel" class="tab-pane fade" id="tab2" v-for="list in lists">
                             <div class="row course-block course-list-block">
-
-
-
-
-
-
                                 <div class="col-lg-12">
                                     <div class="course-item">
                                         <div class="course-img">
@@ -390,10 +496,10 @@
                                                 <a href="#" class="course__collection-icon" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="la la-heart-o"></span></a>
                                             </p>
                                             <h3 class="course__title">
-                                                <a href="course-details.html">User Experience Design - Adobe XD UI UX Design</a>
+                                                <a href="course-details.html">{{list.doctorBrief}}</a>
                                             </h3>
                                             <p class="course__author">
-                                                <a href="#">kamran paul</a>
+                                                <a href="#">{{list.doctorLastname}}</a>
                                             </p>
                                             <div class="rating-wrap d-flex">
                                                 <ul class="review-stars d-flex">
@@ -412,7 +518,7 @@
                                                 <ul class="course__list d-flex">
                                                     <li>
                                                         <span class="meta__date">
-                                                            <i class="la la-play-circle"></i> 45 Classes
+                                                            <i class="la la-play-circle"></i>{{list.doctorTel}}
                                                         </span>
                                                     </li>
                                                     <li>
@@ -436,7 +542,7 @@
                         <nav aria-label="Page navigation">
                             <ul class="pagination">
                                 <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
+                                    <a class="page-link" href="#" aria-label="Previous" @click="prepage()">
                                         <span aria-hidden="true"><i class="fa fa-angle-double-left"></i></span>
                                     </a>
                                 </li>
@@ -445,7 +551,7 @@
                                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                                 <li class="page-item"><a class="page-link" href="#">4</a></li>
                                 <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
+                                    <a class="page-link" href="#" aria-label="Next" @click="nextpage()">
                                         <span aria-hidden="true"><i class="fa fa-angle-double-right"></i></span>
                                     </a>
                                 </li>
@@ -453,8 +559,8 @@
                         </nav>
                     </div><!-- end pagination-wrap -->
                 </div><!-- end col-lg-8 -->
-                <div class="col-lg-4">
-                    <div class="sidebar">
+                <div class="col-lg-4" >
+                    <div class="sidebar" >
                         <div class="sidebar-widget">
                             <h3 class="widget__title">搜索区域</h3>
                             <span class="section__divider"></span>
@@ -467,19 +573,15 @@
                                 </form>
                             </div><!-- end contact-form-action -->
                         </div><!-- end sidebar-widget -->
-                        <div class="sidebar-widget category-widget">
+                        <div class="sidebar-widget category-widget" >
                             <h3 class="widget__title">全部分类</h3>
                             <span class="section__divider"></span>
-                            <ul class="widget__list">
-                                <li><a href="#">某科的医生</a></li>
-                                <li><a href="#">某科的医生</a></li>
-                                <li><a href="#">某科的医生</a></li>
-                                <li><a href="#">某科的医生</a></li>
-                                <li><a href="#">某科的医生</a></li>
-                                <li><a href="#">某科的医生</a></li>
-                                <li><a href="#">某科的医生</a></li>
-                                <li><a href="#">某科的医生</a></li>
+
+                            <ul class="widget__list" id="vue3">
+                                <li v-for="department in departments"><a>{{department.departmentName}}</a></li>
+
                             </ul>
+
                         </div><!-- end sidebar-widget -->
                         <div class="sidebar-widget level-widget">
                             <h3 class="widget__title">等级</h3>
@@ -686,17 +788,6 @@
 
 
 <!-- theme js files -->
-<script src="js/jquery-1.10.2.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/magnific-popup.min.js"></script>
-<script src="js/isotope.js"></script>
-<script src="js/waypoint.min.js"></script>
-<script src="js/jquery.counterup.min.js"></script>
-<script src="js/lightgallery.js"></script>
-<script src="js/wow.js"></script>
-<script src="js/smooth-scrolling.js"></script>
-<script src="js/main.js"></script>
+
 </body>
 </html>

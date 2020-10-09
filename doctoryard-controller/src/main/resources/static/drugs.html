@@ -24,6 +24,120 @@
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- end inject -->
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/magnific-popup.min.js"></script>
+    <script src="js/isotope.js"></script>
+    <script src="js/waypoint.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/lightgallery.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/smooth-scrolling.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script>
+        $(function () {
+
+            let vue1 = new Vue({
+              el:"#vue1",
+                data:{
+                  pageInfo1:[],
+                    pageInfo2:[],
+                    lists1:[],
+                    lists2:[],
+                },
+                mounted:function () {
+
+                  $.ajax({
+                      url:"drug/showDrugByType/prescription",
+                      type:"get",
+                      success:function (data) {
+                           vue1.pageInfo1 =data;
+                           vue1.lists1=vue1.pageInfo1.list;
+                      }
+
+                  })
+                  $.ajax({
+                      url:"drug/showDrugByType/unprescription",
+                      type:"get",
+                      success:function (data) {
+                           vue1.pageInfo2 =data;
+                           vue1.lists2=vue1.pageInfo2.list;
+                      }
+
+                  })
+                },
+                methods:{
+                    nextpage1:function () {
+                        $.ajax({
+                            url:"/drug/showDrugByType/prescription/"+vue1.pageInfo1.nextPage,
+                            type:"get",
+                            success:function (data) {
+
+                                if(vue1.pageInfo1.isLastPage!=true){
+                                    vue1.pageInfo1=data;
+                                    vue1.lists1=vue1.pageInfo1.list;
+                                }else {
+                                    alert("已经是最后一页")
+                                }
+
+                            }
+                        })
+                    },
+                    prepage1:function () {
+                        $.ajax({
+                            url:"/drug/showDrugByType/prescription/"+vue1.pageInfo1.prePage,
+                            type:"get",
+                            success:function (data) {
+                                if(vue1.pageInfo1.isFirstPage!=true){
+                                    vue1.pageInfo1=data;
+                                    vue1.lists1=vue1.pageInfo1.list;
+                                }else{
+                                    alert("已经是第一页")
+                                }
+
+                            }
+                        })
+                    },
+                    nextpage2:function () {
+                        $.ajax({
+                            url:"/drug/showDrugByType/unprescription/"+vue1.pageInfo2.nextPage,
+                            type:"get",
+                            success:function (data) {
+
+                                if(vue1.pageInfo2.isLastPage!=true){
+                                    vue1.pageInfo2=data;
+                                    vue1.lists2=vue1.pageInfo2.list;
+                                }else {
+                                    alert("已经是最后一页")
+                                }
+
+                            }
+                        })
+                    },
+                    prepage2:function () {
+                        $.ajax({
+                            url:"/drug/showDrugByType/unprescription/"+vue1.pageInfo2.prePage,
+                            type:"get",
+                            success:function (data) {
+                                if(vue1.pageInfo2.isFirstPage!=true){
+                                    vue1.pageInfo2=data;
+                                    vue1.lists2=vue1.pageInfo2.list;
+                                }else{
+                                    alert("已经是第一页")
+                                }
+
+                            }
+                        })
+                    }
+
+                }
+            })
+        })
+    </script>
 </head>
 <body>
 
@@ -251,7 +365,7 @@
 =================================-->
 
 
-<section class="course-area course-area3">
+<section class="course-area course-area3" id="vue1">
     <div class="course-wrapper">
         <div class="container">
             <div class="row">
@@ -279,28 +393,23 @@
             <div class="row course-item-wrap">
                 <div class="col-lg-12">
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade show active" id="tab1">
-                            <div class="row course-block">
-
-
-
-
-
-                                <div class="col-lg-4">
+                        <div role="tabpanel" class="tab-pane fade show active" id="tab1" >
+                            <div class="row course-block" >
+                                <div class="col-lg-4" v-for="list1 in lists1">
                                     <div class="course-item">
                                         <div class="course-img">
                                             <a href="drugs_detail.html" class="course__img"><img src="images/img13.jpg" alt=""></a>
                                         </div><!-- end course-img -->
                                         <div class="course-content">
                                             <p class="course__label">
-                                                <span class="course__label-text">all levels</span>
+                                                <span class="course__label-text">{{list1.drugKinds}}</span>
                                                 <a href="#" class="course__collection-icon" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="la la-heart-o"></span></a>
                                             </p>
                                             <h3 class="course__title">
-                                                <a href="course-details.html">Complete Python Bootcamp: Go from zero to hero</a>
+                                                <a href="course-details.html">{{list1.drugName}}</a>
                                             </h3>
                                             <p class="course__author">
-                                                <a href="#">noelle travesy</a>
+                                                <a href="#">药品编号:{{list1.drugNum}}</a>
                                             </p>
                                             <div class="rating-wrap d-flex">
                                                 <ul class="review-stars d-flex">
@@ -315,51 +424,52 @@
                                                     <span class="star__count">(40)</span>
                                                 </span>
                                             </div><!-- end rating-wrap -->
-                                            <div class="course-meta">
-                                                <ul class="course__list d-flex">
-                                                    <li>
-                                                        <span class="meta__date">
-                                                            <i class="la la-play-circle"></i> 45 Classes
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="meta__date">
-                                                            <i class="la la-clock-o"></i> 3 hours 20 min
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div><!-- end course-meta -->
                                             <div class="course-price-wrap">
-                                                <span class="course__price">$68.00</span>
+                                                <span class="course__price">￥{{list1.drugPrice}}</span>
                                                 <a href="#" class="course__btn">Add to cart</a>
                                             </div><!-- end course-price-wrap -->
                                         </div><!-- end course-content -->
                                     </div><!-- end course-item -->
                                 </div><!-- end col-lg-4 -->
                             </div><!-- end course-block -->
+                            <div class="pagination-wrap" >
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Previous" @click="prepage1()">
+                                                <span aria-hidden="true"><i class="fa fa-angle-double-left"></i></span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Next" @click="nextpage1()">
+                                                <span aria-hidden="true"><i class="fa fa-angle-double-right"></i></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div><!-- end pagination-wrap -->
                         </div><!-- end tab-pane  第一个某科的医生 结束位置-->
                         <div role="tabpanel" class="tab-pane fade" id="tab2">
                             <div class="row course-block">
-
-
-
-
-
-                                <div class="col-lg-4">
+                                <div class="col-lg-4" v-for="list2 in lists2">
                                     <div class="course-item">
                                         <div class="course-img">
                                             <a href="drugs_detail.html" class="course__img"><img src="images/img8.jpg" alt=""></a>
                                         </div><!-- end course-img -->
                                         <div class="course-content">
                                             <p class="course__label">
-                                                <span class="course__label-text">all levels</span>
+                                                <span class="course__label-text">{{list2.drugKinds}}</span>
                                                 <a href="#" class="course__collection-icon" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="la la-heart-o"></span></a>
                                             </p>
                                             <h3 class="course__title">
-                                                <a href="course-details.html">Complete Python Bootcamp: Go from zero to hero</a>
+                                                <a href="course-details.html">{{list2.drugName}}</a>
                                             </h3>
                                             <p class="course__author">
-                                                <a href="#">noelle travesy</a>
+                                                <a href="#">药品编号:{{list2.drugNum}}</a>
                                             </p>
                                             <div class="rating-wrap d-flex">
                                                 <ul class="review-stars d-flex">
@@ -374,28 +484,34 @@
                                                     <span class="star__count">(40)</span>
                                                 </span>
                                             </div><!-- end rating-wrap -->
-                                            <div class="course-meta">
-                                                <ul class="course__list d-flex">
-                                                    <li>
-                                                        <span class="meta__date">
-                                                            <i class="la la-play-circle"></i> 45 Classes
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="meta__date">
-                                                            <i class="la la-clock-o"></i> 3 hours 20 min
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div><!-- end course-meta -->
                                             <div class="course-price-wrap">
-                                                <span class="course__price">$68.00</span>
+                                                <span class="course__price">￥{{list2.drugPrice}}</span>
                                                 <a href="#" class="course__btn">Add to cart</a>
                                             </div><!-- end course-price-wrap -->
                                         </div><!-- end course-content -->
                                     </div><!-- end course-item -->
                                 </div><!-- end col-lg-4 -->
                             </div><!-- end course-block -->
+                            <div class="pagination-wrap">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Previous" @click="prepage2()">
+                                                <span aria-hidden="true"><i class="fa fa-angle-double-left"></i></span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Next" @click="nextpage2()">
+                                                <span aria-hidden="true"><i class="fa fa-angle-double-right"></i></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div><!-- end pagination-wrap -->
                         </div><!-- end tab-pane 第二个某科的医生  结束位置-->
                     </div><!-- end tab-content -->
                 </div><!-- end col-lg-12 -->
@@ -550,21 +666,7 @@
 
 
 <!-- theme js files -->
-<script src="js/jquery-1.10.2.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/magnific-popup.min.js"></script>
-<script src="js/isotope.js"></script>
-<script src="js/waypoint.min.js"></script>
-<script src="js/jquery.counterup.min.js"></script>
-<script src="js/particles.min.js"></script>
-<script src="js/particlesRun.js"></script>
-<script src="js/lightgallery.js"></script>
-<script src="js/wow.js"></script>
-<script src="js/smooth-scrolling.js"></script>
-<script src="js/main.js"></script>
-<script src="js/layer.js"></script>
+
 
 </body>
 </html>
