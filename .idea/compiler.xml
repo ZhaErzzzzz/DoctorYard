@@ -17,7 +17,6 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="doctoryard" target="1.8" />
-      <module name="DoctorYard" target="1.8" />
       <module name="doctoryard-api" target="1.8" />
       <module name="doctoryard-bean" target="1.8" />
       <module name="doctoryard-controller" target="1.8" />
@@ -27,7 +26,6 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="DoctorYard" options="-parameters" />
       <module name="doctoryard" options="-parameters" />
       <module name="doctoryard-api" options="-parameters" />
       <module name="doctoryard-bean" options="-parameters" />

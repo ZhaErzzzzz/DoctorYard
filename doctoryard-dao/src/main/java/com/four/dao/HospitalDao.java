@@ -60,6 +60,22 @@ public interface HospitalDao {
     int insert(Hospital hospital);
 
     /**
+     * 批量新增数据（MyBatis原生foreach方法）
+     *
+     * @param entities List<Hospital> 实例对象列表
+     * @return 影响行数
+     */
+    int insertBatch(@Param("entities") List<Hospital> entities);
+
+    /**
+     * 批量新增或按主键更新数据（MyBatis原生foreach方法）
+     *
+     * @param entities List<Hospital> 实例对象列表
+     * @return 影响行数
+     */
+    int insertOrUpdateBatch(@Param("entities") List<Hospital> entities);
+
+    /**
      * 修改数据
      *
      * @param hospital 实例对象

@@ -27,6 +27,7 @@
     <!-- theme js files -->
     <script src="js/jquery-1.10.2.min.js"></script>
     <script src="js/popper.min.js"></script>
+<!--    //http://cdn.bootstrapmb.com/bootstrap/4.3.1/-->
     <script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/magnific-popup.min.js"></script>
@@ -340,7 +341,8 @@
             <div class="col-lg-4" v-for="list in lists">
                 <div class="speaker-item speaker-item6">
                     <div class="speaker-img-box">
-                        <img src="images/team6.jpg" alt="">
+<!--                        v-bind:src="'http://123.57.7.108:81/'+item.skuImage"-->
+                        <img v-bind:src="'http://39.105.180.116:9901/images/'+list.hospitalImg" alt="">
                         <ul class="speaker__profile">
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>

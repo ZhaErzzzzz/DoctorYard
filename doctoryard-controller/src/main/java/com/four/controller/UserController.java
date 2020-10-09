@@ -72,8 +72,15 @@ public class UserController {
     //注册
     @PostMapping("signUp")
     public Result signUp(@RequestBody User user){
-
-
-        return ResultFactory.setResultSuccess(userService.insert(user));
+        User u = userService.queryByName(user.getUserName());
+        if(u!=null){
+            //用户名已存在
+            //账号正确，密码错误
+            return ResultFactory.setResultError(ResultCode.HTTP_RES_CODE_500,"用户名已存在，请重新申请！");
+        }else {
+            userService.insert(user);
+            //注册成功
+            return ResultFactory.setResultError(ResultCode.HTTP_RES_CODE_200,"注册成功！！！");
+        }
     }
 }
