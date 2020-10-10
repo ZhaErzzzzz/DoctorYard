@@ -2,6 +2,7 @@ package com.four.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.four.entity.Hospital;
+import com.four.service.DoctorService;
 import com.four.service.HospitalService;
 import com.github.pagehelper.PageInfo;
 import org.apache.dubbo.config.annotation.Reference;
@@ -24,16 +25,30 @@ public class HospitalController {
      */
     @Reference
     private HospitalService hospitalService;
+    @Reference
+    private DoctorService doctorService;
 
     /**
      * 通过主键查询单条数据
      *
-     * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("selectOne")
-    public Hospital selectOne(Integer id) {
-        return this.hospitalService.queryById(id);
+    @GetMapping(produces = "application/json; charset=utf-8",path ="showOneHospital/{hospitalId}")
+    public Hospital selectOne(@PathVariable int hospitalId) {
+
+        return this.hospitalService.queryById(hospitalId);
+    }
+
+    @GetMapping(produces = "application/json; charset=utf-8",path ="showHospitalByName/{hospitalName}")
+    public Hospital showHospitalByName(@PathVariable String hospitalName) {
+
+        return this.hospitalService.queryByName(hospitalName);
+    }
+    @GetMapping(produces = "application/json; charset=utf-8",path ="showHospitalByDoctorLastname/{doctorLastname}")
+    public Hospital showHospitalByDoctorLastname(@PathVariable String doctorLastname) {
+             Integer hospitalId =doctorService.queryHospitalIdByName(doctorLastname);
+          return    hospitalService.queryById(hospitalId);
+
     }
 
 

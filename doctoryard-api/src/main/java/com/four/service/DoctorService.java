@@ -22,6 +22,12 @@ public interface DoctorService {
      */
     Doctor queryById(Integer doctorId);
 
+    Doctor queryByLastname(String doctorLastname);
+
+    Integer queryByName(String doctorLastname);
+
+    Integer queryHospitalIdByName(String doctorLastname);
+
     /**
      * 查询多条数据
      *
@@ -39,6 +45,8 @@ public interface DoctorService {
      * @return
      */
     List<Doctor> queryByHospitalId(Integer hospitalId);
+
+    PageInfo<Doctor> showByHospitalId(int pageNum, int pageSize,Integer hospitalId);
 
     //通过科室id查医生
     List<Doctor> queryByDepartmentId(Integer departmentId);

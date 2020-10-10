@@ -27,6 +27,12 @@ public interface HospitalDao {
     @Select("select * from hospital where hospital_id=#{hospitalId}")
     Hospital queryById(Integer hospitalId);
 
+    @Select("select * from hospital where hospital_name=#{hospitalName}")
+    Hospital queryByName(String hospitalName);
+
+    @Select("select hospital_id from hospital where hospital_name=#{hospitalName}")
+    Integer queryByName1(String hospitalName);
+
     /**
      * 查询指定行数据
      *

@@ -14,7 +14,7 @@
     <link rel="icon" sizes="16x16" href="images/favicon.png">
 
     <!-- inject:css -->
-    <link rel="stylesheet" href="http://cdn.bootstrapmb.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/line-awesome.css">
     <link rel="stylesheet" href="css/animate.min.css">
@@ -24,6 +24,173 @@
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- end inject -->
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/magnific-popup.min.js"></script>
+    <script src="js/isotope.js"></script>
+    <script src="js/waypoint.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/lightgallery.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/smooth-scrolling.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/vue.js"></script>
+    <script>
+        $(function () {
+            let urlx=decodeURI(location.href)
+            let str = decodeURI(window.location.search);
+            let name=str.substr(14);
+            let vue1=new Vue({
+                el:"#vue1",
+                data:{
+                hospitalName:"",
+                },
+                mounted:function () {
+                    // let urlx=decodeURI(location.href) 4r
+                    // let str = decodeURI(window.location.search);
+                    // let name=str.substr(14);
+                    console.log("name");
+                    console.log(name);
+                    $.ajax({
+                    url:"hospital/showHospitalByName/"+name,
+                    type:"get",
+                    success:function (data) {
+                         vue1.hospitalName=data.hospitalName;
+                         console.log(vue1.hospitalName);
+
+                    }
+
+                    })
+
+
+                }
+            })
+            let vue2=new Vue({
+                el:"#vue2",
+                data:{
+                hospitalNum:"",
+                    hospitalCity:"",
+                    hospitalAddress:"",
+                    hospitalBrief:"",
+                    hospitalId:"",
+                    pageInfo:[],
+                    lists:[],
+
+                },
+
+                mounted:function () {
+                    let urlx=decodeURI(location.href)
+                    let str = decodeURI(window.location.search);
+                    let name=str.substr(14);
+
+                    console.log("vue2:name");
+                    console.log(name);
+                    $.ajax({
+                        // async:false,
+                        url:"doctor/showDoctorByHospitalId/"+name,
+                        type:"get",
+                        success:function (data) {
+                            vue2.pageInfo=data;
+                            vue2.lists=vue2.pageInfo.list;
+                            console.log("chenggong")
+                            console.log( vue2.lists);
+                        }
+                    })
+
+                    $.ajax({
+                        // async:false,
+                        url:"hospital/showHospitalByName/"+name,
+                        type:"get",
+                        success:function (data) {
+                            vue2.hospitalNum=data.hospitalNum,
+                                vue2.hospitalCity=data.hospitalCity,
+                                vue2.hospitalAddress=data.hospitalAddress,
+                                vue2.hospitalBrief=data.hospitalBrief,
+                                vue2.hospitalId=data.hospitalId;
+                            console.log(vue2.hospitalId);
+
+                        }
+
+                    })
+
+
+
+                    // $.ajax({
+                    //     url:"doctor/showDoctorByHospitalId/"+x,
+                    //     type:"get",
+                    //     success:function (data) {
+                    //
+                    //         vue2.pageInfo=data;
+                    //         vue2.lists=vue2.pageInfo.list;
+                    //         console.log("chenggong")
+                    //         console.log(data);
+                    //     }
+                    // })
+
+
+
+
+
+
+
+                },
+
+
+                methods:{
+
+                    prepage:function () {
+
+                        $.ajax({
+                            url:"doctor/showDoctorByHospitalId/"+name+"/"+vue2.pageInfo.prePage,
+                            type:"get",
+                            success:function (data) {
+
+                                if(vue2.pageInfo.isFirstPage!=true){
+                                    vue2.pageInfo=data;
+                                    vue2.lists=vue2.pageInfo.list;
+                                }else {
+                                    alert("已经是第一页")
+                                }
+                            }
+                        })
+                    },
+                    nextpage:function () {
+
+                        $.ajax({
+                            url:"doctor/showDoctorByHospitalId/"+name+"/"+vue2.pageInfo.nextPage,
+                            type:"get",
+                            success:function (data) {
+
+                                if(vue2.pageInfo.isLastPage!=true){
+                                    vue2.pageInfo=data;
+                                    vue2.lists=vue2.pageInfo.list;
+                                }else {
+                                    alert("已经是最后一页")
+                                }
+                            }
+                        })
+                    }
+                }
+            })
+
+            // let vue3 = new Vue({
+            //     el:"#vue3",
+            //     data:{
+            //         pageInfo:[],
+            //         lists:[]
+            //     },
+            //     mounted:function () {
+            //
+            //     },
+            //     methods: {
+            //
+            //     }
+            // })
+        })
+    </script>
 </head>
 <body>
 
@@ -249,15 +416,15 @@
 <!-- ================================
     START BREADCRUMB AREA
 ================================= -->
-<section class="breadcrumb-area instructor-breadcrumb">
+<section class="breadcrumb-area instructor-breadcrumb" id="vue1">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-content">
-                    <h2 class="breadcrumb__title">写医院名字 <span class="la la-check-circle-o" data-toggle="tooltip" data-placement="top" title="出色的医院"></span></h2>
-                    <p class="breadcrumb__meta">Joined 4 years ago</p>
+                    <h2 class="breadcrumb__title" v-model="hospitalName">{{hospitalName}}<span class="la la-check-circle-o" data-toggle="tooltip" data-placement="top" title="出色的医院"></span></h2>
 
-                    <div class="text-outline">写医院名字</div><!-- 背景图上的字 -->
+
+                    <div class="text-outline" v-model="hospitalName">{{hospitalName}}</div><!-- 背景图上的字 -->
                 </div><!-- end breadcrumb-content -->
             </div><!-- end col-lg-12 -->
         </div><!-- end row -->
@@ -270,7 +437,7 @@
 <!--======================================
         START SPEAKER AREA
 ======================================-->
-<section class="team-detail-area">
+<section class="team-detail-area" id="vue2">
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
@@ -287,9 +454,9 @@
                     <div class="tsd-box-2 row">
                         <div class="col-lg-6">
                             <ul class="ts__contact">
-                                <li><a href="tel:+123-456-0975"><span class="la la-phone"></span> 写医院编号</a></li>
-                                <li><a href="mailto:example@gmail.com"><span class="la la-envelope-o"></span>写医院市区</a></li>
-                                <li><a href="#"><span class="la la-link"></span>医院详细地址</a></li>
+                                <li v-model="hospitalNum"><a href="tel:+123-456-0975"><span class="la la-phone"></span>{{hospitalNum}}</a></li>
+                                <li v-model="hospitalCity"><a href="mailto:example@gmail.com"><span class="la la-envelope-o"></span>{{hospitalCity}}</a></li>
+                                <li v-model="hospitalAddress"><a href="#"><span class="la la-link"></span>{{hospitalAddress}}</a></li>
                             </ul>
                         </div><!-- end col-lg-6 -->
 
@@ -305,12 +472,6 @@
                             <div class="tsd-item">
                                 <h3 class="tsdi__title">科室</h3>
                                 <p class="tsdi__meta counter">24</p>
-                            </div><!-- end tsd-item -->
-                        </div><!-- end col-lg-4 -->
-                        <div class="col-lg-4">
-                            <div class="tsd-item">
-                                <h3 class="tsdi__title">患者</h3>
-                                <p class="tsdi__meta counter">348,883</p>
                             </div><!-- end tsd-item -->
                         </div><!-- end col-lg-4 -->
                     </div><!-- end tsd-box -->
@@ -330,20 +491,20 @@
                     </ul>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane fade show active" id="tab1">
-                            <div class="pane-body">
-                               写医院简介
+                            <div class="pane-body" v-model="hospitalBrief">
+                                {{hospitalBrief}}
                             </div>
                         </div>
                     </div><!-- end tab-content -->
                 </div><!-- end about-tab-wrap -->
             </div><!-- end col-lg-12 -->
         </div><!-- end row -->
-        <div class="row course-block instructor-all-course">
+        <div class="row course-block instructor-all-course" >
             <div class="col-lg-12">
                <h3 class="instructor-all-course__title">这个医院的医生</h3>
             </div><!-- end col-lg-12 -->
-            <div class="col-lg-4">
-                <div class="course-item">
+            <div class="col-lg-4" >
+                <div class="course-item" v-for="list in lists">
                     <div class="course-img">
                         <a href="course-details.html" class="course__img"><img src="images/img14.jpg" alt=""></a>
                         <div class="course-tooltip">
@@ -356,10 +517,10 @@
                             <a href="#" class="course__collection-icon" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="la la-heart-o"></span></a>
                         </p>
                         <h3 class="course__title">
-                            <a href="course-details.html">The Complete ASP.NET MVC 5 Course</a>
+                            <a href="course-details.html">{{list.doctorLastname}}</a>
                         </h3>
                         <p class="course__author">
-                            <a href="#">alex smith</a>
+                            <a href="#">{{list.doctorBrief}}</a>
                         </p>
                         <div class="rating-wrap d-flex">
                             <ul class="review-stars d-flex">
@@ -378,7 +539,7 @@
                             <ul class="course__list d-flex">
                                 <li>
                                     <span class="meta__date">
-                                        <i class="la la-play-circle"></i> 45 Classes
+                                        <i class="la la-play-circle"></i>{{list.doctorTel}}
                                     </span>
                                 </li>
                                 <li>
@@ -395,6 +556,7 @@
                     </div><!-- end course-content -->
                 </div><!-- end course-item -->
             </div><!-- end col-lg-4 -->
+
         </div><!-- end row -->
         <div class="row">
             <div class="col-lg-12">
@@ -402,7 +564,7 @@
                     <nav aria-label="Page navigation">
                         <ul class="pagination">
                             <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
+                                <a class="page-link" href="#" aria-label="Previous" @click="prepage()">
                                     <span aria-hidden="true"><i class="fa fa-angle-double-left"></i></span>
                                 </a>
                             </li>
@@ -411,7 +573,7 @@
                             <li class="page-item"><a class="page-link" href="#">3</a></li>
                             <li class="page-item"><a class="page-link" href="#">4</a></li>
                             <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
+                                <a class="page-link" href="#" aria-label="Next" @click="nextpage">
                                     <span aria-hidden="true"><i class="fa fa-angle-double-right"></i></span>
                                 </a>
                             </li>
@@ -546,17 +708,6 @@
 
 
 <!-- theme js files -->
-<script src="js/jquery-1.10.2.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/magnific-popup.min.js"></script>
-<script src="js/isotope.js"></script>
-<script src="js/waypoint.min.js"></script>
-<script src="js/jquery.counterup.min.js"></script>
-<script src="js/lightgallery.js"></script>
-<script src="js/wow.js"></script>
-<script src="js/smooth-scrolling.js"></script>
-<script src="js/main.js"></script>
+
 </body>
 </html>

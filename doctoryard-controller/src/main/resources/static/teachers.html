@@ -24,8 +24,10 @@
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- end inject -->
+    <!-- theme js files -->
     <script src="js/jquery-1.10.2.min.js"></script>
     <script src="js/popper.min.js"></script>
+<!--    //http://cdn.bootstrapmb.com/bootstrap/4.3.1/-->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/magnific-popup.min.js"></script>
@@ -46,7 +48,8 @@
                 el:"#vue1",
                 data:{
                     pageInfo:[],
-                    lists:[]
+                    lists:[],
+
                 },
                 mounted:function(){
                     $.ajax({
@@ -77,6 +80,13 @@
                                 // vue1.pageInfo.pageSize=(parseInt(data.pageInfo.pageSize)+1).toString();
                             }
                         })
+                    },
+                    goHospital:function (a) {
+                        this.hospitalName=a;
+                        // window.location.href="teacher-detail.html?hospitalName="+encodeURI(encodeURI(this.hospitalName));
+                        let hos="teacher-detail.html?hospitalName="+this.hospitalName;
+                        window.location.assign(encodeURI(hos));
+
                     }
                 },
             })
@@ -340,7 +350,7 @@
                 <div class="speaker-item speaker-item6">
                     <div class="speaker-img-box">
 <!--                        v-bind:src="'http://123.57.7.108:81/'+item.skuImage"-->
-                        <img v-bind:src="'http://39.105.180.116:9901/images/'+list.hospitalImg" alt="">
+                        <img v-bind:src="'http://39.105.180.116:9901/images/'+list.hospitalImg" @click="goHospital(list.hospitalName)" alt="">
                         <ul class="speaker__profile">
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -350,7 +360,7 @@
                     </div>
                     <div class="speaker-detail">
                         <div class="speaker-title-box">
-                            <h3 class="speaker__title"><a href="teacher-detail.html">{{list.hospitalName}}</a></h3>
+                            <h3 class="speaker__title" @click="goHospital(list.hospitalName)"><a>{{list.hospitalName}}</a></h3>
                             <p class="speaker__meta">{{list.hospitalAddress}}</p>
                             <p class="speaker__text">
                                 {{list.hospitalBrief}}

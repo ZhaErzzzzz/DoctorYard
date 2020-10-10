@@ -21,6 +21,12 @@ public interface HospitalService {
      */
     Hospital queryById(Integer hospitalId);
 
+    Hospital queryByName(String hospitalName);
+
+    Integer queryByName1(String hospitalName);
+
+
+
 
     PageInfo<Hospital> showAllHospital(int pageNum, int pageSize);
 

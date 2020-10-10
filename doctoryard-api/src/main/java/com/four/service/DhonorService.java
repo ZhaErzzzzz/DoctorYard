@@ -18,7 +18,10 @@ public interface DhonorService {
      * @param dhonorId 主键
      * @return 实例对象
      */
+
     Dhonor queryById(Integer dhonorId);
+
+
 
     /**
      * 查询多条数据
@@ -34,7 +37,7 @@ public interface DhonorService {
      * @param doctorId
      * @return
      */
-    Dhonor queryByDoctorId(Integer doctorId);
+   List<Dhonor>  queryByDoctorId(Integer doctorId);
 
     /**
      * 新增数据

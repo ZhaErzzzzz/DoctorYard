@@ -25,7 +25,10 @@ public interface DhonorDao {
      * @return 实例对象
      */
 
+    @Select("select * from dhonor where doctor_id=#{dhonorId}")
     Dhonor queryById(Integer dhonorId);
+
+
 
     /**
      *
@@ -33,7 +36,7 @@ public interface DhonorDao {
      * @return
      */
     @Select("select * from dhonor where doctor_id=#{doctorId}")
-    Dhonor queryByDoctorId(Integer doctorId);
+   List <Dhonor> queryByDoctorId(Integer doctorId);
     /**
      * 查询指定行数据
      *

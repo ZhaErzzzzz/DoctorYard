@@ -27,6 +27,18 @@ public interface DoctorDao {
     @Select("select * from doctor where doctor_id=#{doctorId}")
     Doctor queryById(Integer doctorId);
 
+
+    @Select("select * from doctor where doctor_lastname=#{doctorLastname}")
+    Doctor queryByLastname(String doctorLastname);
+
+    @Select("select doctor_id from doctor where doctor_lastname=#{doctorLastname}")
+    Integer queryByName(String doctorLastname);
+
+    @Select("select hospital_id from doctor where doctor_lastname=#{doctorLastname}")
+    Integer queryHospitalIdByName(String doctorLastname);
+
+
+
     /**
      * 查询指定行数据
      *

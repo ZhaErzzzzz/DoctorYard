@@ -36,6 +36,21 @@ public class DoctorServiceImpl implements DoctorService {
         return this.doctorDao.queryById(doctorId);
     }
 
+    @Override
+    public Doctor queryByLastname(String doctorLastname) {
+        return doctorDao.queryByLastname(doctorLastname);
+    }
+
+    @Override
+    public Integer queryByName(String doctorLastname) {
+        return doctorDao.queryByName(doctorLastname);
+    }
+
+    @Override
+    public Integer queryHospitalIdByName(String doctorLastname) {
+        return doctorDao.queryHospitalIdByName(doctorLastname);
+    }
+
     /**
      * 查询多条数据
      *
@@ -65,6 +80,14 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public List<Doctor> queryByHospitalId(Integer hospitalId) {
         return doctorDao.queryByHospitalId(hospitalId);
+    }
+
+    @Override
+    public PageInfo<Doctor> showByHospitalId(int pageNum, int pageSize,Integer hospitalId) {
+        PageHelper.startPage(pageNum, pageSize);
+       List<Doctor> list = doctorDao.queryByHospitalId(hospitalId);
+       PageInfo<Doctor> pageInfo = new PageInfo<>(list);
+        return pageInfo;
     }
 
     @Override

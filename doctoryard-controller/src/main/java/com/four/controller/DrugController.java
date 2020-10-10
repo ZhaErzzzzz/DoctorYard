@@ -29,12 +29,12 @@ public class DrugController {
     /**
      * 通过主键查询单条数据
      *
-     * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("selectOne")
-    public Drug selectOne(Integer id) {
-        return this.drugService.queryById(id);
+    @GetMapping(produces = "application/json; charset=utf-8",path = "showDrugsById/{drugId}")
+    public Drug selectOne(@PathVariable int drugId) {
+
+        return this.drugService.queryById(drugId);
     }
 
 

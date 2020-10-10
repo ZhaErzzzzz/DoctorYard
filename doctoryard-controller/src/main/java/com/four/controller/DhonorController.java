@@ -2,12 +2,15 @@ package com.four.controller;
 
 import com.four.entity.Dhonor;
 import com.four.service.DhonorService;
+import com.four.service.DoctorService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 医生荣誉技能(Dhonor)表控制层
@@ -15,29 +18,28 @@ import javax.annotation.Resource;
  * @author makejava
  * @since 2020-10-06 15:35:56
  */
-//@RestController
-//@RequestMapping("dhonor")
+@RestController
+@RequestMapping("dhonor")
 public class DhonorController {
     /**
      * 服务对象
      */
     @Reference
     private DhonorService dhonorService;
+    @Reference
+    private DoctorService doctorService;
 
-    /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
-     */
-    @GetMapping("selectOne")
-    public Dhonor selectOne(Integer id) {
-        return this.dhonorService.queryById(id);
+
+
+
+
+
+
+    @GetMapping(produces = "application/json; charset=utf-8",path = "showByDoctorId/{doctorLastname}")
+    public List<Dhonor> showOneDoctor(@PathVariable String doctorLastname){
+           Integer doctorId =doctorService.queryByName(doctorLastname);
+        return dhonorService.queryByDoctorId(doctorId);
+
     }
-
-    @GetMapping("selectByDoctorId")
-    public Dhonor queryByDoctorId(Integer doctorId){
-      return   dhonorService.queryByDoctorId(doctorId);
-    };
 
 }

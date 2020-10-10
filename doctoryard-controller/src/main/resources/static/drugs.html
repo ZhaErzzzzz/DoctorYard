@@ -132,6 +132,22 @@
 
                             }
                         })
+                    },
+                    goDrug:function (a) {
+
+                        // $.ajax({
+                        //     url:"drugs_detail.html",
+                        //     type:"get",
+                        //     data:{
+                        //      drugId:drugId,
+                        //     },
+                        //     success:function (drugId) {
+                        //       location.href="drugs_detail.html?"
+                        //     }
+                        //
+                        // })
+                        this.drugId=a;
+                       window.location.href="drugs_detail.html?drugId="+this.drugId;
                     }
 
                 }
@@ -406,7 +422,7 @@
                                                 <a href="#" class="course__collection-icon" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="la la-heart-o"></span></a>
                                             </p>
                                             <h3 class="course__title">
-                                                <a href="course-details.html">{{list1.drugName}}</a>
+                                                <a @click="goDrug(list1.drugId)">{{list1.drugName}}</a>
                                             </h3>
                                             <p class="course__author">
                                                 <a href="#">药品编号:{{list1.drugNum}}</a>

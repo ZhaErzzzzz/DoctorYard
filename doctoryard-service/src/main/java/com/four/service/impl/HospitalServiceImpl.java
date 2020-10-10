@@ -39,6 +39,16 @@ public class HospitalServiceImpl implements HospitalService {
     }
 
     @Override
+    public Hospital queryByName(String hospitalName) {
+        return hospitalDao.queryByName(hospitalName);
+    }
+
+    @Override
+    public Integer queryByName1(String hospitalName) {
+        return hospitalDao.queryByName1(hospitalName);
+    }
+
+    @Override
     public PageInfo<Hospital> showAllHospital(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<Hospital> list = hospitalDao.queryAll();
