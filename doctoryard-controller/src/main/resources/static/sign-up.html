@@ -28,7 +28,6 @@
     <!-- end inject -->
 
 
-
     <!-- theme js files -->
     <script src="js/jquery-1.10.2.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -45,41 +44,94 @@
     <script src="js/vue.js"></script>
     <script>
         $(function () {
-            let vue1=new Vue({
-                el:"#vue1",
-                data:{
+            let vue1 = new Vue({
+                el: "#vue1",
+                data: {
                     //基本信息
-                    userName:"",
-                    userPwd:"",
-                    userTel:"",
-                    userEmail:""
+                    userName: "",
+                    userPwd: "",
+                    userPwd2: "",
+                    userTel: "",
+                    userEmail: ""
                 },
-                methods:{
-                    signUp:function () {
+                methods: {
+                    //ajax请求后端
+                    signUp: function () {
+                        //正则验证通过后向后端发送注册请求
                         $.ajax({
-                            url:"/user/signUp",
-                            type:"POST",
+                            url: "/user/signUp",
+                            type: "POST",
                             contentType: "application/json;charset=utf-8",
                             // dataType:"json",
                             // beforeSend:function (request) {
                             //     request.setRequestHeader("Authorization",token);
                             // },
                             data: JSON.stringify({
-                                userName:vue1.userName,
-                                userPwd:vue1.userPwd,
-                                userTel:vue1.userTel,
-                                userEmail:vue1.userEmail
+                                userName: vue1.userName,
+                                userPwd: vue1.userPwd,
+                                userTel: vue1.userTel,
+                                userEmail: vue1.userEmail
                             }),
-                            success:function (data) {
+                            success: function (data) {
                                 alert(data.msg);
                                 console.log("data: ")
                                 console.log(data);
-
                             }
                         })
-                    }
+                    },
+                    //先校验，后调用check()方法
+                    check: function () {
+                        //校验请求信息
+                        //=========校验账号
+                        $("#name")[0].setCustomValidity("");//1、清理缓存，防止错误
+                        let flag1 = $("#name")[0].checkValidity();  //2、检查条件是否通过
+                        if (!flag1) {//3、条件错误时，提示错误
+                            $("#name")[0].setCustomValidity('必须是6-16位字母、数字，且字母开头！');
+                        }
+                        //=========邮箱
+                        $("#email")[0].setCustomValidity("");
+                        let flag2 = $("#email")[0].checkValidity();
+                        if (!flag2) {
+                            $("#email")[0].setCustomValidity('邮箱格式错误，请重新输入！');
+                        }
+                        //=========手机号
+                        $("#tel")[0].setCustomValidity("");
+                        let flag3 = $("#tel")[0].checkValidity();
+                        if (!flag3) {
+                            $("#tel")[0].setCustomValidity('手机号格式错误，请重新输入！');
+                        }
+                        //=========密码
+                        $("#pwd1")[0].setCustomValidity("");
+                        let flag4 = $("#pwd1")[0].checkValidity();
+                        if (!flag4) {
+                            $("#pwd1")[0].setCustomValidity('必须是8-18位，且包含字母和数字。');
+                        }
+                        //=========确认密码
+                        $("#pwd2")[0].setCustomValidity("");
+                        let flag5 = $("input[name='pwd2']").val() == $("input[name='pwd1']").val();
+                        if (!flag5) {
+                            $("#pwd2")[0].setCustomValidity('密码不同，请重新输入');
+                        }
+                        //勾选服务
+                        let flag6 = $("#chb1").prop("checked");//隐私政策
+                        let flag7 = $("#chb2").prop("checked");//服务条款
+                        //没勾选隐私政策、服务条款
+                        if (flag1 &&
+                            flag2 &&
+                            flag3 &&
+                            flag4 &&
+                            flag5) {
+                            if (flag6 && flag7) {
+                                //校验成功
+                                vue1.signUp()
+                            } else {
+                                alert("请勾选，隐私政策和服务条款 !");
+                            }
+                        }
+                    },
                 }
-            })
+            });
+            //validate验证
         })
     </script>
 </head>
@@ -108,7 +160,7 @@
                     <div class="col-lg-6">
                         <div class="header-widget header-widget1">
                             <ul class="contact-info d-flex align-items-center">
-                                <li><a href="#"><span class="la la-phone"></span> 123-456-789</a> </li>
+                                <li><a href="#"><span class="la la-phone"></span> 123-456-789</a></li>
                                 <li><a href="#"><span class="la la-envelope-o"></span> find@hospital.com</a></li>
                             </ul>
                         </div><!-- end header-widget -->
@@ -231,7 +283,8 @@
                         </nav><!-- end main-menu -->
                         <div class="logo-right-button">
                             <ul>
-                                <li class="ticket-button-box"><a href="admission.html" class="theme-btn">admission</a></li>
+                                <li class="ticket-button-box"><a href="admission.html" class="theme-btn">admission</a>
+                                </li>
                             </ul>
                             <div class="side-menu-open">
                                 <span class="menu__bar"></span>
@@ -241,7 +294,8 @@
                         </div><!-- end logo-right-button -->
                         <div class="side-nav-container">
                             <div class="humburger-menu">
-                                <div class="humburger-menu-lines side-menu-close"></div><!-- end humburger-menu-lines -->
+                                <div class="humburger-menu-lines side-menu-close"></div>
+                                <!-- end humburger-menu-lines -->
                             </div><!-- end humburger-menu -->
                             <div class="side-menu-wrap">
                                 <ul class="side-menu-ul">
@@ -335,14 +389,14 @@
         <div class="row">
             <div class="col-lg-7 mx-auto">
 
-                    <div class="contact-form-action">
-                        <div class="form-heading text-center">
-                            <h3 class="form__title">注册一个账号!</h3>
-                            <p class="form__desc">用以下方式.</p>
-                        </div>
-                        <div id="vue1">
+                <div class="contact-form-action">
+                    <div class="form-heading text-center">
+                        <h3 class="form__title">注册一个账号!</h3>
+                        <p class="form__desc">用以下方式.</p>
+                    </div>
+                    <div id="vue1">
                         <!--Contact Form-->
-                        <form >
+                        <form onsubmit="return false">
                             <div class="row">
                                 <div class="col-lg-4 col-sm-4 col-xs-12 form-group">
                                     <button class="theme-btn sign-btn btn__google" type="submit">
@@ -363,24 +417,62 @@
                                     <p class="account__desc account__desc2">or</p>
                                 </div><!-- end col-md-12 -->
                                 <div class="col-lg-12 col-sm-12 form-group">
-                                    <input class="form-control" type="text" name="name" placeholder="用户名  " v-model="userName">
+                                    <!--    帐号
+                                    ^[a-z][a-zA-Z0-9]{5,15}$
+                                    必须是6-16位字母、数字，且字母开头。
+                                    -->
+                                    <input pattern=^[a-z][a-zA-Z0-9]{5,15}$
+                                           required
+                                           class="form-control" type="text"
+                                           name="name" id="name" placeholder="用户名"
+                                           v-model="userName">
                                     <span class="la la-user input-icon"></span>
                                 </div><!-- end col-md-12 -->
                                 <div class="col-lg-12 col-sm-12 form-group">
-                                    <input class="form-control" type="email" name="email" placeholder="电子邮件" v-model="userEmail">
+                                    <!--邮箱
+                                    ^[A-Za-z\d]+[A-Za-z\d\-_\.]*@([A-Za-z\d]+[A-Za-z\d\-]*\.)+[A-Za-z]{2,4}$
+                                    -->
+                                    <input pattern=^[A-Za-z\d]+[A-Za-z\d\-_\.]*@([A-Za-z\d]+[A-Za-z\d\-]*\.)+[A-Za-z]{2,4}$
+                                           required
+                                           class="form-control" type="email" name="email" id="email" placeholder="电子邮件"
+                                           v-model="userEmail">
                                     <span class="la la-envelope-o input-icon"></span>
                                 </div><!-- end col-md-12 -->
                                 <div class="col-lg-12 col-sm-12 form-group">
-                                    <input class="form-control" type="tel" name="tel" placeholder="电话号码" v-model="userTel">
+                                    <!--电话号
+                                    ^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$
+                                    oninvalid="setCustomValidity('请输入11位手机号');-->
+                                    <input pattern=^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$
+                                           required
+                                           id="tel" class="form-control" type="tel" name="tel"
+                                           placeholder="电话号码" v-model="userTel"
+                                    >
                                     <span class="la la-phone input-icon"></span>
                                 </div><!-- end col-md-12 -->
                                 <div class="col-lg-12 col-sm-12 form-group">
-                                    <input class="form-control" type="password" name="password" placeholder="密码" v-model="userPwd">
+                                    <!-- 密码
+                                        ^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$).{8,18}$
+                                        必须是8-18位，且包含字母和数字。
+                                    -->
+                                    <input pattern=^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$).{8,18}$
+                                           required
+                                           class="form-control" type="password" name="pwd1" id="pwd1" placeholder="密码"
+                                           v-model="userPwd">
                                     <span class="la la-lock input-icon"></span>
                                 </div><!-- end col-md-12 -->
+                                <div class="col-lg-12 col-sm-12 form-group">
+                                    <!-- 确认密码-->
+                                    <input
+                                            class="form-control" type="password" name="pwd2" id="pwd2"
+                                            placeholder="确认密码"
+                                            v-model="userPwd2">
+                                    <span class="la la-lock input-icon"></span>
+                                </div><!-- end col-md-12 -->
+
                                 <div class="col-lg-12 col-sm-12 col-xs-12">
                                     <div class="custom-checkbox">
-                                        <input type="checkbox" id="chb1"/>
+                                        <input type="checkbox" id="chb1" required/>
+                                        <!--                                        <input type="text" style="display: none" name="chb11">-->
                                         <label for="chb1">我同意医苑的 <a href="#">隐私政策</a></label><!-- 加一个隐私政策页面 -->
                                     </div>
                                     <div class="custom-checkbox">
@@ -389,18 +481,16 @@
                                     </div>
                                 </div><!-- end col-md-12 -->
 
-
-
                                 <div class="col-lg-12 col-sm-12 col-xs-12 form-group">
-                                    <button class="theme-btn" id="signUp" type="button" @click="signUp()">注册</button>
+                                    <button class="theme-btn" type="submit" @click="check()">注册</button>
                                 </div><!-- end col-md-12 -->
                                 <div class="col-lg-12 col-sm-12 col-xs-12 account-assist">
                                     <p class="account__desc">已有账号?<a href="login.html">去登录</a></p>
                                 </div><!-- end col-md-12 -->
                             </div><!-- end row -->
                         </form>
-                        </div>
-                    </div><!-- end contact-form -->
+                    </div>
+                </div><!-- end contact-form -->
 
 
             </div><!-- end col-md-7 -->
@@ -489,7 +579,8 @@
         </div><!-- end row -->
         <div class="row copyright-content align-items-center">
             <div class="col-lg-10">
-                <p class="copy__desc">&copy; 2019 Aduca. All Rights Reserved. by <a href="http://www.bootstrapmb.com/">TechyDevs.</a></p>
+                <p class="copy__desc">&copy; 2019 Aduca. All Rights Reserved. by <a href="http://www.bootstrapmb.com/">TechyDevs.</a>
+                </p>
             </div><!-- end col-lg-9 -->
             <div class="col-lg-2">
                 <div class="language-select">
@@ -527,7 +618,6 @@
     <i class="fa fa-angle-up" title="Go top"></i>
 </div>
 <!-- end scroll top -->
-
 
 
 </body>

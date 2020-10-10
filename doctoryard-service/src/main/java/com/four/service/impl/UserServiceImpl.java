@@ -7,7 +7,6 @@ import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -19,7 +18,6 @@ import java.util.List;
 @Service
 @Component
 public class UserServiceImpl implements UserService {
-//    @Resource
     @Autowired
     private UserDao userDao;
     /**

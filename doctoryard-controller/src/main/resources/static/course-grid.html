@@ -44,58 +44,58 @@
         $(function () {
 
             let vue1 = new Vue({
-             el:"#vue1",
+                el:"#vue1",
                 data:{
-                 pageInfo:[],
-                 lists:[],
+                    pageInfo:[],
+                    lists:[],
                 },
                 mounted:function () {
 
-                 $.ajax({
-                     url:"/doctor/showAllDoctor",
-                     type:"get",
-                     success:function (data) {
-                          vue1.pageInfo=data;
-                          vue1.lists=vue1.pageInfo.list;
-                          console.log("lists");
-                          console.log(lists);
-
-
-                     }
-                 })
-                },
-                methods:{
-                 nextpage:function () {
-                  $.ajax({
-                      url:"/doctor/showAllDoctor/"+vue1.pageInfo.nextPage,
-                      type:"get",
-                      success:function (data) {
-
-                          if(vue1.pageInfo.isLastPage!=true){
-                              vue1.pageInfo=data;
-                              vue1.lists=vue1.pageInfo.list;
-                          }else {
-                              alert("已经是最后一页")
-                          }
-
-                      }
-                  })
-                 },
-                 prepage:function () {
-                  $.ajax({
-                      url:"/doctor/showAllDoctor/"+vue1.pageInfo.prePage,
-                      type:"get",
-                      success:function (data) {
-                            if(vue1.pageInfo.isFirstPage!=true){
+                    $.ajax({
+                        url:"/doctor/showAllDoctor",
+                        type:"get",
+                        success:function (data) {
                             vue1.pageInfo=data;
                             vue1.lists=vue1.pageInfo.list;
-                            }else{
-                                alert("已经是第一页")
-                            }
+                            console.log("lists");
+                            console.log(lists);
 
-                      }
-                  })
-                 }
+
+                        }
+                    })
+                },
+                methods:{
+                    nextpage:function () {
+                        $.ajax({
+                            url:"/doctor/showAllDoctor/"+vue1.pageInfo.nextPage,
+                            type:"get",
+                            success:function (data) {
+
+                                if(vue1.pageInfo.isLastPage!=true){
+                                    vue1.pageInfo=data;
+                                    vue1.lists=vue1.pageInfo.list;
+                                }else {
+                                    alert("已经是最后一页")
+                                }
+
+                            }
+                        })
+                    },
+                    prepage:function () {
+                        $.ajax({
+                            url:"/doctor/showAllDoctor/"+vue1.pageInfo.prePage,
+                            type:"get",
+                            success:function (data) {
+                                if(vue1.pageInfo.isFirstPage!=true){
+                                    vue1.pageInfo=data;
+                                    vue1.lists=vue1.pageInfo.list;
+                                }else{
+                                    alert("已经是第一页")
+                                }
+
+                            }
+                        })
+                    }
 
                 }
             })
