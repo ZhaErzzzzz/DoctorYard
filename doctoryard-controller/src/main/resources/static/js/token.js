@@ -4,8 +4,8 @@ token=localStorage.getItem("token");
 //     token=t;
 // }
 let user={
-    id:"",
-    username:""
+    userId:"",
+    userName:""
 }
-user.id=localStorage.getItem("id");
-user.username=localStorage.getItem("username");
+user.id=localStorage.getItem("userId");
+user.username=localStorage.getItem("userName");

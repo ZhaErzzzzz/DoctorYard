@@ -37,18 +37,18 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
         response.getHeaders(token);
     }
 
-    public static void main(String[] args) {
-        String username="321";
-        String token1= BCrypt.hashpw(username,BCrypt.gensalt());
-        String token2= BCrypt.hashpw(username,BCrypt.gensalt());
-        String token3= BCrypt.hashpw(username,BCrypt.gensalt());
-        System.out.println(token1);
-        System.out.println(BCrypt.checkpw(username,token1));
-        System.out.println(token2);
-        System.out.println(BCrypt.checkpw(username,token2));
-
-
-        System.out.println(token3);
-        System.out.println(BCrypt.checkpw(username,token3));
-    }
+//    public static void main(String[] args) {
+//        String username="321";
+//        String token1= BCrypt.hashpw(username,BCrypt.gensalt());
+//        String token2= BCrypt.hashpw(username,BCrypt.gensalt());
+//        String token3= BCrypt.hashpw(username,BCrypt.gensalt());
+//        System.out.println(token1);
+//        System.out.println(BCrypt.checkpw(username,token1));
+//        System.out.println(token2);
+//        System.out.println(BCrypt.checkpw(username,token2));
+//
+//
+//        System.out.println(token3);
+//        System.out.println(BCrypt.checkpw(username,token3));
+//    }
 }

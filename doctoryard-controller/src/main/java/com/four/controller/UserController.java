@@ -41,7 +41,7 @@ public class UserController {
     }
 
     //登录
-    @GetMapping("login")
+    @PostMapping("login")
     public Result login(@RequestBody User user){
        User u=userService.queryByName(user.getUserName());
         if(u==null){
@@ -60,10 +60,16 @@ public class UserController {
                 String token=BCrypt.hashpw(u.getUserPwd(),BCrypt.gensalt());
                 //4、token存入redis
                 redisUtil.set(token,u.getUserName(),24*60*60*1000);//1天
-                //5、包装data
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("token",token);
-                return ResultFactory.setResultSuccess(jsonObject);
+                //5、将token,存入data
+                JSONObject data = new JSONObject();
+                data.put("token",token);
+                //6、将只包含d和username的对象,存入data
+                User uu=new User();
+                uu.setUserId(u.getUserId());
+                uu.setUserName(u.getUserName());
+                data.put("user",uu);
+                //7、返回数据
+                return ResultFactory.setResultSuccess(data);
             }
 
         }
@@ -75,9 +81,9 @@ public class UserController {
         User u = userService.queryByName(user.getUserName());
         if(u!=null){
             //用户名已存在
-            //账号正确，密码错误
             return ResultFactory.setResultError(ResultCode.HTTP_RES_CODE_500,"用户名已存在，请重新申请！");
         }else {
+            user.setUserPwd(BCrypt.hashpw(user.getUserPwd(),BCrypt.gensalt()));
             userService.insert(user);
             //注册成功
             return ResultFactory.setResultError(ResultCode.HTTP_RES_CODE_200,"注册成功！！！");

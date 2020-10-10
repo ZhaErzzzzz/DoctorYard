@@ -1,14 +1,13 @@
 package com.four.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.four.entity.Hospital;
 import com.four.service.HospitalService;
 import com.github.pagehelper.PageInfo;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 医院(Hospital)表控制层

@@ -42,58 +42,58 @@
         $(function () {
 
             let vue1 = new Vue({
-             el:"#vue1",
+                el:"#vue1",
                 data:{
-                 pageInfo:[],
-                 lists:[],
+                    pageInfo:[],
+                    lists:[],
                 },
                 mounted:function () {
 
-                 $.ajax({
-                     url:"/doctor/showAllDoctor",
-                     type:"get",
-                     success:function (data) {
-                          vue1.pageInfo=data;
-                          vue1.lists=vue1.pageInfo.list;
-                          console.log("lists");
-                          console.log(lists);
-
-
-                     }
-                 })
-                },
-                methods:{
-                 nextpage:function () {
-                  $.ajax({
-                      url:"/doctor/showAllDoctor/"+vue1.pageInfo.nextPage,
-                      type:"get",
-                      success:function (data) {
-
-                          if(vue1.pageInfo.isLastPage!=true){
-                              vue1.pageInfo=data;
-                              vue1.lists=vue1.pageInfo.list;
-                          }else {
-                              alert("已经是最后一页")
-                          }
-
-                      }
-                  })
-                 },
-                 prepage:function () {
-                  $.ajax({
-                      url:"/doctor/showAllDoctor/"+vue1.pageInfo.prePage,
-                      type:"get",
-                      success:function (data) {
-                            if(vue1.pageInfo.isFirstPage!=true){
+                    $.ajax({
+                        url:"/doctor/showAllDoctor",
+                        type:"get",
+                        success:function (data) {
                             vue1.pageInfo=data;
                             vue1.lists=vue1.pageInfo.list;
-                            }else{
-                                alert("已经是第一页")
-                            }
+                            console.log("lists");
+                            console.log(lists);
 
-                      }
-                  })
-                 }
+
+                        }
+                    })
+                },
+                methods:{
+                    nextpage:function () {
+                        $.ajax({
+                            url:"/doctor/showAllDoctor/"+vue1.pageInfo.nextPage,
+                            type:"get",
+                            success:function (data) {
+
+                                if(vue1.pageInfo.isLastPage!=true){
+                                    vue1.pageInfo=data;
+                                    vue1.lists=vue1.pageInfo.list;
+                                }else {
+                                    alert("已经是最后一页")
+                                }
+
+                            }
+                        })
+                    },
+                    prepage:function () {
+                        $.ajax({
+                            url:"/doctor/showAllDoctor/"+vue1.pageInfo.prePage,
+                            type:"get",
+                            success:function (data) {
+                                if(vue1.pageInfo.isFirstPage!=true){
+                                    vue1.pageInfo=data;
+                                    vue1.lists=vue1.pageInfo.list;
+                                }else{
+                                    alert("已经是第一页")
+                                }
+
+                            }
+                        })
+                    }
 
                 }
             })
@@ -425,9 +425,9 @@
             <div class="row course-item-wrap" id="vue1">
                 <div class="col-lg-8" >
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade show active" id="tab1" v-for="list in lists">
+                        <div role="tabpanel" class="tab-pane fade show active" id="tab1" >
                             <div class="row course-block">
-                                <div class="col-lg-6">
+                                <div class="col-lg-6" v-for="list in lists">
                                     <div class="course-item">
                                         <div class="course-img">
                                             <a href="course-details.html" class="course__img"><img src="images/img14.jpg" alt=""></a>
@@ -483,9 +483,9 @@
                             </div><!-- end course-block -->
                         </div><!-- end tab-pane 网格显示  结束位置-->
 
-                        <div role="tabpanel" class="tab-pane fade" id="tab2" v-for="list in lists">
+                        <div role="tabpanel" class="tab-pane fade" id="tab2" >
                             <div class="row course-block course-list-block">
-                                <div class="col-lg-12">
+                                <div class="col-lg-12" v-for="list in lists">
                                     <div class="course-item">
                                         <div class="course-img">
                                             <a href="course-details.html" class="course__img"><img src="images/img14.jpg" alt=""></a>

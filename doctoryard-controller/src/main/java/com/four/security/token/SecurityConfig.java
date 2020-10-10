@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // 配置拦截请求资源
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()  //表单登录默认登录页面是/login 默认登录处理路径（form action）也是也是/login
-//                .loginPage("/login.html")//配置自定义登录页面
+                .loginPage("/login.html")//配置自定义登录页面
 //                .successHandler(successHandler) //定义登录成功处理
                 .failureHandler(failureHandler).and() //定义登录失败处理
                 .sessionManagement()
@@ -56,6 +56,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/js/**", "/css/**", "/images/**","/font_Icon/**","/fonts/**","/static/**");
+        web.ignoring().antMatchers("/js/**", "/css/**","/images/**","/font_Icon/**","/fonts/**");
     }
 }
