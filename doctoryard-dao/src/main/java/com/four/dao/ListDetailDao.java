@@ -3,6 +3,7 @@ package com.four.dao;
 import com.four.entity.ListDetail;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,7 +24,11 @@ public interface ListDetailDao {
      * @param listDetailId 主键
      * @return 实例对象
      */
+
     ListDetail queryById(Integer listDetailId);
+
+    @Select("select * from list_detail where list_id=#{listId}")
+    List<ListDetail> queryByListId(Integer listId);
 
     /**
      * 查询指定行数据

@@ -16,8 +16,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 16:48:58
  */
-//@Service
-//@Component
+@Service
+@Component
 public class ListsServiceImpl implements ListsService {
     @Autowired
     private ListsDao listsDao;
@@ -31,6 +31,21 @@ public class ListsServiceImpl implements ListsService {
     @Override
     public Lists queryById(Integer listId) {
         return this.listsDao.queryById(listId);
+    }
+
+    @Override
+    public List<Lists> queryByUserId(Integer userId) {
+        return listsDao.queryByUserId(userId);
+    }
+
+    @Override
+    public List<Integer> queryListIdByUserId(Integer userId) {
+        return listsDao.queryListIdByUserId(userId);
+    }
+
+    @Override
+    public List<Integer> queryAddressIdByUserId(Integer userId) {
+        return listsDao.queryAddressIdByUserId(userId);
     }
 
     /**

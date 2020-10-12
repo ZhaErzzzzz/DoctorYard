@@ -172,7 +172,13 @@
                                 }
                             }
                         })
+                    },
+                    goDoctor:function (a) {
+                        this.doctorId=a;
+                        let hos="course-details.html?doctorId="+this.doctorId;
+                        window.location.assign(encodeURI(hos));
                     }
+
                 }
             })
 
@@ -506,7 +512,7 @@
             <div class="col-lg-4" >
                 <div class="course-item" v-for="list in lists">
                     <div class="course-img">
-                        <a href="course-details.html" class="course__img"><img src="images/img14.jpg" alt=""></a>
+                        <a @click="goDoctor(list.doctorId)" class="course__img"><img src="images/img14.jpg" alt=""></a>
                         <div class="course-tooltip">
                             <span class="tooltip-label">bestseller</span>
                         </div>
@@ -517,7 +523,7 @@
                             <a href="#" class="course__collection-icon" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="la la-heart-o"></span></a>
                         </p>
                         <h3 class="course__title">
-                            <a href="course-details.html">{{list.doctorLastname}}</a>
+                            <a @click="goDoctor(list.doctorId)">{{list.doctorLastname}}</a>
                         </h3>
                         <p class="course__author">
                             <a href="#">{{list.doctorBrief}}</a>

@@ -76,7 +76,7 @@
                 },
                 mounted:function () {
                     $.ajax({
-                        url:"doctor/showOneDoctor/李太臣",
+                        url:"doctor/showOneDoctor/1",
                         type:"get",
                         success:function (data) {
                             vue1.doctorLastname=data.doctorLastname;
@@ -128,7 +128,7 @@
 
                     $.ajax({
                         // async:false,
-                        url:"dhonor/showByDoctorId/李太臣",
+                        url:"dhonor/showByDoctorId/1",
                         type:"get",
                         success:function (data) {
                             vue2.dhonors=data
@@ -136,7 +136,7 @@
                     });
                     $.ajax({
                         // async:false,
-                        url:"doctor/showOneDoctor/李太臣",
+                        url:"doctor/showOneDoctor/1",
                         type:"get",
                         success:function (data) {
                             vue2.doctorBrief=data.doctorBrief
@@ -144,7 +144,7 @@
                     });
                     $.ajax({
                         // async:false,
-                        url:"hospital/showHospitalByDoctorLastname/李太臣",
+                        url:"hospital/showHospitalByDoctorId/1",
                         type:"get",
                         success:function (data) {
                             vue2.hospitalName=data.hospitalName;
@@ -166,7 +166,7 @@
                     //         // }).bind(vue2);
                     //     }
                     // });
-                    axios.get('doctor/showDoctorInOneHospital/李太臣')
+                    axios.get('doctor/showDoctorInOneHospital/1')
                         .then((res)=>{
                             console.log(res.data);
                             vue2.doctors = res.data;

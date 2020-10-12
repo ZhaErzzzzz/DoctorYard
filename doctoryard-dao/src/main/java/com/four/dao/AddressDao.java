@@ -3,6 +3,7 @@ package com.four.dao;
 import com.four.entity.Address;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public interface AddressDao {
      * @param addressId 主键
      * @return 实例对象
      */
+    @Select("select * from address where address_id=#{addressId}")
     Address queryById(Integer addressId);
 
     /**

@@ -110,24 +110,7 @@ Version:        1.0
         });
 
         /*==== course-carousel =====*/
-        $('.course-carousel').owlCarousel({
-            loop: true,
-            items: 3,
-            nav: true,
-            dots: false,
-            smartSpeed: 500,
-            autoplay: false,
-            margin: 30,
-            navText: ["<i class='la la-angle-left'></i>", "<i class='la la-angle-right'></i>"],
-            responsive:{
-                320:{
-                    items:1,
-                },
-                992:{
-                    items:3,
-                }
-            }
-        });
+        // ,
 
         /*==== view-more-carousel =====*/
         // $('.view-more-carousel').owlCarousel({

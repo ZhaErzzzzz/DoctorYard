@@ -43,7 +43,7 @@ public interface CommentDao {
      * 这个就是分页
      * @return 对象列表
      */
-    @Select("select * from commnet order by comment_id desc")
+    @Select("select * from comment order by comment_id desc")
     List<Comment> queryAll();
 
     /**

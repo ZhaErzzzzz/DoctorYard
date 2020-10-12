@@ -35,9 +35,9 @@ public class DhonorController {
 
 
 
-    @GetMapping(produces = "application/json; charset=utf-8",path = "showByDoctorId/{doctorLastname}")
-    public List<Dhonor> showOneDoctor(@PathVariable String doctorLastname){
-           Integer doctorId =doctorService.queryByName(doctorLastname);
+    @GetMapping(produces = "application/json; charset=utf-8",path = "showByDoctorId/{doctorId}")
+    public List<Dhonor> showOneDoctor(@PathVariable int doctorId){
+
         return dhonorService.queryByDoctorId(doctorId);
 
     }

@@ -20,6 +20,8 @@ public interface ListDetailService {
      */
     ListDetail queryById(Integer listDetailId);
 
+   List <ListDetail> queryByListId(Integer listId);
+
     /**
      * 查询多条数据
      *

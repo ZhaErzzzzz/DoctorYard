@@ -25,6 +25,85 @@
     <link rel="stylesheet" href="css/lightgallery.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- end inject -->
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/magnific-popup.min.js"></script>
+    <script src="js/isotope.js"></script>
+    <script src="js/waypoint.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/lightgallery.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/smooth-scrolling.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/vue.js"></script>
+    <script>
+        $(function () {
+
+            let vue1 = new Vue({
+                el:"#vue1",
+                data:{
+
+                    pageInfo:[],
+                    lists:[],
+                },
+                mounted:function () {
+
+                    $.ajax({
+                        url:"msg/showMsg",
+                        type:"get",
+                        success:function (data) {
+
+                            vue1.pageInfo=data
+                            vue1.lists=vue1.pageInfo.list
+                        }
+                    })
+                },
+                methods:{
+                    nextpage:function () {
+                        $.ajax({
+                            url:"msg/showMsg/"+vue1.pageInfo.nextPage,
+                            type:"get",
+                            success:function (data) {
+
+                                if(vue1.pageInfo.isLastPage!=true){
+                                    vue1.pageInfo=data;
+                                    vue1.lists=vue1.pageInfo.list;
+                                }else {
+                                    alert("已经是最后一页")
+                                }
+
+                            }
+                        })
+                    },
+                    prepage:function () {
+                        $.ajax({
+                            url:"msg/showMsg/"+vue1.pageInfo.prePage,
+                            type:"get",
+                            success:function (data) {
+                                if(vue1.pageInfo.isFirstPage!=true){
+                                    vue1.pageInfo=data;
+                                    vue1.lists=vue1.pageInfo.list;
+                                }else{
+                                    alert("已经是第一页")
+                                }
+
+                            }
+                        })
+                    },
+                    goMsg:function (a) {
+                         this.msgTitle=a;
+                         let hos="blog-single.html?msgTitle="+this.msgTitle;
+                         window.location.assign(encodeURI(hos));
+                    }
+
+                }
+            })
+
+        })
+    </script>
 </head>
 <body>
 
@@ -273,26 +352,28 @@
 <!-- ================================
        START BLOG AREA
 ================================= -->
-<section class="blog-area blog-area3">
+<section class="blog-area blog-area3" id="vue1">
     <div class="container">
         <div class="row blog-post-wrapper">
-            <div class="col-lg-4 blog-post-item">
-                <div class="blog-post-img">
-                    <img src="images/img8.jpg" alt="blog image" class="blog__img">
+            <div class="col-lg-4 blog-post-item" v-for="list in lists">
+                <div class="blog-post-img" @click="goMsg(list.msgId)">
+                    <img src="images/img8.jpg" alt="blog image" class="blog__img" >
                     <div class="blog__date">
-                        <span>3 nov</span>
+                        <span>{{list.msgDate}}</span>
                     </div><!-- end blog__date -->
                 </div><!-- end blog-post-img -->
                 <div class="post-body">
-                    <div class="blog-title">
-                        <a href="blog-single.html" class="blog__title">
-                            Learn Ethical Hacking From Scratch
+                    <div class="blog-title" >
+                        <a  class="blog__title" @click="goMsg(list.msgId)">
+                            {{list.msgTitle}}
                         </a>
                     </div>
                     <ul class="blog__panel d-flex align-items-center">
-                        <li>By<a href="#" class="blog-admin-name">Admin</a></li>
+                        <li>作者:<a >{{list.msgAbout}}</a></li>
+                    </ul>
+                    <ul class="blog__panel d-flex align-items-center">
                         <li><span class="blog__panel-comment">4 Comments</span></li>
-                        <li><span class="blog__panel-likes">130 Likes</span></li>
+                        <li><span class="blog__panel-likes">点赞数:{{list.msgLike}}</span></li>
                     </ul>
                 </div><!-- end post-body -->
             </div><!-- end blog-post-item -->
@@ -303,7 +384,7 @@
                     <nav aria-label="Page navigation">
                         <ul class="pagination text-center justify-content-center">
                             <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
+                                <a class="page-link" href="#" aria-label="Previous" @click="prepage()">
                                     <span aria-hidden="true"><i class="fa fa-angle-double-left"></i></span>
                                 </a>
                             </li>
@@ -312,7 +393,7 @@
                             <li class="page-item"><a class="page-link" href="#">3</a></li>
                             <li class="page-item"><a class="page-link" href="#">4</a></li>
                             <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
+                                <a class="page-link" href="#" aria-label="Next" @click="nextpage()">
                                     <span aria-hidden="true"><i class="fa fa-angle-double-right"></i></span>
                                 </a>
                             </li>
@@ -447,17 +528,6 @@
 
 
 <!-- theme js files -->
-<script src="js/jquery-1.10.2.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/magnific-popup.min.js"></script>
-<script src="js/isotope.js"></script>
-<script src="js/waypoint.min.js"></script>
-<script src="js/jquery.counterup.min.js"></script>
-<script src="js/lightgallery.js"></script>
-<script src="js/wow.js"></script>
-<script src="js/smooth-scrolling.js"></script>
-<script src="js/main.js"></script>
+
 </body>
 </html>

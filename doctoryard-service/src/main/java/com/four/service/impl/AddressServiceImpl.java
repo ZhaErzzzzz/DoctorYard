@@ -16,8 +16,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:28:51
  */
-//@Service
-//@Component
+@Service
+@Component
 public class AddressServiceImpl implements AddressService {
     @Autowired
     private AddressDao addressDao;

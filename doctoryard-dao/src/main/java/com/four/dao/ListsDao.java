@@ -3,6 +3,7 @@ package com.four.dao;
 import com.four.entity.Lists;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,6 +25,15 @@ public interface ListsDao {
      * @return 实例对象
      */
     Lists queryById(Integer listId);
+
+    @Select("select * from lists where user_id={userId}")
+    List<Lists> queryByUserId(Integer userId);
+
+    @Select("select list_id from lists where user_id={userId}")
+    List<Integer> queryListIdByUserId(Integer userId);
+
+    @Select("select address_id from lists where user_id={userId}")
+    List<Integer> queryAddressIdByUserId(Integer userId);
 
     /**
      * 查询指定行数据

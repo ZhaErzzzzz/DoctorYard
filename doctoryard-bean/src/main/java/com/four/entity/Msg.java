@@ -1,5 +1,7 @@
 package com.four.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,6 +11,7 @@ import java.util.Date;
  * @author makejava
  * @since 2020-10-07 19:26:20
  */
+
 public class Msg implements Serializable {
     private static final long serialVersionUID = -56221846352117301L;
 
@@ -28,6 +31,7 @@ public class Msg implements Serializable {
     /**
      * 时间
      */
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date msgDate;
     /**
      * 关于作者

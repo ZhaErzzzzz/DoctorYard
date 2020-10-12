@@ -1,5 +1,7 @@
 package com.four.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -26,11 +28,14 @@ public class Comment implements Serializable {
     /**
      * 时间
      */
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date commentDate;
     /**
      * 点赞
      */
     private String commentLike;
+
+    private Integer commentIdId;
 
 
     public Integer getCommentId() {
@@ -87,6 +92,14 @@ public class Comment implements Serializable {
 
     public void setCommentLike(String commentLike) {
         this.commentLike = commentLike;
+    }
+
+    public Integer getCommentIdId() {
+        return commentIdId;
+    }
+
+    public void setCommentIdId(Integer commentIdId) {
+        this.commentIdId = commentIdId;
     }
 
 }
