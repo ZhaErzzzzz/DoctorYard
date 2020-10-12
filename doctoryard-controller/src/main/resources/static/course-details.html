@@ -47,7 +47,27 @@
     <!--</script>-->
 
     <script>
+        let a = function () {
+            $('.view-more-carousel').owlCarousel({
+                loop: true,
+                items: 2,
+                nav: false,
+                dots: true,
+                smartSpeed: 500,
+                autoplay: false,
+                margin: 15,
+                responsive: {
+                    320: {
+                        items: 1,
+                    },
+                    768: {
+                        items: 2,
+                    }
+                }
+            });
+        }
         $(function () {
+            // a();
 
             let vue1 = new Vue({
                 el:"#vue1",
@@ -100,7 +120,10 @@
                         url:"doctor/showDoctorInOneHospital/李太臣",
                         type:"get",
                         success:function (data) {
-                            vue2.doctors=data
+                            vue2.doctors=data;
+                            // this.nextTick(function () {
+                            //     a();
+                            // }).bind(vue2)
                         }
                     })
 
@@ -117,7 +140,11 @@
                         }
                     })
                 }
-            })
+            });
+             // let vv= function(){
+            a();
+                // setTimeout(, 1000);
+            // }
         })
     </script>
     <!-- end inject -->

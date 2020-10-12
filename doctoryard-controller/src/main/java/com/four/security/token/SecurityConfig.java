@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and() // 不需要session验证，加上token不好使。
                 .authorizeRequests()
-                .antMatchers("/*.html").permitAll()//不校验我们配置的html页面
+                .antMatchers("/*.html","/*.yml").permitAll()//不校验我们配置的html页面
                 .antMatchers("/user/*").permitAll()//不校验我们配置的userController
                 .antMatchers("/hospital/**").permitAll()//不校验我们配置的userController
                 .antMatchers("/department/**").permitAll()//不校验我们配置的userController
@@ -57,6 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/js/**", "/css/**","/images/**","/font_Icon/**","/fonts/**");
+        web.ignoring().antMatchers("/js/**", "/css/**","/images/**","/font_Icon/**","/fonts/**","/inc/**","/video/**");
+//
     }
 }

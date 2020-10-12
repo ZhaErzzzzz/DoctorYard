@@ -130,23 +130,23 @@ Version:        1.0
         });
 
         /*==== view-more-carousel =====*/
-        $('.view-more-carousel').owlCarousel({
-            loop: true,
-            items: 2,
-            nav: false,
-            dots: true,
-            smartSpeed: 500,
-            autoplay: false,
-            margin: 15,
-            responsive:{
-                320:{
-                    items:1,
-                },
-                768:{
-                    items:2,
-                }
-            }
-        });
+        // $('.view-more-carousel').owlCarousel({
+        //     loop: true,
+        //     items: 2,
+        //     nav: false,
+        //     dots: true,
+        //     smartSpeed: 500,
+        //     autoplay: false,
+        //     margin: 15,
+        //     responsive:{
+        //         320:{
+        //             items:1,
+        //         },
+        //         768:{
+        //             items:2,
+        //         }
+        //     }
+        // });
 
         /*=========== Counter up ============*/
         $('.counter').counterUp({

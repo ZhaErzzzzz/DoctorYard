@@ -39,6 +39,7 @@
     <script src="js/smooth-scrolling.js"></script>
     <script src="js/main.js"></script>
     <script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
     <!--<script>-->
     <!--    var player = new Plyr('#player');-->
     <!--    var player = new Plyr('#player2');-->
@@ -47,8 +48,26 @@
     <!--</script>-->
 
     <script>
+        let a=function(){
+            $('.view-more-carousel').owlCarousel({
+                loop: true,
+                items: 2,
+                nav: false,
+                dots: true,
+                smartSpeed: 500,
+                autoplay: false,
+                margin: 15,
+                responsive: {
+                    320: {
+                        items: 1,
+                    },
+                    768: {
+                        items: 2,
+                    }
+                }
+            });
+        }
         $(function () {
-
             let vue1 = new Vue({
                 el:"#vue1",
                 data:{
@@ -68,57 +87,103 @@
             })
 
             let vue2 = new Vue({
-                el:"#vue2",
-                data:{
-                    dhonors:[],
-                    doctorBrief:"",
-                    hospitalName:"",
-                    hospitalAddress:"",
-                    hospitalBrief:"",
-                    hospitalCity:"",
-                    hospitalImg:"",
-                    doctors:[],
+                // async:false,
+                el: "#vue2",
+                data: {
+                    dhonors: [],
+                    doctorBrief: "",
+                    hospitalName: "",
+                    hospitalAddress: "",
+                    hospitalBrief: "",
+                    hospitalCity: "",
+                    hospitalImg: "",
+                    doctors: [],
+                    li1:[]
                 },
-                mounted:function () {
+                methods: {
+                    view1: function () {
+                        let li2=[];
+                        let li3=[];
+                        vue2.li1[0]="0";
+                        vue2.li1[1]="1";
+                        li2[0]="a";
+                        li2[1]="b";
+                        li3[0]="c";
+                        li3[1]="d";
+                        for (let i = 0; i <vue2.li1.length ; i++) {
+                            for (let j = 0; j <li2.length ; j++) {
+                                if(i==0){
+                                    vue2.li1[i]=li2;
+                                }else {
+                                    vue2.li1[i]=li3;
+                                }
+
+                            }
+                        }
+                        console.log("vue2.li1:");
+                        console.log(vue2.li1);
+                    },
+                },
+                mounted: function () {
 
                     $.ajax({
+                        // async:false,
                         url:"dhonor/showByDoctorId/李太臣",
                         type:"get",
                         success:function (data) {
                             vue2.dhonors=data
                         }
-                    })
-
+                    });
                     $.ajax({
+                        // async:false,
                         url:"doctor/showOneDoctor/李太臣",
                         type:"get",
                         success:function (data) {
                             vue2.doctorBrief=data.doctorBrief
                         }
-                    })
+                    });
                     $.ajax({
-                        url:"doctor/showDoctorInOneHospital/李太臣",
-                        type:"get",
-                        success:function (data) {
-                            vue2.doctors=data
-                        }
-                    })
-
-                    $.ajax({
+                        // async:false,
                         url:"hospital/showHospitalByDoctorLastname/李太臣",
                         type:"get",
                         success:function (data) {
-
                             vue2.hospitalName=data.hospitalName;
                             vue2.hospitalAddress=data.hospitalAddress;
                             vue2.hospitalBrief=data.hospitalBrief;
                             vue2.hospitalCity=data.hospitalCity;
                             vue2.hospitalImg=data.hospitalImg;
                         }
-                    })
-                }
+                    });
+                    // $.ajax({
+                    //     // async:false,
+                    //     url: "doctor/showDoctorInOneHospital/李太臣",
+                    //     type: "get",
+                    //     success: function (data) {
+                    //         console.log(data);
+                    //         vue2.doctors = data;
+                    //         // Vue.nextTick(function(){
+                    //         //     a();
+                    //         // }).bind(vue2);
+                    //     }
+                    // });
+                    axios.get('doctor/showDoctorInOneHospital/李太臣')
+                        .then((res)=>{
+                            console.log(res.data);
+                            vue2.doctors = res.data;
+                            Vue.nextTick(function(){
+                                a();
+                            });
+                            vue2.view1();
+                        // .bind(vue2)
+                        })
+                },
             })
-        })
+            // setTimeout( Vue.nextTick(function(){
+            //     a();
+            // }).bind(vue2),2000)
+
+        });
+
     </script>
     <!-- end inject -->
 </head>
@@ -147,7 +212,7 @@
                     <div class="col-lg-6">
                         <div class="header-widget header-widget1">
                             <ul class="contact-info d-flex align-items-center">
-                                <li><a href="#"><span class="la la-phone"></span> 123-456-789</a> </li>
+                                <li><a href="#"><span class="la la-phone"></span> 123-456-789</a></li>
                                 <li><a href="#"><span class="la la-envelope-o"></span> find@hospital.com</a></li>
                             </ul>
                         </div><!-- end header-widget -->
@@ -270,7 +335,8 @@
                         </nav><!-- end main-menu -->
                         <div class="logo-right-button">
                             <ul>
-                                <li class="ticket-button-box"><a href="admission.html" class="theme-btn">admission</a></li>
+                                <li class="ticket-button-box"><a href="admission.html" class="theme-btn">admission</a>
+                                </li>
                             </ul>
                             <div class="side-menu-open">
                                 <span class="menu__bar"></span>
@@ -280,7 +346,8 @@
                         </div><!-- end logo-right-button -->
                         <div class="side-nav-container">
                             <div class="humburger-menu">
-                                <div class="humburger-menu-lines side-menu-close"></div><!-- end humburger-menu-lines -->
+                                <div class="humburger-menu-lines side-menu-close"></div>
+                                <!-- end humburger-menu-lines -->
                             </div><!-- end humburger-menu -->
                             <div class="side-menu-wrap">
                                 <ul class="side-menu-ul">
@@ -364,7 +431,6 @@
                         </li>
 
 
-
                     </ul>
                 </div><!-- end breadcrumb-content -->
             </div><!-- end col-lg-12 -->
@@ -403,7 +469,7 @@
                         <h3 class="instructor-wrap__title course-detail__title">关于医生所在医院</h3>
                         <div class="instructor-content d-flex">
                             <div class="instructor-img">
-                                <a  class="instructor__avatar" v-model="hospitalImg">
+                                <a class="instructor__avatar" v-model="hospitalImg">
                                     <img v-bind:src="'http://39.105.180.116:9901/images/'+hospitalImg" alt="">
                                 </a>
                                 <ul class="instructor__stats">
@@ -416,8 +482,10 @@
                             </div><!-- end instructor-img -->
                             <div class="instructor-details">
                                 <div class="instructor-titles">
-                                    <h3 class="instructor__title" v-model="hospitalName"><a >{{hospitalName}}</a><!--点击跳转到医院详情页面 -->
-                                        <span class="la la-check-circle-o Instructor__title-icon" data-toggle="tooltip" data-placement="top" title="Power Elite Instructor"></span>
+                                    <h3 class="instructor__title" v-model="hospitalName"><a>{{hospitalName}}</a>
+                                        <!--点击跳转到医院详情页面 -->
+                                        <span class="la la-check-circle-o Instructor__title-icon" data-toggle="tooltip"
+                                              data-placement="top" title="Power Elite Instructor"></span>
                                     </h3>
                                     <p class="instructor__subtitle" v-model="hospitalCity">{{hospitalCity}}</p>
                                     <p class="instructor__meta" v-model="hospitalAddress">{{hospitalAddress}}</p>
@@ -462,7 +530,8 @@
                                                 <div class="review-rating-rate__item-fill">
                                                     <span class="review-rating-rate__item-fill__fill rating-fill-width1"></span>
                                                 </div>
-                                                <div class="review-rating-rate__item-percent-text">77 %</div><!-- 所占百分比 -->
+                                                <div class="review-rating-rate__item-percent-text">77 %</div>
+                                                <!-- 所占百分比 -->
                                             </div>
                                         </li>
                                         <li class="review-rating-rate__items">
@@ -508,12 +577,12 @@
                         <div class="comments-wrapper">
 
 
-
                         </div><!-- end comments-wrapper -->
                     </div><!-- end review-wrap -->
                     <div class="view-more-courses view-more-courses2">
                         <h3 class="view-more-courses__title course-detail__title">某个医院的其他医生 </h3>
-                        <div class="view-more-carousel course-block">
+                        <div class="view-more-carousel course-block"  >
+
                             <div class="course-item" v-for="(doctor,index) in doctors">
                                 <div class="course-img">
                                     <a href="course-details.html" class="course__img"><img src="images/img9.jpg" alt=""></a>
@@ -521,7 +590,9 @@
                                 <div class="course-content">
                                     <p class="course__label">
                                         <span class="course__label-text">all levels</span>
-                                        <a href="#" class="course__collection-icon" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="la la-heart-o"></span></a>
+                                        <a href="#" class="course__collection-icon" data-toggle="tooltip"
+                                           data-placement="top" title="Add to Wishlist"><span
+                                                class="la la-heart-o"></span></a>
                                     </p>
                                     <h3 class="course__title">
                                         <a href="course-details.html">{{doctor.doctorLastname}}</a>
@@ -544,8 +615,10 @@
                                     </div><!-- end rating-wrap -->
                                     <div class="course-meta">
                                         <ul class="course__list d-flex">
-                                            <li><span class="meta__date"><i class="la la-play-circle"></i> 45 Classes</span></li>
-                                            <li><span class="meta__date"><i class="la la-clock-o"></i> 3 hours 20 min</span></li>
+                                            <li><span class="meta__date"><i
+                                                    class="la la-play-circle"></i> 45 Classes</span></li>
+                                            <li><span class="meta__date"><i
+                                                    class="la la-clock-o"></i> 3 hours 20 min</span></li>
                                         </ul>
                                     </div><!-- end course-meta -->
                                     <div class="course-price-wrap">
@@ -554,126 +627,8 @@
                                     </div><!-- end course-price-wrap -->
                                 </div><!-- end course-content -->
                             </div><!-- end course-item -->
-<!--                            <div class="course-item">-->
-<!--                                <div class="course-img">-->
-<!--                                    <a href="course-details.html" class="course__img"><img src="images/img10.jpg" alt=""></a>-->
-<!--                                </div>&lt;!&ndash; end course-img &ndash;&gt;-->
-<!--                                <div class="course-content">-->
-<!--                                    <p class="course__label">-->
-<!--                                        <span class="course__label-text">all levels</span>-->
-<!--                                        <a href="#" class="course__collection-icon" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="la la-heart-o"></span></a>-->
-<!--                                    </p>-->
-<!--                                    <h3 class="course__title">-->
-<!--                                        <a href="course-details.html">The Complete Web Developer Course 2.0</a>-->
-<!--                                    </h3>-->
-<!--                                    <p class="course__author">-->
-<!--                                        <a href="#">kamran paul</a>-->
-<!--                                    </p>-->
-<!--                                    <div class="rating-wrap d-flex">-->
-<!--                                        <ul class="review-stars d-flex">-->
-<!--                                            <li><span class="la la-star"></span></li>-->
-<!--                                            <li><span class="la la-star"></span></li>-->
-<!--                                            <li><span class="la la-star"></span></li>-->
-<!--                                            <li><span class="la la-star"></span></li>-->
-<!--                                            <li><span class="la la-star-o"></span></li>-->
-<!--                                        </ul>-->
-<!--                                        <span class="star-rating-wrap">-->
-<!--                                        <span class="star__rating">4.4</span>-->
-<!--                                        <span class="star__count">(20)</span>-->
-<!--                                    </span>-->
-<!--                                    </div>&lt;!&ndash; end rating-wrap &ndash;&gt;-->
-<!--                                    <div class="course-meta">-->
-<!--                                        <ul class="course__list d-flex">-->
-<!--                                            <li><span class="meta__date"><i class="la la-play-circle"></i> 45 Classes</span></li>-->
-<!--                                            <li><span class="meta__date"><i class="la la-clock-o"></i> 3 hours 20 min</span></li>-->
-<!--                                        </ul>-->
-<!--                                    </div>&lt;!&ndash; end course-meta &ndash;&gt;-->
-<!--                                    <div class="course-price-wrap">-->
-<!--                                        <span class="course__price">$190.00</span>-->
-<!--                                        <a href="#" class="course__btn">Get Enrolled</a>-->
-<!--                                    </div>&lt;!&ndash; end course-price-wrap &ndash;&gt;-->
-<!--                                </div>&lt;!&ndash; end course-content &ndash;&gt;-->
-<!--                            </div>&lt;!&ndash; end course-item &ndash;&gt;-->
-<!--                            <div class="course-item">-->
-<!--                                <div class="course-img">-->
-<!--                                    <a href="course-details.html" class="course__img"><img src="images/img11.jpg" alt=""></a>-->
-<!--                                </div>&lt;!&ndash; end course-img &ndash;&gt;-->
-<!--                                <div class="course-content">-->
-<!--                                    <p class="course__label">-->
-<!--                                        <span class="course__label-text">all levels</span>-->
-<!--                                        <a href="#" class="course__collection-icon" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="la la-heart-o"></span></a>-->
-<!--                                    </p>-->
-<!--                                    <h3 class="course__title">-->
-<!--                                        <a href="course-details.html">The Complete 2019 Web Development Bootcamp</a>-->
-<!--                                    </h3>-->
-<!--                                    <p class="course__author">-->
-<!--                                        <a href="#">kamran paul</a>-->
-<!--                                    </p>-->
-<!--                                    <div class="rating-wrap d-flex">-->
-<!--                                        <ul class="review-stars d-flex">-->
-<!--                                            <li><span class="la la-star"></span></li>-->
-<!--                                            <li><span class="la la-star"></span></li>-->
-<!--                                            <li><span class="la la-star"></span></li>-->
-<!--                                            <li><span class="la la-star"></span></li>-->
-<!--                                            <li><span class="la la-star-o"></span></li>-->
-<!--                                        </ul>-->
-<!--                                        <span class="star-rating-wrap">-->
-<!--                                        <span class="star__rating">4.4</span>-->
-<!--                                        <span class="star__count">(20)</span>-->
-<!--                                    </span>-->
-<!--                                    </div>&lt;!&ndash; end rating-wrap &ndash;&gt;-->
-<!--                                    <div class="course-meta">-->
-<!--                                        <ul class="course__list d-flex">-->
-<!--                                            <li><span class="meta__date"><i class="la la-play-circle"></i> 45 Classes</span></li>-->
-<!--                                            <li><span class="meta__date"><i class="la la-clock-o"></i> 3 hours 20 min</span></li>-->
-<!--                                        </ul>-->
-<!--                                    </div>&lt;!&ndash; end course-meta &ndash;&gt;-->
-<!--                                    <div class="course-price-wrap">-->
-<!--                                        <span class="course__price">$190.00</span>-->
-<!--                                        <a href="#" class="course__btn">Get Enrolled</a>-->
-<!--                                    </div>&lt;!&ndash; end course-price-wrap &ndash;&gt;-->
-<!--                                </div>&lt;!&ndash; end course-content &ndash;&gt;-->
-<!--                            </div>&lt;!&ndash; end course-item &ndash;&gt;-->
-<!--                            <div class="course-item">-->
-<!--                                <div class="course-img">-->
-<!--                                    <a href="course-details.html" class="course__img"><img src="images/img12.jpg" alt=""></a>-->
-<!--                                </div>&lt;!&ndash; end course-img &ndash;&gt;-->
-<!--                                <div class="course-content">-->
-<!--                                    <p class="course__label">-->
-<!--                                        <span class="course__label-text">all levels</span>-->
-<!--                                        <a href="#" class="course__collection-icon" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="la la-heart-o"></span></a>-->
-<!--                                    </p>-->
-<!--                                    <h3 class="course__title">-->
-<!--                                        <a href="course-details.html">The Web Developer Bootcamp</a>-->
-<!--                                    </h3>-->
-<!--                                    <p class="course__author">-->
-<!--                                        <a href="#">kamran paul</a>-->
-<!--                                    </p>-->
-<!--                                    <div class="rating-wrap d-flex">-->
-<!--                                        <ul class="review-stars d-flex">-->
-<!--                                            <li><span class="la la-star"></span></li>-->
-<!--                                            <li><span class="la la-star"></span></li>-->
-<!--                                            <li><span class="la la-star"></span></li>-->
-<!--                                            <li><span class="la la-star"></span></li>-->
-<!--                                            <li><span class="la la-star-o"></span></li>-->
-<!--                                        </ul>-->
-<!--                                        <span class="star-rating-wrap">-->
-<!--                                        <span class="star__rating">4.4</span>-->
-<!--                                        <span class="star__count">(20)</span>-->
-<!--                                    </span>-->
-<!--                                    </div>&lt;!&ndash; end rating-wrap &ndash;&gt;-->
-<!--                                    <div class="course-meta">-->
-<!--                                        <ul class="course__list d-flex">-->
-<!--                                            <li><span class="meta__date"><i class="la la-play-circle"></i> 45 Classes</span></li>-->
-<!--                                            <li><span class="meta__date"><i class="la la-clock-o"></i> 3 hours 20 min</span></li>-->
-<!--                                        </ul>-->
-<!--                                    </div>&lt;!&ndash; end course-meta &ndash;&gt;-->
-<!--                                    <div class="course-price-wrap">-->
-<!--                                        <span class="course__price">$190.00</span>-->
-<!--                                        <a href="#" class="course__btn">Get Enrolled</a>-->
-<!--                                    </div>&lt;!&ndash; end course-price-wrap &ndash;&gt;-->
-<!--                                </div>&lt;!&ndash; end course-content &ndash;&gt;-->
-<!--                            </div>&lt;!&ndash; end course-item &ndash;&gt;-->
+
+
                         </div><!-- end view-more-carousel -->
                         <div class="more-course-btn">
                             <div class="report-modal">
@@ -689,7 +644,8 @@
                                                 <h5 class="modal-title" id="exampleModalScrollableTitle">
                                                     <span class="la la-flag-o"></span> Report this course
                                                 </h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
                                                     <span aria-hidden="true" class="la la-close"></span>
                                                 </button>
                                             </div>
@@ -700,10 +656,13 @@
                                                         <div class="row">
                                                             <div class="col-lg-12 form-group">
                                                                 <label class="label-text">Write Message</label>
-                                                                <textarea class="message-control form-control" name="message" placeholder="What's wrong with this course?"></textarea>
+                                                                <textarea class="message-control form-control"
+                                                                          name="message"
+                                                                          placeholder="What's wrong with this course?"></textarea>
                                                             </div><!-- end col-lg-12 -->
                                                             <div class="col-lg-12 form-group text-right">
-                                                                <button class="theme-btn" type="submit">Send message</button>
+                                                                <button class="theme-btn" type="submit">Send message
+                                                                </button>
                                                             </div><!-- end col-lg-12 -->
                                                         </div><!-- end row -->
                                                     </form>
@@ -717,11 +676,8 @@
                     </div><!-- end view-more-courses -->
 
 
-
                 </div><!-- end course-item-content -->
             </div><!-- end col-lg-8 -->
-
-
 
 
             <div class="col-lg-4">
@@ -734,7 +690,10 @@
                             </div>
                             <div class="preview-video-and-details">
                                 <div class="preview-course-video">
-                                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/VqIp_sO8OVQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/VqIp_sO8OVQ"
+                                            frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
                                 </div>
                                 <div class="preview-course-content">
 
@@ -742,7 +701,8 @@
                                         <button class="theme-btn" type="button">去预约</button>
                                     </div>
                                     <div class="buy-course-btn">
-                                        <button class="theme-btn" type="button" onclick="window.open('chat.html')">去咨询</button>
+                                        <button class="theme-btn" type="button" onclick="window.open('chat.html')">去咨询
+                                        </button>
                                     </div>
                                     <div class="preview-course-incentives">
                                         <p class="preview-course-incentives__text">
@@ -890,7 +850,8 @@
         </div><!-- end row -->
         <div class="row copyright-content align-items-center">
             <div class="col-lg-10">
-                <p class="copy__desc">&copy; 2019 Aduca. All Rights Reserved. by <a href="http://www.bootstrapmb.com/">TechyDevs.</a></p>
+                <p class="copy__desc">&copy; 2019 Aduca. All Rights Reserved. by <a href="http://www.bootstrapmb.com/">TechyDevs.</a>
+                </p>
             </div><!-- end col-lg-9 -->
             <div class="col-lg-2">
                 <div class="language-select">
@@ -928,8 +889,6 @@
     <i class="fa fa-angle-up" title="Go top"></i>
 </div>
 <!-- end scroll top -->
-
-
 
 
 <!-- theme js files -->
