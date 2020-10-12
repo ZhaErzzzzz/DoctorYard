@@ -86,6 +86,7 @@ public class UserController {
             return ResultFactory.setResultError(ResultCode.HTTP_RES_CODE_500,"用户名已存在，请重新申请！");
         }else {
             user.setUserPwd(BCrypt.hashpw(user.getUserPwd(),BCrypt.gensalt()));
+            user.setUserImg("小明.jpg");
             userService.insert(user);
             //注册成功
             return ResultFactory.setResultError(ResultCode.HTTP_RES_CODE_200,"注册成功！！！");
