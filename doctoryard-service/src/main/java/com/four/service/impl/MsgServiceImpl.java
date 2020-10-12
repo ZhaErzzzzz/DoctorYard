@@ -18,8 +18,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:34:19
  */
-//@Service
-//@Component
+@Service
+@Component
 public class MsgServiceImpl implements MsgService {
     @Autowired
     private MsgDao msgDao;
@@ -38,6 +38,11 @@ public class MsgServiceImpl implements MsgService {
     @Override
     public Msg queryByMsgTitle(String msgTitle) {
         return msgDao.queryByMsgTitle(msgTitle);
+    }
+
+    @Override
+    public Integer queryMsgIdByMsgTitle(String msgTitle) {
+        return msgDao.queryMsgIdByMsgTitle(msgTitle);
     }
 
     /**

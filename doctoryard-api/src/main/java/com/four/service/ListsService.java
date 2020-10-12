@@ -20,6 +20,12 @@ public interface ListsService {
      */
     Lists queryById(Integer listId);
 
+    List<Lists> queryByUserId(Integer userId);
+
+    List<Integer> queryListIdByUserId(Integer userId);
+
+    List<Integer> queryAddressIdByUserId(Integer userId);
+
     /**
      * 查询多条数据
      *

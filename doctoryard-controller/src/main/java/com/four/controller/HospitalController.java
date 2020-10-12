@@ -43,9 +43,9 @@ public class HospitalController {
 
         return this.hospitalService.queryByName(hospitalName);
     }
-    @GetMapping(produces = "application/json; charset=utf-8",path ="showHospitalByDoctorLastname/{doctorLastname}")
-    public Hospital showHospitalByDoctorLastname(@PathVariable String doctorLastname) {
-             Integer hospitalId =doctorService.queryHospitalIdByName(doctorLastname);
+    @GetMapping(produces = "application/json; charset=utf-8",path ="showHospitalByDoctorId/{doctorId}")
+    public Hospital showHospitalByDoctorLastname(@PathVariable int doctorId) {
+             Integer hospitalId =doctorService.queryHospitalIdByDoctorId(doctorId);
           return    hospitalService.queryById(hospitalId);
 
     }

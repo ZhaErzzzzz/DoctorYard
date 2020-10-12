@@ -14,7 +14,7 @@
     <link rel="icon" sizes="16x16" href="images/favicon.png">
 
     <!-- inject:css -->
-    <link rel="stylesheet" href="http://cdn.bootstrapmb.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/line-awesome.css">
     <link rel="stylesheet" href="css/animate.min.css">
@@ -24,6 +24,84 @@
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="css/lightgallery.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- theme js files -->
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/magnific-popup.min.js"></script>
+    <script src="js/isotope.js"></script>
+    <script src="js/waypoint.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/lightgallery.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/smooth-scrolling.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/vue.js"></script>
+    <script>
+        $(function () {
+            let urlx=decodeURI(location.href)
+            let str = decodeURI(window.location.search);
+            let id=str.substr(10);
+
+            let vue1 = new Vue({
+                el:"#vue1",
+                data:{
+
+                    msgDate:"",
+                    msgTitle:"",
+                    msgAbout:"",
+                    msgLike:"",
+                    msgLable:"",
+                    msgInfo:"",
+
+                    pageInfo:[],
+                    lists:[],
+                },
+                mounted:function () {
+
+                    $.ajax({
+                        url:"msg/showByTitle/"+id,
+                        type:"get",
+                        success:function (data) {
+
+                            vue1.msgDate=data.msgDate;
+                            vue1.msgTitle=data.msgTitle;
+                            vue1.msgAbout=data.msgAbout;
+                            vue1.msgLike=data.msgLike;
+                            vue1.msgLable=data.msgLable;
+                            vue1.msgInfo=data.msgInfo;
+
+                        }
+                    })
+
+                    $.ajax({
+                        url:"comment/showAllComment/"+id,
+                        type:"get",
+                        success:function (data) {
+                            vue1.pageInfo=data
+                            vue1.lists=vue1.pageInfo.list
+
+
+
+
+
+                        }
+                    })
+
+
+
+                },
+                methods:{
+
+                }
+            })
+
+
+        })
+    </script>
     <!-- end inject -->
     <script src="js/vue.js"></script>
 
@@ -275,7 +353,7 @@
 <!--======================================
         START BLOG AREA
 ======================================-->
-<section class="blog-area4">
+<section class="blog-area4" id="vue1">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-sm-12">
@@ -283,34 +361,25 @@
                     <div class="blog-item">
                         <div class="blog-img-box">
                             <img src="images/img14.jpg" alt="">
-                            <span class="blog__date">写发表的时间</span>
+                            <span class="blog__date" v-model="msgDate">{{msgDate}}</span>
                         </div>
                         <div class="blog-content">
-                            <h3 class="blog__title">博客的文章名字</h3>
+                            <h3 class="blog__title" v-model="msgTitle">{{msgTitle}}</h3>
                             <ul class="blog__list">
-                                <li><span class="la la-user"></span>由 <a href="#">写发表的作者 </a></li>
+                                <li><span class="la la-user"></span>作者:<a href="#" v-model="msgAbout">{{msgAbout}}</a></li>
                                 <li><span class="la la-tags"></span>
-                                    <a href="#">Business,</a> <a href="#">Finance</a><!-- 文章的标签 -->
+                                    <a href="#" v-model="msgLable">{{msgLable}}</a> <!-- 文章的标签 -->
                                 </li>
-                                <li><span class="la la-heart-o"></span>120 likes</li><!-- 收藏人数 -->
+                                <li><span class="la la-heart-o" v-model="msgLike"></span>点赞数:{{msgLike}}</li><!-- 收藏人数 -->
                             </ul>
-                            <p class="blog__desc">
-                                Investig ationes demons trave runt lectores legere liusry quod ii
-                                legunt saepius claritas Investig ationes. Pharetra dui,
-                                nec tincidunt ante mauris eu diam. Phasellus viverra nisl
-                                vitae cursus aei uismod suspendisse saepius claritas investig.
-                                Lorem ipsum dolor sit amet, consectet adipiscing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magnag aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laborinu aliquip ex ea commodo consequat. Du aute irure dolor
-                                in reprehenderit inlore voluptate velit esse cillum dolore.
+                            <p class="blog__desc" v-model="msgInfo">
+                              {{msgInfo}}
                             </p>
                             <div class="tags-item">
                                 <ul class="tag__list">
                                     <li><span>标签:</span></li>
-                                    <li><a href="#">Financial</a></li>
-                                    <li><a href="#">Business</a></li>
-                                    <li><a href="#">Accounting</a></li>
+                                    <li><a href="#" v-model="msgLable">{{msgLable}}</a></li>
+
                                 </ul>
                                 <ul class="social__links">
                                     <li><span>Share:</span></li>
@@ -345,85 +414,41 @@
                             </div><!-- end instructor-content -->
                         </div><!-- end instructor-wrap -->
                         <div class="comments-wrapper">
-                            <h3 class="comments-title">Comments</h3>
+                            <h3 class="comments-title">评论</h3>
                             <ul class="comments-list">
-                                <li>
-                                    <div class="comment">
-                                        <img class="avatar__img" alt="" src="images/team7.jpg">
-                                        <div class="comment-body">
-                                            <div class="meta-data">
-                                                <h3 class="comment__author">adam smith</h3>
-                                                <p class="comment__date">17 Dec, 2018 - 4:00 pm</p>
-                                            </div>
-                                            <p class="comment-content">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                Ut enim ad minim veniam, quis nostrud exercitation.
-                                            </p>
-                                            <div class="comment-reply">
-                                                <a class="comment__btn" href="#">
-                                                    <span class="la la-mail-reply"></span> Reply
-                                                </a>
-                                                <p class="helpful__action">
-                                                    <span class="helpful__action-text">Was this helpful?</span>
-                                                    <a href="#">Yes</a>
-                                                    <a href="#">No</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div><!-- end comment -->
-                                    <ul class="comments-reply">
+
+                                <li >
+
+
+                                    <ul class="comments-reply"   >
+
                                         <li>
-                                            <div class="comment">
+                                            <div class="comment" v-for="(list,index) in lists">
                                                 <img class="avatar__img" alt="" src="images/team8.jpg">
                                                 <div class="comment-body">
                                                     <div class="meta-data">
                                                         <h3 class="comment__author">Jhon doe</h3>
-                                                        <p class="comment__date">17 Dec, 2018 - 4:00 pm</p>
+                                                        <p class="comment__date">{{list.commentDate}}</p>
                                                     </div>
                                                     <p class="comment-content">
-                                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                        Ut enim ad minim veniam.
+                                                       {{list.commentName}}
                                                     </p>
                                                     <div class="comment-reply">
                                                         <a class="comment__btn" href="#">
-                                                            <span class="la la-mail-reply"></span> Reply
+                                                            <span class="la la-mail-reply"></span> 回复
                                                         </a>
                                                         <p class="helpful__action">
-                                                            <span class="helpful__action-text">Was this helpful?</span>
-                                                            <a href="#">Yes</a>
-                                                            <a href="#">No</a>
+                                                            <span class="helpful__action-text">这条评论如何？</span>
+                                                            <a href="#">太赞了</a>
+                                                            <a href="#">就那样</a>
                                                         </p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </li>
+
                                     </ul><!-- end comment -->
-                                    <div class="comment">
-                                        <img class="avatar__img" alt="" src="images/team9.jpg">
-                                        <div class="comment-body">
-                                            <div class="meta-data">
-                                                <h3 class="comment__author">Mike Doe</h3>
-                                                <p class="comment__date">17 Dec, 2018 - 4:00 pm</p>
-                                            </div>
-                                            <p class="comment-content">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                Ut enim ad minim veniam, quis nostrud exercitation.
-                                            </p>
-                                            <div class="comment-reply">
-                                                <a class="comment__btn" href="#">
-                                                    <span class="la la-mail-reply"></span> Reply
-                                                </a>
-                                                <p class="helpful__action">
-                                                    <span class="helpful__action-text">Was this helpful?</span>
-                                                    <a href="#">Yes</a>
-                                                    <a href="#">No</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div><!-- end comment -->
+
                                 </li>
                             </ul>
                             <div class="see-more-review-btn text-center">

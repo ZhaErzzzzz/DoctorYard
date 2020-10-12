@@ -16,8 +16,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:34:09
  */
-//@Service
-//@Component
+@Service
+@Component
 public class ListDetailServiceImpl implements ListDetailService {
     @Autowired
     private ListDetailDao listDetailDao;
@@ -31,6 +31,11 @@ public class ListDetailServiceImpl implements ListDetailService {
     @Override
     public ListDetail queryById(Integer listDetailId) {
         return this.listDetailDao.queryById(listDetailId);
+    }
+
+    @Override
+    public List<ListDetail> queryByListId(Integer listId) {
+        return listDetailDao.queryByListId(listId);
     }
 
     /**

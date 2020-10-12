@@ -94,14 +94,14 @@ public class DoctorController {
 
     }
 
-    @GetMapping(produces = "application/json; charset=utf-8",path = "showOneDoctor/{doctorLastname}")
-    public Object showOneDoctor(@PathVariable String doctorLastname){
-       return doctorService.queryByLastname(doctorLastname);
+    @GetMapping(produces = "application/json; charset=utf-8",path = "showOneDoctor/{doctorId}")
+    public Object showOneDoctor(@PathVariable int doctorId){
+       return doctorService.queryById(doctorId);
 
     }
-    @GetMapping(produces = "application/json; charset=utf-8",path = "showDoctorInOneHospital/{doctorLastname}")
-    public List<Doctor> showDoctorInOneHospital(@PathVariable String doctorLastname){
-       Integer hospitalId =doctorService.queryHospitalIdByName(doctorLastname);
+    @GetMapping(produces = "application/json; charset=utf-8",path = "showDoctorInOneHospital/{doctorId}")
+    public List<Doctor> showDoctorInOneHospital(@PathVariable int doctorId){
+       Integer hospitalId =doctorService.queryHospitalIdByDoctorId(doctorId);
       return doctorService.queryByHospitalId(hospitalId);
 
     }

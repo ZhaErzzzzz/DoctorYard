@@ -22,6 +22,8 @@ public interface MsgService {
     Msg queryById(Integer msgId);
 
     Msg queryByMsgTitle(String msgTitle);
+
+    Integer queryMsgIdByMsgTitle(String msgTitle);
     /**
      * 查询多条数据
      *

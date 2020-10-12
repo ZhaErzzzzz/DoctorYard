@@ -382,7 +382,7 @@
                             <p class="speaker__text">
                                 {{list.hospitalBrief}}
                             </p>
-                            <a href="teacher-detail.html" class="speaker__link">view profile</a><!-- 这里涉及到的跳转要加医生的id -->
+                            <a @click="goHospital(list.hospitalName)" class="speaker__link">查看详情</a><!-- 这里涉及到的跳转要加医生的id -->
                         </div>
                     </div>
                 </div><!-- end speaker-item -->

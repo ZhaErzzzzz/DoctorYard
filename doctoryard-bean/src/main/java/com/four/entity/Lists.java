@@ -78,4 +78,5 @@ public class Lists implements Serializable {
         this.listStatus = listStatus;
     }
 
+
 }

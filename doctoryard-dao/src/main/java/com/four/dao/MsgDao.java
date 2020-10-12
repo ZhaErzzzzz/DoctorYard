@@ -29,6 +29,9 @@ public interface MsgDao {
 
     @Select("select * from msg where msg_title=#{msgTitle}")
     Msg queryByMsgTitle(String msgTitle);
+
+    @Select("select msg_id from msg where msg_title=#{msgTitle}")
+    Integer queryMsgIdByMsgTitle(String msgTitle);
     /**
      * 查询指定行数据
      *

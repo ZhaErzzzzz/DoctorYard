@@ -18,8 +18,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:29:01
  */
-//@Service
-//@Component
+@Service
+@Component
 public class CommentServiceImpl implements CommentService {
     @Autowired
     private CommentDao commentDao;
@@ -40,14 +40,14 @@ public class CommentServiceImpl implements CommentService {
         return commentDao.queryByMsgId(msgId);
     }
 
-//    @Override
-//    public PageInfo<Comment> showComment(int pageNum, int pageSize) {
-//        PageHelper.startPage(pageNum, pageSize);
-//        List<Comment> list = commentDao.queryAll();
-//        PageInfo<Comment> pageInfo = new PageInfo<>(list);
-//
-//        return pageInfo;
-//    }
+    @Override
+    public PageInfo<Comment> showComment(int MsgId,int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Comment> list = commentDao.queryByMsgId(MsgId);
+        PageInfo<Comment> pageInfo = new PageInfo<>(list);
+
+        return pageInfo;
+    }
 
     /**
      * 查询多条数据

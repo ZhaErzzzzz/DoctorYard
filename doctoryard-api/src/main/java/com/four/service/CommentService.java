@@ -23,7 +23,7 @@ public interface CommentService {
 
     List<Comment> queryByMsgId(Integer msgId);
 
-//    public PageInfo<Comment>  showComment(int pageNum, int pageSize);
+    public PageInfo<Comment>  showComment(int MsgId,int pageNum, int pageSize);
 
     /**
      * 查询多条数据
