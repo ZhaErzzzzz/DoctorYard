@@ -42,6 +42,7 @@
     <script src="js/smooth-scrolling.js"></script>
     <script src="js/main.js"></script>
     <script src="js/vue.js"></script>
+    <script src="js/token.js"></script>
     <script>
         $(function () {
             //点击头像，页面跳转到个人中心;
@@ -52,9 +53,10 @@
                     userId: user.userId
                 },
                 mounted: function () {
-                    console.log("asdfasd");
-                    if(this.userImg===null){
+                    if(this.userImg==null){
+                        console.log("asdfasd");
                         this.userImg="未登录.jpg";
+
                     }
                 }
             })
@@ -90,6 +92,8 @@
                                 alert(data.msg);
                                 console.log("data: ")
                                 console.log(data);
+                                //重新加载页面
+                                window.location.reload();
                             }
                         })
                     },

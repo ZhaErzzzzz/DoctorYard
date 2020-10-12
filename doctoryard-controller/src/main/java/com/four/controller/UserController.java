@@ -89,7 +89,7 @@ public class UserController {
             user.setUserImg("小明.jpg");
             userService.insert(user);
             //注册成功
-            return ResultFactory.setResultError(ResultCode.HTTP_RES_CODE_200,"注册成功！！！");
+            return ResultFactory.setResultError(ResultCode.HTTP_RES_CODE_200,"注册成功,请登录后使用网站！");
         }
     }
 }

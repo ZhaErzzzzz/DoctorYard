@@ -60,7 +60,7 @@ public interface UserDao {
      * @param user 实例对象
      * @return 影响行数
      */
-    @Insert("insert into user (user_name,user_pwd,user_tel,user_email) values(#{user.userName},#{user.userPwd},#{user.userTel},#{user.userEmail})")
+    @Insert("insert into user (user_name,user_pwd,user_tel,user_email,user_img) values(#{user.userName},#{user.userPwd},#{user.userTel},#{user.userEmail},#{user.userImg})")
     int insert(@Param("user") User user);
 
     /**
