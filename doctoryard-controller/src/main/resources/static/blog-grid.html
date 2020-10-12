@@ -25,6 +25,39 @@
     <link rel="stylesheet" href="css/lightgallery.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- end inject -->
+    <!-- theme js files -->
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/magnific-popup.min.js"></script>
+    <script src="js/isotope.js"></script>
+    <script src="js/waypoint.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/lightgallery.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/smooth-scrolling.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/vue.js"></script>
+
+    <script>
+        $(function () {
+            //点击头像，页面跳转到个人中心;
+            let vue0 = new Vue({
+                el: "#vue0",
+                data: {
+                    userImg: user.userImg,
+                    userId: user.userId
+                },
+                mounted: function () {
+                    console.log("asdfasd");
+                    if(this.userImg===null){
+                        this.userImg="未登录.jpg";
+                    }
+                }
+            })
+        })
+    </script>
 </head>
 <body>
 
@@ -53,6 +86,11 @@
                             <ul class="contact-info d-flex align-items-center">
                                 <li><a href="#"><span class="la la-phone"></span> 123-456-789</a> </li>
                                 <li><a href="#"><span class="la la-envelope-o"></span> find@hospital.com</a></li>
+                                <!--用户个人中心-->
+                                <li id="vue0"><a v-bind:href="'singleMan.html?'+userId" target="_blank">个人中心：<img
+                                        v-bind:src="'http://39.105.180.116:9901/images/'+userImg"
+                                        class="rounded-circle shadow"
+                                        width="33px" height="33px"> </a></li>
                             </ul>
                         </div><!-- end header-widget -->
                     </div><!-- end col-lg-6 -->
@@ -446,18 +484,5 @@
 
 
 
-<!-- theme js files -->
-<script src="js/jquery-1.10.2.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/magnific-popup.min.js"></script>
-<script src="js/isotope.js"></script>
-<script src="js/waypoint.min.js"></script>
-<script src="js/jquery.counterup.min.js"></script>
-<script src="js/lightgallery.js"></script>
-<script src="js/wow.js"></script>
-<script src="js/smooth-scrolling.js"></script>
-<script src="js/main.js"></script>
 </body>
 </html>

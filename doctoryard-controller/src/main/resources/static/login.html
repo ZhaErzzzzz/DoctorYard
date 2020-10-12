@@ -14,7 +14,6 @@
     <link rel="icon" sizes="16x16" href="images/favicon.png">
 
 
-
     <!-- inject:css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -44,43 +43,54 @@
     <script src="js/token.js"></script>
     <script>
         $(function () {
-            let vue1=new Vue({
-                el:"#vue1",
-                data:{
-                    //基本信息
-                    userName:"",
-                    userPwd:"",
+            //点击头像，页面跳转到个人中心;
+            let vue0 = new Vue({
+                el: "#vue0",
+                data: {
+                    userImg: user.userImg,
+                    userId: user.userId
                 },
-                methods:{
+                mounted: function () {
+                    console.log("asdfasd");
+                    if(this.userImg===null){
+                        this.userImg="未登录.jpg";
+                    }
+                }
+            })
+            let vue1 = new Vue({
+                el: "#vue1",
+                data: {
+                    //基本信息
+                    userName: "",
+                    userPwd: "",
+                },
+                methods: {
+                    //设置用户信息，存入浏览器，参数是包含token和user的数据
+                    setInfo:function (data) {
+                        localStorage.setItem("token", "Bearer " + data.token);
+                        localStorage.setItem("userId", data.user.userId.toString());
+                        localStorage.setItem("userName", data.user.userName);
+                        localStorage.setItem("userNickname", data.user.userNickname);
+                        localStorage.setItem("userImg", data.user.userImg);
+                    },
                     //登录功能
-                    login:function () {
+                    login: function () {
                         console.log(vue1.userName);
                         console.log(vue1.userPwd);
                         $.ajax({
-                            type:"post",
-                            url:"/user/login",
+                            type: "post",
+                            url: "/user/login",
                             contentType: "application/json;charset=utf-8",
                             // dataType:"JSON",
                             data: JSON.stringify({
-                                userName:vue1.userName,
-                                userPwd:vue1.userPwd,
+                                userName: vue1.userName,
+                                userPwd: vue1.userPwd,
                             }),
-                            success:function (data) {
+                            success: function (data) {
                                 console.log("data: ")
                                 console.log(data);
-
-                                //信息存入token.js
-                                localStorage.setItem("token", "Bearer "+data.data.token.toString());
-                                localStorage.setItem("userId", data.data.user.userId.toString());
-                                localStorage.setItem("userName", data.data.user.userName.toString());
-
-                                console.log(token)
-                                // console.log("token: ");
-                                // console.log( localStorage.getItem("token"));
-                                // console.log("userId: ")
-                                // console.log( localStorage.getItem("userId"))
-                                // console.log("userName: ")
-                                // console.log( localStorage.getItem("userName"))
+                                vue1.setInfo(data.data)
+                                console.log(user);
                                 alert(data.msg);
                             }
                         })
@@ -116,11 +126,15 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="header-widget header-widget1" >
+                        <div class="header-widget header-widget1">
                             <ul class="contact-info d-flex align-items-center">
-                                <li><a href="#"><span class="la la-phone"></span> 123-456-789</a> </li>
+                                <li><a href="#"><span class="la la-phone"></span> 123-456-789</a></li>
                                 <li><a href="#"><span class="la la-envelope-o"></span> find@hospital.com</a></li>
-                                <li><a>个人中心：<img src="http://39.105.180.116:9901/images/1.jpg" class="rounded-circle shadow" width="30px" height="30px"> </a></li>
+                                <!--用户个人中心-->
+                                <li id="vue0"><a v-bind:href="'singleMan.html?'+userId" target="_blank">个人中心：<img
+                                        v-bind:src="'http://39.105.180.116:9901/images/'+userImg"
+                                        class="rounded-circle shadow"
+                                        width="33px" height="33px"> </a></li>
                             </ul>
                         </div><!-- end header-widget -->
                     </div><!-- end col-lg-6 -->
@@ -242,7 +256,8 @@
                         </nav><!-- end main-menu -->
                         <div class="logo-right-button">
                             <ul>
-                                <li class="ticket-button-box"><a href="admission.html" class="theme-btn">admission</a></li>
+                                <li class="ticket-button-box"><a href="admission.html" class="theme-btn">admission</a>
+                                </li>
                             </ul>
                             <div class="side-menu-open">
                                 <span class="menu__bar"></span>
@@ -252,7 +267,8 @@
                         </div><!-- end logo-right-button -->
                         <div class="side-nav-container">
                             <div class="humburger-menu">
-                                <div class="humburger-menu-lines side-menu-close"></div><!-- end humburger-menu-lines -->
+                                <div class="humburger-menu-lines side-menu-close"></div>
+                                <!-- end humburger-menu-lines -->
                             </div><!-- end humburger-menu -->
                             <div class="side-menu-wrap">
                                 <ul class="side-menu-ul">
@@ -343,7 +359,7 @@
 ================================= -->
 <section class="form-shared">
     <div class="container">
-        <div class="row" >
+        <div class="row">
             <div class="col-lg-7 mx-auto">
                 <div class="contact-form-action">
                     <div class="form-heading text-center">
@@ -372,11 +388,11 @@
                                 <p class="account__desc account__desc2">or</p>
                             </div><!-- end col-md-12 -->
                             <div class="col-lg-12 col-sm-12 form-group">
-                                <input class="form-control" type="text"  placeholder="请输入用户名"  v-model="userName">
+                                <input class="form-control" type="text" placeholder="请输入用户名" v-model="userName">
                                 <span class="la la-user input-icon"></span>
                             </div><!-- end col-md-12 -->
                             <div class="col-lg-12 col-sm-12 form-group">
-                                <input class="form-control" type="password"  placeholder="请输入密码" v-model="userPwd">
+                                <input class="form-control" type="password" placeholder="请输入密码" v-model="userPwd">
                                 <span class="la la-lock input-icon"></span>
                             </div><!-- end col-md-12 -->
                             <div class="col-lg-12 col-sm-12 col-xs-12 form-condition">
@@ -481,7 +497,8 @@
         </div><!-- end row -->
         <div class="row copyright-content align-items-center">
             <div class="col-lg-10">
-                <p class="copy__desc">&copy; 2019 Aduca. All Rights Reserved. by <a href="http://www.bootstrapmb.com/">TechyDevs.</a></p>
+                <p class="copy__desc">&copy; 2019 Aduca. All Rights Reserved. by <a href="http://www.bootstrapmb.com/">TechyDevs.</a>
+                </p>
             </div><!-- end col-lg-9 -->
             <div class="col-lg-2">
                 <div class="language-select">
@@ -519,8 +536,6 @@
     <i class="fa fa-angle-up" title="Go top"></i>
 </div>
 <!-- end scroll top -->
-
-
 
 
 </body>

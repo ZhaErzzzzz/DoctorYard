@@ -44,6 +44,20 @@
     <script src="js/vue.js"></script>
     <script>
         $(function () {
+            //点击头像，页面跳转到个人中心;
+            let vue0 = new Vue({
+                el: "#vue0",
+                data: {
+                    userImg: user.userImg,
+                    userId: user.userId
+                },
+                mounted: function () {
+                    console.log("asdfasd");
+                    if(this.userImg===null){
+                        this.userImg="未登录.jpg";
+                    }
+                }
+            })
             let vue1 = new Vue({
                 el: "#vue1",
                 data: {
@@ -162,6 +176,11 @@
                             <ul class="contact-info d-flex align-items-center">
                                 <li><a href="#"><span class="la la-phone"></span> 123-456-789</a></li>
                                 <li><a href="#"><span class="la la-envelope-o"></span> find@hospital.com</a></li>
+                                <!--用户个人中心-->
+                                <li id="vue0"><a v-bind:href="'singleMan.html?'+userId" target="_blank">个人中心：<img
+                                        v-bind:src="'http://39.105.180.116:9901/images/'+userImg"
+                                        class="rounded-circle shadow"
+                                        width="33px" height="33px"> </a></li>
                             </ul>
                         </div><!-- end header-widget -->
                     </div><!-- end col-lg-6 -->

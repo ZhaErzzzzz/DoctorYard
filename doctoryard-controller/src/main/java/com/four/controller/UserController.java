@@ -67,6 +67,8 @@ public class UserController {
                 User uu=new User();
                 uu.setUserId(u.getUserId());
                 uu.setUserName(u.getUserName());
+                uu.setUserNickname(u.getUserNickname());
+                uu.setUserImg(u.getUserImg());
                 data.put("user",uu);
                 //7、返回数据
                 return ResultFactory.setResultSuccess(data);

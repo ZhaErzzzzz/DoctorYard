@@ -1,11 +1,12 @@
-let token;
+let token="";
 token=localStorage.getItem("token");
-// let iniToken=function(t){
-//     token=t;
-// }
 let user={
     userId:"",
-    userName:""
+    userName:"",
+    userNickname:"",
+    userImg:""
 }
-user.id=localStorage.getItem("userId");
-user.username=localStorage.getItem("userName");
+user.userId=localStorage.getItem("userId");
+user.userName=localStorage.getItem("userName");
+user.userNickname=localStorage.getItem("userNickname");
+user.userImg=localStorage.getItem("userImg");
