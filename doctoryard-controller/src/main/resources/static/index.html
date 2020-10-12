@@ -91,9 +91,14 @@
                     })
                 }
             });
+            let vue3=new Vue({
+                el:"#vue3",
+                methods:{
+                    loginOut:function () {
 
-            console.log("Aaa");
-            console.log(user);
+                    }
+                }
+            })
         })
     </script>
 </head>
@@ -156,6 +161,8 @@
                                     <li><a href="login.html">登录</a></li>
                                     <li><span>/</span></li>
                                     <li><a href="sign-up.html">注册</a></li>
+                                    <li><span>/</span></li>
+                                    <li id="vue4"><a>登出</a></li>
                                 </ul>
                             </div>
                         </div><!-- end header-widget -->
