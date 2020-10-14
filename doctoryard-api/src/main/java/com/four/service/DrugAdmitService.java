@@ -20,6 +20,9 @@ public interface DrugAdmitService {
      */
     DrugAdmit queryById(Integer drugAdmitId);
 
+
+    List<Integer> queryDrugIdByUserId(Integer userId);
+
     /**
      * 查询多条数据
      *

@@ -16,8 +16,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:35:15
  */
-//@Service
-//@Component
+@Service
+@Component
 public class UserMsgServiceImpl implements UserMsgService {
     @Autowired
     private UserMsgDao userMsgDao;

@@ -15,8 +15,8 @@ import javax.annotation.Resource;
  * @author makejava
  * @since 2020-10-06 15:37:02
  */
-//@RestController
-//@RequestMapping("registPay")
+@RestController
+@RequestMapping("registPay")
 public class RegistPayController {
     /**
      * 服务对象

@@ -5,10 +5,7 @@ import com.four.entity.OrderDrugVo;
 import com.four.entity.RegisterVo;
 import com.four.service.OrderDrugService;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -44,6 +41,10 @@ public class OrderDrugController {
     public List<OrderDrugVo> showOrderDrugByUserId(@PathVariable int userId){
         List<OrderDrugVo> orderDrugVoList=orderDrugService.queryByUserId(userId);
         return  orderDrugVoList;
+    }
+    @PostMapping(path ="insertOrder")
+    public void showOrderDrugByUserId(@RequestBody OrderDrug orderDrug){
+        orderDrugService.insertOrder(orderDrug);
     }
 
 }

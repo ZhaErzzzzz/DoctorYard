@@ -39,6 +39,11 @@ public class OrderDrugServiceImpl implements OrderDrugService {
         return orderDrugDao.queryByUserId(userId);
     }
 
+    @Override
+    public void insertOrder(OrderDrug orderDrug) {
+         orderDrugDao.insertOrder(orderDrug);
+    }
+
     /**
      * 查询多条数据
      *

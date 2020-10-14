@@ -16,8 +16,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:34:40
  */
-//@Service
-//@Component
+@Service
+@Component
 public class RegistPayServiceImpl implements RegistPayService {
     @Autowired
     private RegistPayDao registPayDao;

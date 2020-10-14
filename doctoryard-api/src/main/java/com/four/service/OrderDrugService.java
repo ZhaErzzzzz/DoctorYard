@@ -23,6 +23,9 @@ public interface OrderDrugService {
 
     List<OrderDrugVo>  queryByUserId(Integer userId);
 
+
+    void insertOrder(OrderDrug orderDrug);
+
     /**
      * 查询多条数据
      *

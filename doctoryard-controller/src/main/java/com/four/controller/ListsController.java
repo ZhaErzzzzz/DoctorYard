@@ -23,8 +23,8 @@ import java.util.Map;
  * @author makejava
  * @since 2020-10-06 16:49:44
  */
-//@RestController
-//@RequestMapping("lists")
+@RestController
+@RequestMapping("lists")
 public class ListsController {
     /**
      * 服务对象
