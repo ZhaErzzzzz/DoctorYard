@@ -1,15 +1,16 @@
 package com.four.controller;
 
 import com.four.entity.Doctor;
-import com.four.entity.Hospital;
 import com.four.service.DepartmentService;
 import com.four.service.DoctorService;
 import com.four.service.HospitalService;
 import com.github.pagehelper.PageInfo;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class DoctorController {
     /**
      * 服务对象
      */
-    @org.apache.dubbo.config.annotation.Reference
+    @Reference
     private DoctorService doctorService;
 
     @Reference

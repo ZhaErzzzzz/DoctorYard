@@ -20,6 +20,8 @@ public interface HeathyfileService {
      */
     Heathyfile queryById(Integer heathyfileId);
 
+    List<Heathyfile> queryByRealinfoId(Integer realinfoId);
+
     /**
      * 查询多条数据
      *

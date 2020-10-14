@@ -1,7 +1,10 @@
 package com.four.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.four.entity.Realinfo;
 import com.four.entity.User;
+import com.four.service.RealinfoService;
 import com.four.service.UserService;
 import com.four.util.RedisUtil;
 import com.four.util.Result;
@@ -26,6 +29,9 @@ public class UserController {
      */
     @Reference
     private UserService userService;
+
+
+
     @Autowired
     RedisUtil redisUtil;
 
@@ -41,7 +47,7 @@ public class UserController {
     }
 
     //登录
-    @PostMapping("login")
+    @PostMapping("noToken/login")
     public Result login(@RequestBody User user){
        User u=userService.queryByName(user.getUserName());
         if(u==null){
@@ -78,7 +84,7 @@ public class UserController {
 
     }
     //注册
-    @PostMapping("signUp")
+    @PostMapping("noToken/signUp")
     public Result signUp(@RequestBody User user){
         User u = userService.queryByName(user.getUserName());
         if(u!=null){
@@ -86,10 +92,34 @@ public class UserController {
             return ResultFactory.setResultError(ResultCode.HTTP_RES_CODE_500,"用户名已存在，请重新申请！");
         }else {
             user.setUserPwd(BCrypt.hashpw(user.getUserPwd(),BCrypt.gensalt()));
-            user.setUserImg("小明.jpg");
+            user.setUserImg("点击更换头像.jpg");
+            user.setUserNickname("点击修改昵称！");
             userService.insert(user);
             //注册成功
             return ResultFactory.setResultError(ResultCode.HTTP_RES_CODE_200,"注册成功,请登录后使用网站！");
         }
     }
+    //用户个人页的展示
+    @GetMapping(produces = "application/json; charset=utf-8",path ="getInfo/{userId}")
+    public Result getInfo(@PathVariable int userId){
+        User u=userService.queryById(userId);
+        JSONObject data = new JSONObject();
+        u.setUserPwd("");
+        data.put("userInfo",u);
+        return ResultFactory.setResultSuccess(data);
+    }
+    //更换头像
+
+    @GetMapping(produces = "application/json; charset=utf-8",path ="updateImg/{userImg}/{userId}")
+    public Result queryByUserId(@PathVariable String userImg,@PathVariable Integer userId) {
+        int len=userService.updateImg(userImg,userId);
+        if(len==1){
+            return ResultFactory.setResultSuccess();
+        }else {
+            return  ResultFactory.setResultError();
+        }
+
+    }
+
+
 }

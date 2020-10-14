@@ -19,7 +19,8 @@ public interface RealinfoService {
      * @return 实例对象
      */
     Realinfo queryById(Integer realinfoId);
-
+    Realinfo queryByUserId(Integer userId);
+    Integer addRealinfo(Realinfo realinfo);
     /**
      * 查询多条数据
      *

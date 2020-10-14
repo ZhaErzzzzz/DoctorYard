@@ -16,8 +16,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:34:33
  */
-//@Service
-//@Component
+@Service
+@Component
 public class RealinfoServiceImpl implements RealinfoService {
     @Autowired
     private RealinfoDao realinfoDao;
@@ -31,6 +31,16 @@ public class RealinfoServiceImpl implements RealinfoService {
     @Override
     public Realinfo queryById(Integer realinfoId) {
         return this.realinfoDao.queryById(realinfoId);
+    }
+
+    @Override
+    public Realinfo queryByUserId(Integer userId) {
+        return this.realinfoDao.queryByUserId(userId);
+    }
+
+    @Override
+    public Integer addRealinfo(Realinfo realinfo) {
+        return this.realinfoDao.addRealinfo(realinfo);
     }
 
     /**

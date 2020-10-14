@@ -7,10 +7,10 @@ import java.sql.Date;
  * 真实信息(Realinfo)实体类
  *
  * @author makejava
- * @since 2020-10-07 19:20:00
+ * @since 2020-10-13 22:15:51
  */
 public class Realinfo implements Serializable {
-    private static final long serialVersionUID = 206557264668639899L;
+    private static final long serialVersionUID = 192913561282025818L;
 
     private Integer realinfoId;
     /**
@@ -40,7 +40,7 @@ public class Realinfo implements Serializable {
     /**
      * 职业
      */
-    private String realinfoWorktpype;
+    private String realinfoWorktype;
     /**
      * 工作单位
      */
@@ -57,6 +57,10 @@ public class Realinfo implements Serializable {
      * 户籍地址
      */
     private String realinfoOldlocation;
+
+    private Integer userId;
+
+    private String realinfoSex;
 
 
     public Integer getRealinfoId() {
@@ -115,12 +119,12 @@ public class Realinfo implements Serializable {
         this.realinfoIdcard = realinfoIdcard;
     }
 
-    public String getRealinfoWorktpype() {
-        return realinfoWorktpype;
+    public String getRealinfoWorktype() {
+        return realinfoWorktype;
     }
 
-    public void setRealinfoWorktpype(String realinfoWorktpype) {
-        this.realinfoWorktpype = realinfoWorktpype;
+    public void setRealinfoWorktype(String realinfoWorktype) {
+        this.realinfoWorktype = realinfoWorktype;
     }
 
     public String getRealinfoCompany() {
@@ -153,6 +157,22 @@ public class Realinfo implements Serializable {
 
     public void setRealinfoOldlocation(String realinfoOldlocation) {
         this.realinfoOldlocation = realinfoOldlocation;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getRealinfoSex() {
+        return realinfoSex;
+    }
+
+    public void setRealinfoSex(String realinfoSex) {
+        this.realinfoSex = realinfoSex;
     }
 
 }

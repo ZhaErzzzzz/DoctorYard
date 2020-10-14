@@ -26,7 +26,7 @@ public interface UserService {
      * @return 实例对象
      */
     User queryById(Integer userId);
-
+    Integer updateImg(String userImg,Integer userId);
     /**
      * 查询多条数据
      *

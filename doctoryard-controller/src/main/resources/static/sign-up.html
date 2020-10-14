@@ -54,9 +54,7 @@
                 },
                 mounted: function () {
                     if(this.userImg==null){
-                        console.log("asdfasd");
                         this.userImg="未登录.jpg";
-
                     }
                 }
             })
@@ -75,7 +73,7 @@
                     signUp: function () {
                         //正则验证通过后向后端发送注册请求
                         $.ajax({
-                            url: "/user/signUp",
+                            url: "/user/noToken/signUp",
                             type: "POST",
                             contentType: "application/json;charset=utf-8",
                             // dataType:"json",

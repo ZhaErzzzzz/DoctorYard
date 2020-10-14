@@ -8,11 +8,10 @@
     <meta name="description" content="Aduca - Learning & Online Education HTML Template">
     <meta name="keywords" content="Aduca - Learning & Online Education HTML Template">
 
-    <title>医苑 - 在线预约平台</title>
+    <title>Aduca - Learning & Online Education HTML Template</title>
 
     <!-- Favicon -->
     <link rel="icon" sizes="16x16" href="images/favicon.png">
-
 
     <!-- inject:css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -23,10 +22,8 @@
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/jquery.countdown.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/lightgallery.css">
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- theme js files -->
+    <!-- end inject -->
     <script src="js/jquery-1.10.2.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -40,6 +37,7 @@
     <script src="js/smooth-scrolling.js"></script>
     <script src="js/main.js"></script>
     <script src="js/vue.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
     <script src="js/token.js"></script>
     <script>
         $(function () {
@@ -52,58 +50,28 @@
                 },
                 mounted: function () {
                     console.log("asdfasd");
-                    if(this.userImg===null){
-                        this.userImg="未登录.jpg";
+                    if (this.userImg === null) {
+                        this.userImg = "未登录.jpg";
                     }
                 }
-            })
-            let vue1 = new Vue({
+            });
+            let vue1=new Vue({
                 el: "#vue1",
                 data: {
-                    //基本信息
-                    userName: "",
-                    userPwd: "",
+                    realinfo:[]
                 },
-                methods: {
-                    //设置用户信息，存入浏览器，参数是包含token和user的数据
-                    setInfo:function (data) {
-                        localStorage.setItem("token", "Bearer " + data.token);
-                        localStorage.setItem("userId", data.user.userId.toString());
-                        localStorage.setItem("userName", data.user.userName);
-                        localStorage.setItem("userNickname", data.user.userNickname);
-                        localStorage.setItem("userImg", data.user.userImg);
-                    },
-                    //登录功能
-                    login: function () {
-                        console.log(vue1.userName);
-                        console.log(vue1.userPwd);
-                        $.ajax({
-                            type: "post",
-                            url: "/user/noToken/login",
-                            contentType: "application/json;charset=utf-8",
-                            // dataType:"JSON",
-                            data: JSON.stringify({
-                                userName: vue1.userName,
-                                userPwd: vue1.userPwd,
-                            }),
-                            success: function (data) {
-                                console.log("data: ")
-                                console.log(data);
-                                vue1.setInfo(data.data)
-                                console.log(user);
-                                alert(data.msg);
-                                //重新加载页面
-                                window.location.reload();
-                            }
-                        })
+                methods:{
+                    submit:function () {
+                        alert("sd");
+                        console.log(vue1.realinfo);
                     }
+                },
+                mounted: function () {
                 }
             })
         })
     </script>
-    <script src="js/jquery.validate.js"></script>
-    <script src="js/vue.js"></script>
-    <!-- end inject -->
+
 </head>
 <body>
 
@@ -130,7 +98,7 @@
                     <div class="col-lg-6">
                         <div class="header-widget header-widget1">
                             <ul class="contact-info d-flex align-items-center">
-                                <li><a href="#"><span class="la la-phone"></span> 123-456-789</a></li>
+                                <li><a href="#"><span class="la la-phone"></span> 123-456-789</a> </li>
                                 <li><a href="#"><span class="la la-envelope-o"></span> find@hospital.com</a></li>
                                 <!--用户个人中心-->
                                 <li id="vue0"><a v-bind:href="'singleMan.html?'+userId" target="_blank">个人中心：<img
@@ -258,8 +226,7 @@
                         </nav><!-- end main-menu -->
                         <div class="logo-right-button">
                             <ul>
-                                <li class="ticket-button-box"><a href="admission.html" class="theme-btn">admission</a>
-                                </li>
+                                <li class="ticket-button-box"><a href="admission.html" class="theme-btn">admission</a></li>
                             </ul>
                             <div class="side-menu-open">
                                 <span class="menu__bar"></span>
@@ -269,8 +236,7 @@
                         </div><!-- end logo-right-button -->
                         <div class="side-nav-container">
                             <div class="humburger-menu">
-                                <div class="humburger-menu-lines side-menu-close"></div>
-                                <!-- end humburger-menu-lines -->
+                                <div class="humburger-menu-lines side-menu-close"></div><!-- end humburger-menu-lines -->
                             </div><!-- end humburger-menu -->
                             <div class="side-menu-wrap">
                                 <ul class="side-menu-ul">
@@ -319,7 +285,7 @@
                                     </li>
                                 </ul>
                                 <div class="side-btn-box">
-                                    <a href="admission.html" class="theme-btn">admission</a>
+                                    <a href="admission.html" class="theme-btn">个人信息</a>
                                 </div>
                             </div><!-- end side-menu-wrap -->
                         </div><!-- end side-nav-container -->
@@ -341,12 +307,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-content">
-                    <h2 class="breadcrumb__title">登录</h2>
+                    <h2 class="breadcrumb__title">个人信息</h2>
                     <ul class="breadcrumb__list">
-                        <li class="active__list-item"><a href="index.html">首页</a></li>
-                        <li>登录</li>
+                        <li class="active__list-item"><a href="index.html">主页</a></li>
+                        <li>个人信息</li>
                     </ul>
-                    <div class="text-outline">登录</div>
+                    <div class="text-outline">个人信息</div>
                 </div><!-- end breadcrumb-content -->
             </div><!-- end col-lg-12 -->
         </div><!-- end row -->
@@ -357,69 +323,94 @@
 ================================= -->
 
 <!-- ================================
-       START FORM AREA
+       START ADMISSION AREA
 ================================= -->
-<section class="form-shared">
+<section class="admission-area">
     <div class="container">
         <div class="row">
-            <div class="col-lg-7 mx-auto">
-                <div class="contact-form-action">
-                    <div class="form-heading text-center">
-                        <h3 class="form__title">登录到你的账户!</h3>
-                        <p class="form__desc">使用以下方式</p>
-                    </div>
-                    <!--Contact Form-->
-                    <form>
-                        <div class="row" id="vue1">
-                            <div class="col-lg-4 col-sm-4 col-xs-12 form-group">
-                                <button class="theme-btn sign-btn btn__google" type="submit">
-                                    <i class="fa fa-weibo"></i> 微博
-                                </button>
-                            </div><!-- end col-lg-4 -->
-                            <div class="col-lg-4 col-sm-4 col-xs-12 form-group">
-                                <button class="theme-btn sign-btn btn__facebook" type="submit">
-                                    <i class="fa fa-wechat"></i> 微信
-                                </button>
-                            </div><!-- end col-lg-4 -->
-                            <div class="col-lg-4 col-sm-4 col-xs-12 form-group">
-                                <button class="theme-btn sign-btn btn__twitter" type="submit">
-                                    <i class="fa fa-qq"></i> QQ
-                                </button>
-                            </div><!-- end col-lg-4 -->
-                            <div class="col-lg-12 col-sm-12 col-xs-12 account-assist text-center">
-                                <p class="account__desc account__desc2">or</p>
-                            </div><!-- end col-md-12 -->
-                            <div class="col-lg-12 col-sm-12 form-group">
-                                <input class="form-control" type="text" placeholder="请输入用户名" v-model="userName">
-                                <span class="la la-user input-icon"></span>
-                            </div><!-- end col-md-12 -->
-                            <div class="col-lg-12 col-sm-12 form-group">
-                                <input class="form-control" type="password" placeholder="请输入密码" v-model="userPwd">
-                                <span class="la la-lock input-icon"></span>
-                            </div><!-- end col-md-12 -->
-                            <div class="col-lg-12 col-sm-12 col-xs-12 form-condition">
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" id="chb1">
-                                    <label for="chb1">记住密码</label>
-                                    <a href="#" class="pass__desc"> 忘记密码?</a>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-sm-12 col-xs-12 form-group">
-                                <button class="theme-btn" type="button" @click="login()">登录</button>
-                            </div><!-- end col-md-12 -->
-                            <div class="col-lg-12 col-sm-12 col-xs-12 account-assist">
-                                <p class="account__desc">还没账号?<a href="sign-up.html"> 去注册</a></p>
-                            </div><!-- end col-md-12 -->
-                        </div><!-- end row -->
-                    </form>
-                </div><!-- end contact-form -->
-            </div><!-- end col-md-7 -->
+            <div class="col-lg-12">
+                <div class="section-heading text-center">
+                    <h5 class="section__meta">个人信息</h5>
+                    <h2 class="section__title">个人信息表</h2>
+                    <span class="section__divider"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="admission-body">
+                    <div class="contact-form-action" id="vue1">
+                        <!--Contact Form-->
+                        <form onsubmit="return false">
+                            <div class="row">
+                                <div class="col-lg-6 form-group">
+                                    <label class="form-label">真实姓名*</label>
+                                    <input class="form-control" type="text" name="name" placeholder="真实姓名" >
+                                </div><!-- end col-lg-6 -->
+
+                                <div class="col-lg-6 form-group">
+                                    <label class="form-label">昵称*</label>
+                                    <input class="form-control" type="text" name="name" placeholder="昵称" >
+                                </div><!-- end col-lg-6 -->
+
+                                <div class="col-lg-6 form-group">
+                                    <label class="form-label">公司*</label>
+                                    <input class="form-control" type="text" name="name" placeholder="昵称" v-model=realinfo.realinfoCompany>
+                                </div><!-- end col-lg-6 -->
+                                <div class="col-lg-6 form-group">
+                                    <label class="form-label">生日*</label>
+
+                                </div><!-- end col-lg-6 -->
+
+                                <div class="col-lg-12 form-group">
+                                    <label class="form-label">职业*</label>
+                                    <input class="form-control" type="text" name="job" placeholder="职业" v-model=realinfo.>
+                                </div><!-- end col-lg-12 -->
+
+                                <div class="col-lg-6 form-group">
+                                    <label class="form-label">身份证号*</label>
+                                    <input class="form-control" type="text" name="idcard" placeholder="身份证号" v-model=realinfo.realinfoIdcard>
+                                </div><!-- end col-lg-6 -->
+
+                                <div class="col-lg-6 form-group">
+                                    <label class="form-label">血型*</label>
+                                    <input class="form-control" type="text" name="blood" placeholder="血型" v-model=realinfo.realinfoBloodtype>
+                                </div><!-- end col-lg-6 -->
+
+                                <div class="col-lg-6 form-group">
+                                    <label class="form-label">联系方式*</label>
+                                    <input class="form-control" type="text" name="telephone" placeholder="联系方式" v-model=realinfo.realinfoTel>
+                                </div><!-- end col-lg-6 -->
+
+                                <div class="col-lg-6 form-group">
+                                    <label class="form-label">婚姻史*</label>
+                                    <input class="form-control" type="email" name="history" placeholder="婚姻史" v-model=realinfo.>
+                                </div><!-- end col-lg-6 -->
+
+                                <div class="col-lg-6 form-group gender-group">
+                                    <label class="form-label">性别*</label>
+                                    男 <input class="gender-control" type="radio" name="Gender" value="Male" v-model=realinfo.>
+                                    女 <input class="gender-control" type="radio" name="Gender" value="Female" v-model=realinfo.>
+                                </div><!-- end col-lg-6 -->
+
+                                <div class="col-lg-12">
+                                    <button class="theme-btn" @click="submit()">修改</button>
+                                </div><!-- end col-md-12 -->
+                            </div><!-- end row -->
+                        </form>
+                    </div><!-- end contact-form-action -->
+                </div><!-- end admission-body -->
+            </div><!-- end col-lg-10 -->
         </div><!-- end row -->
     </div><!-- end container -->
-</section><!-- end form-shared -->
+</section>
+
+
+<!-- end admission-area -->
 <!-- ================================
-       START FORM AREA
+       START ADMISSION AREA
 ================================= -->
+
 
 <!-- ================================
          END FOOTER AREA
@@ -499,8 +490,7 @@
         </div><!-- end row -->
         <div class="row copyright-content align-items-center">
             <div class="col-lg-10">
-                <p class="copy__desc">&copy; 2019 Aduca. All Rights Reserved. by <a href="http://www.bootstrapmb.com/">TechyDevs.</a>
-                </p>
+                <p class="copy__desc">&copy; 2019 Aduca. All Rights Reserved. by <a href="http://www.bootstrapmb.com/">TechyDevs.</a></p>
             </div><!-- end col-lg-9 -->
             <div class="col-lg-2">
                 <div class="language-select">
@@ -540,5 +530,25 @@
 <!-- end scroll top -->
 
 
+
+<!-- theme js files -->
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/magnific-popup.min.js"></script>
+<script src="js/isotope.js"></script>
+<script src="js/waypoint.min.js"></script>
+<script src="js/jquery.counterup.min.js"></script>
+<script src="js/lightgallery.js"></script>
+<script src="js/wow.js"></script>
+<script src="js/smooth-scrolling.js"></script>
+<script src="js/main.js"></script>
+<!--<script>-->
+<!--    $(".theme-btn").onclick(function () {-->
+<!--        window.location.href='my.html';-->
+<!--    })-->
+
+<!--</script>-->
 </body>
 </html>
