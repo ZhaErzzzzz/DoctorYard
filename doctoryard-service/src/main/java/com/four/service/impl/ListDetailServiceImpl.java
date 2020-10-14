@@ -2,6 +2,8 @@ package com.four.service.impl;
 
 import com.four.dao.ListDetailDao;
 import com.four.entity.ListDetail;
+import com.four.entity.OrderDetailVo;
+import com.four.entity.RegisterVo;
 import com.four.service.ListDetailService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,27 @@ public class ListDetailServiceImpl implements ListDetailService {
     public List<ListDetail> queryByListId(Integer listId) {
         return listDetailDao.queryByListId(listId);
     }
+
+    @Override
+    public List<Integer> queryDrugIdByListId(Integer listId) {
+        return listDetailDao.queryDrugIdByListId(listId);
+    }
+
+    @Override
+    public List<Integer> queryListDetailIdByListId(Integer listId) {
+        return listDetailDao.queryListDetailIdByListId(listId);
+    }
+
+    @Override
+    public Integer queryDrugIdByListDetailId(Integer listDetailId) {
+        return listDetailDao.queryDrugIdByListDetailId(listDetailId);
+    }
+
+    @Override
+    public List<OrderDetailVo> queryDetailByListId(Integer listId) {
+        return listDetailDao.queryDetailByListId(listId);
+    }
+
 
     /**
      * 查询多条数据
@@ -83,5 +106,10 @@ public class ListDetailServiceImpl implements ListDetailService {
     @Override
     public boolean deleteById(Integer listDetailId) {
         return this.listDetailDao.deleteById(listDetailId) > 0;
+    }
+
+    @Override
+    public List<RegisterVo> queryRegisterVoByUserId(Integer userId) {
+        return listDetailDao.queryRegisterVoByUserId(userId);
     }
 }

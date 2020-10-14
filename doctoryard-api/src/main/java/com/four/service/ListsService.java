@@ -1,6 +1,7 @@
 package com.four.service;
 
 import com.four.entity.Lists;
+import com.four.entity.OrderVo;
 
 import java.util.List;
 
@@ -26,6 +27,8 @@ public interface ListsService {
 
     List<Integer> queryAddressIdByUserId(Integer userId);
 
+    Integer queryAddressIdByListId(Integer listId);
+
     /**
      * 查询多条数据
      *
@@ -34,6 +37,8 @@ public interface ListsService {
      * @return 对象列表
      */
     List<Lists> queryAllByLimit(int offset, int limit);
+
+    List<OrderVo> queryInformation(int userId);
 
     /**
      * 新增数据

@@ -72,7 +72,15 @@
                         }
                     })
                 },
-                methods: {},
+                methods: {
+                    goHospital:function (a) {
+                        this.hospitalName=a;
+                        // window.location.href="teacher-detail.html?hospitalName="+encodeURI(encodeURI(this.hospitalName));
+                        let hos="teacher-detail.html?hospitalName="+this.hospitalName;
+                        window.location.assign(encodeURI(hos));
+
+                    }
+                },
             });
             let vue2 = new Vue({
                 el: "#vue2",
@@ -421,7 +429,7 @@
 <section class="feature-area text-center">
     <div class="container">
         <div class="row feature-content-wrap">
-            <div class="col-lg-4 col-sm-6">
+            <div class="col-lg-4 col-sm-6"  >
                 <div class="feature-item feature-item1">
                     <i class="la la-user feature__icon"></i>
                     <h3 class="feature__title">找医院</h3>
@@ -466,7 +474,6 @@
                     <img src="images/img1.jpg" alt="">
                     <div class="category-content">
                         <h3 class="cat__title">{{department.departmentName}}</h3>
-                        <p class="cat__meta">9 courses</p>
                         <a href="#" class="cat__link">explore now</a>
                     </div><!-- end category-content -->
                 </div><!-- end category-item -->
@@ -484,379 +491,6 @@
 <!--======================================
         START COURSE AREA
 ======================================-->
-<section class="course-area">
-    <div class="course-wrapper">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-heading text-center">
-                        <h5 class="section__meta">选择你心仪的医生</h5>
-                        <h2 class="section__title">浏览我们的名医团队</h2>
-                        <span class="section__divider"></span>
-                    </div><!-- end section-heading -->
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="course-tab-wrap">
-                        <ul class="course-tab-list nav nav-tabs justify-content-center text-center" role="tablist"
-                            id="review">
-                            <li role="presentation">
-                                <a href="#tab1" role="tab" data-toggle="tab" class="active" aria-selected="true">
-                                    某科
-                                </a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#tab2" role="tab" data-toggle="tab" aria-selected="false">
-                                    某科
-                                </a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#tab3" role="tab" data-toggle="tab" aria-selected="false">
-                                    某科
-                                </a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#tab4" role="tab" data-toggle="tab" aria-selected="false">
-                                    某科
-                                </a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#tab5" role="tab" data-toggle="tab" aria-selected="false">
-                                    某科
-                                </a>
-                            </li>
-                        </ul>
-                    </div><!-- end course-tab-wrap -->
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end course-wrapper -->
-    <div class="course-content-wrapper">
-        <div class="container">
-            <div class="row course-item-wrap">
-                <div class="col-lg-12">
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade show active" id="tab1">
-                            <div class="row course-block">
-                                <div class="col-lg-4">
-                                    <div class="course-item">
-                                        <div class="course-img">
-                                            <a href="course-details.html" class="course__img"><img src="images/img8.jpg"
-                                                                                                   alt=""></a>
-                                            <div class="course-tooltip">
-                                                <span class="tooltip-label">bestseller</span>
-                                            </div>
-                                        </div><!-- end course-img -->
-                                        <div class="course-content">
-                                            <p class="course__label">
-                                                <span class="course__label-text">beginner</span>
-                                                <a href="#" class="course__collection-icon" data-toggle="tooltip"
-                                                   data-placement="top" title="Add to Wishlist"><span
-                                                        class="la la-heart-o"></span></a>
-                                            </p>
-                                            <h3 class="course__title">
-                                                <a href="course-details.html">WordPress for Beginners – Master
-                                                    WordPress</a>
-                                            </h3>
-                                            <p class="course__author">
-                                                <a href="#">alex smith</a>
-                                            </p>
-                                            <div class="rating-wrap d-flex">
-                                                <ul class="review-stars d-flex">
-                                                    <li><span class="la la-star"></span></li>
-                                                    <li><span class="la la-star"></span></li>
-                                                    <li><span class="la la-star"></span></li>
-                                                    <li><span class="la la-star"></span></li>
-                                                    <li><span class="la la-star-o"></span></li>
-                                                </ul>
-                                                <span class="star-rating-wrap">
-                                                    <span class="star__rating">4.4</span>
-                                                    <span class="star__count">(20)</span>
-                                                </span>
-                                            </div><!-- end rating-wrap -->
-                                            <div class="course-meta">
-                                                <ul class="course__list d-flex">
-                                                    <li>
-                                                        <span class="meta__date">
-                                                            <i class="la la-play-circle"></i> 45 Classes
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="meta__date">
-                                                            <i class="la la-clock-o"></i> 3 hours 20 min
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div><!-- end course-meta -->
-                                            <div class="course-price-wrap">
-                                                <span class="course__price">$58.00</span>
-                                                <a href="#" class="course__btn">Add to cart</a>
-                                            </div><!-- end course-price-wrap -->
-                                        </div><!-- end course-content -->
-                                    </div><!-- end course-item -->
-                                </div><!-- end col-lg-4    这个科室的某一个-->
-
-
-                            </div><!-- end course-block -->
-                        </div><!-- end tab-pane 五个某科的第一个  结束位置 -->
-                        <div role="tabpanel" class="tab-pane fade" id="tab2">
-                            <div class="row course-block">
-
-
-                                <div class="col-lg-4">
-                                    <div class="course-item">
-                                        <div class="course-img">
-                                            <a href="course-details.html" class="course__img"><img src="images/img8.jpg"
-                                                                                                   alt=""></a>
-                                        </div><!-- end course-img -->
-                                        <div class="course-content">
-                                            <p class="course__label">
-                                                <span class="course__label-text">all levels</span>
-                                                <a href="#" class="course__collection-icon" data-toggle="tooltip"
-                                                   data-placement="top" title="Add to Wishlist"><span
-                                                        class="la la-heart-o"></span></a>
-                                            </p>
-                                            <h3 class="course__title">
-                                                <a href="course-details.html">Complete Python Bootcamp: Go from zero to
-                                                    hero</a>
-                                            </h3>
-                                            <p class="course__author">
-                                                <a href="#">noelle travesy</a>
-                                            </p>
-                                            <div class="rating-wrap d-flex">
-                                                <ul class="review-stars d-flex">
-                                                    <li><span class="la la-star"></span></li>
-                                                    <li><span class="la la-star"></span></li>
-                                                    <li><span class="la la-star"></span></li>
-                                                    <li><span class="la la-star"></span></li>
-                                                    <li><span class="la la-star-o"></span></li>
-                                                </ul>
-                                                <span class="star-rating-wrap">
-                                                    <span class="star__rating">4.5</span>
-                                                    <span class="star__count">(40)</span>
-                                                </span>
-                                            </div><!-- end rating-wrap -->
-                                            <div class="course-meta">
-                                                <ul class="course__list d-flex">
-                                                    <li>
-                                                        <span class="meta__date">
-                                                            <i class="la la-play-circle"></i> 45 Classes
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="meta__date">
-                                                            <i class="la la-clock-o"></i> 3 hours 20 min
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div><!-- end course-meta -->
-                                            <div class="course-price-wrap">
-                                                <span class="course__price">$68.00</span>
-                                                <a href="#" class="course__btn">Add to cart</a>
-                                            </div><!-- end course-price-wrap -->
-                                        </div><!-- end course-content -->
-                                    </div><!-- end course-item -->
-                                </div><!-- end col-lg-4 -->
-                            </div><!-- end course-block -->
-                        </div><!-- end tab-pane 五个某科的 第二个 结束位置 -->
-                        <div role="tabpanel" class="tab-pane fade" id="tab3">
-                            <div class="row course-block">
-                                <div class="col-lg-4">
-                                    <div class="course-item">
-                                        <div class="course-img">
-                                            <a href="course-details.html" class="course__img"><img
-                                                    src="images/img11.jpg" alt=""></a>
-                                        </div><!-- end course-img -->
-                                        <div class="course-content">
-                                            <p class="course__label">
-                                                <span class="course__label-text">beginner</span>
-                                                <a href="#" class="course__collection-icon" data-toggle="tooltip"
-                                                   data-placement="top" title="Add to Wishlist"><span
-                                                        class="la la-heart-o"></span></a>
-                                            </p>
-                                            <h3 class="course__title">
-                                                <a href="course-details.html">WordPress for Beginners – Master
-                                                    WordPress</a>
-                                            </h3>
-                                            <p class="course__author">
-                                                <a href="#">alex smith</a>
-                                            </p>
-                                            <div class="rating-wrap d-flex">
-                                                <ul class="review-stars d-flex">
-                                                    <li><span class="la la-star"></span></li>
-                                                    <li><span class="la la-star"></span></li>
-                                                    <li><span class="la la-star"></span></li>
-                                                    <li><span class="la la-star"></span></li>
-                                                    <li><span class="la la-star-o"></span></li>
-                                                </ul>
-                                                <span class="star-rating-wrap">
-                                                    <span class="star__rating">4.4</span>
-                                                    <span class="star__count">(20)</span>
-                                                </span>
-                                            </div><!-- end rating-wrap -->
-                                            <div class="course-meta">
-                                                <ul class="course__list d-flex">
-                                                    <li>
-                                                        <span class="meta__date">
-                                                            <i class="la la-play-circle"></i> 45 Classes
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="meta__date">
-                                                            <i class="la la-clock-o"></i> 3 hours 20 min
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div><!-- end course-meta -->
-                                            <div class="course-price-wrap">
-                                                <span class="course__price">$58.00</span>
-                                                <a href="#" class="course__btn">Add to cart</a>
-                                            </div><!-- end course-price-wrap -->
-                                        </div><!-- end course-content -->
-                                    </div><!-- end course-item -->
-                                </div><!-- end col-lg-4 -->
-
-
-                            </div><!-- end course-block -->
-                        </div><!-- end tab-pane -->
-                        <div role="tabpanel" class="tab-pane fade" id="tab4">
-                            <div class="row course-block">
-
-                                <div class="col-lg-4">
-                                    <div class="course-item">
-                                        <div class="course-img">
-                                            <a href="course-details.html" class="course__img"><img src="images/img9.jpg"
-                                                                                                   alt=""></a>
-                                        </div><!-- end course-img -->
-                                        <div class="course-content">
-                                            <p class="course__label">
-                                                <span class="course__label-text">beginner</span>
-                                                <a href="#" class="course__collection-icon" data-toggle="tooltip"
-                                                   data-placement="top" title="Add to Wishlist"><span
-                                                        class="la la-heart-o"></span></a>
-                                            </p>
-                                            <h3 class="course__title">
-                                                <a href="course-details.html">Learn Ethical Hacking from Scratch Your
-                                                    Stepping</a>
-                                            </h3>
-                                            <p class="course__author">
-                                                <a href="#">brad travesy</a>
-                                            </p>
-                                            <div class="rating-wrap d-flex">
-                                                <ul class="review-stars d-flex">
-                                                    <li><span class="la la-star"></span></li>
-                                                    <li><span class="la la-star"></span></li>
-                                                    <li><span class="la la-star"></span></li>
-                                                    <li><span class="la la-star"></span></li>
-                                                    <li><span class="la la-star-o"></span></li>
-                                                </ul>
-                                                <span class="star-rating-wrap">
-                                                    <span class="star__rating">4.2</span>
-                                                    <span class="star__count">(30)</span>
-                                                </span>
-                                            </div><!-- end rating-wrap -->
-                                            <div class="course-meta">
-                                                <ul class="course__list d-flex">
-                                                    <li>
-                                                        <span class="meta__date">
-                                                            <i class="la la-play-circle"></i> 45 Classes
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="meta__date">
-                                                            <i class="la la-clock-o"></i> 3 hours 20 min
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div><!-- end course-meta -->
-                                            <div class="course-price-wrap">
-                                                <span class="course__price">$33.00</span>
-                                                <a href="#" class="course__btn">Add to cart</a>
-                                            </div><!-- end course-price-wrap -->
-                                        </div><!-- end course-content -->
-                                    </div><!-- end course-item -->
-                                </div><!-- end col-lg-4 -->
-
-
-                            </div><!-- end course-block -->
-                        </div><!-- end tab-pane -->
-                        <div role="tabpanel" class="tab-pane fade" id="tab5">
-                            <div class="row course-block">
-
-
-                                <div class="col-lg-4">
-                                    <div class="course-item">
-                                        <div class="course-img">
-                                            <a href="course-details.html" class="course__img"><img
-                                                    src="images/img11.jpg" alt=""></a>
-                                            <div class="course-tooltip">
-                                                <span class="tooltip-label">highest rated</span>
-                                            </div>
-                                        </div><!-- end course-img -->
-                                        <div class="course-content">
-                                            <p class="course__label">
-                                                <span class="course__label-text">all levels</span>
-                                                <a href="#" class="course__collection-icon" data-toggle="tooltip"
-                                                   data-placement="top" title="Add to Wishlist"><span
-                                                        class="la la-heart-o"></span></a>
-                                            </p>
-                                            <h3 class="course__title">
-                                                <a href="course-details.html">Microsoft SQL Server 2019 for Everyone</a>
-                                            </h3>
-                                            <p class="course__author">
-                                                <a href="#">mark hardson</a>
-                                            </p>
-                                            <div class="rating-wrap d-flex">
-                                                <ul class="review-stars d-flex">
-                                                    <li><span class="la la-star"></span></li>
-                                                    <li><span class="la la-star"></span></li>
-                                                    <li><span class="la la-star"></span></li>
-                                                    <li><span class="la la-star"></span></li>
-                                                    <li><span class="la la-star-o"></span></li>
-                                                </ul>
-                                                <span class="star-rating-wrap">
-                                                    <span class="star__rating">4.5</span>
-                                                    <span class="star__count">(40)</span>
-                                                </span>
-                                            </div><!-- end rating-wrap -->
-                                            <div class="course-meta">
-                                                <ul class="course__list d-flex">
-                                                    <li>
-                                                        <span class="meta__date">
-                                                            <i class="la la-play-circle"></i> 45 Classes
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="meta__date">
-                                                            <i class="la la-clock-o"></i> 3 hours 20 min
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div><!-- end course-meta -->
-                                            <div class="course-price-wrap">
-                                                <span class="course__price">$68.00</span>
-                                                <a href="#" class="course__btn">Add to cart</a>
-                                            </div><!-- end course-price-wrap -->
-                                        </div><!-- end course-content -->
-                                    </div><!-- end course-item -->
-                                </div><!-- end col-lg-4 -->
-
-                            </div><!-- end course-block -->
-                        </div><!-- end tab-pane -->
-                    </div><!-- end tab-content -->
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="button-shared text-center">
-                        <a href="course-grid.html" class="theme-btn">浏览所有医生</a>
-                    </div><!-- end button-shared -->
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end course-content-wrapper -->
-</section><!-- end courses-area -->
 <!--======================================
         END COURSE AREA
 ======================================-->
@@ -931,8 +565,8 @@
 
             <div class="col-lg-4" v-for="list in pageInfo.list">
                 <div class="speaker-item speaker-item6">
-                    <div class="speaker-img-box">
-                        <img src="images/team6.jpg" alt="">
+                    <div class="speaker-img-box" @click="goHospital(list.hospitalName)">
+                        <img  v-bind:src="'http://39.105.180.116:9901/images/'+list.hospitalImg">
                         <ul class="speaker__profile">
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -942,12 +576,12 @@
                     </div>
                     <div class="speaker-detail">
                         <div class="speaker-title-box">
-                            <h3 class="speaker__title"><a href="teacher-detail.html">{{list.hospitalName}}</a></h3>
+                            <h3 class="speaker__title"><a @click="goHospital(list.hospitalName)">{{list.hospitalName}}</a></h3>
                             <p class="speaker__meta">{{list.hospitalAddress}}</p>
                             <p class="speaker__text">
                                 {{list.hospitalBrief}}
                             </p>
-                            <a href="teacher-detail.html" class="speaker__link">查看详情</a>
+                            <a @click="goHospital(list.hospitalName)" class="speaker__link">查看详情</a>
                         </div>
                     </div>
                 </div><!-- end speaker-item -->

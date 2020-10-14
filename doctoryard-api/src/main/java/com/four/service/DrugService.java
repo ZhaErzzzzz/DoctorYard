@@ -30,6 +30,8 @@ public interface DrugService {
      */
     List<Drug> queryAllByLimit(int offset, int limit);
 
+    String queryDrugNameById(Integer drugId);
+
 
 
     PageInfo<Drug> showDrugByType(int pageNum, int pageSize,String drugType);

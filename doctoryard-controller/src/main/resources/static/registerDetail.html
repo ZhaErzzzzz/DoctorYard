@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -24,8 +24,7 @@
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="css/lightgallery.css">
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- theme js files -->
+    <!-- end inject -->
     <script src="js/jquery-1.10.2.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -40,87 +39,34 @@
     <script src="js/main.js"></script>
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/vue.js"></script>
-    <script src="js/token.js"></script>
     <script>
         $(function () {
             let urlx=decodeURI(location.href)
             let str = decodeURI(window.location.search);
-            let id=str.substr(10);
+            let listId=str.substr(8);
+            console.log("id")
+            console.log(listId)
 
             let vue1 = new Vue({
                 el:"#vue1",
                 data:{
-
-                    msgDate:"",
-                    msgTitle:"",
-                    msgAbout:"",
-                    msgLike:"",
-                    msgLable:"",
-                    msgInfo:"",
-
-                    pageInfo:[],
-                    lists:[],
+                    registerVos:[],
                 },
                 mounted:function () {
 
                     $.ajax({
-                        url:"msg/showByTitle/"+id,
+                        url:"listDetail/showRegisterVoByUserId/1",
                         type:"get",
                         success:function (data) {
 
-                            vue1.msgDate=data.msgDate;
-                            vue1.msgTitle=data.msgTitle;
-                            vue1.msgAbout=data.msgAbout;
-                            vue1.msgLike=data.msgLike;
-                            vue1.msgLable=data.msgLable;
-                            vue1.msgInfo=data.msgInfo;
+                            vue1.registerVos=data;
+                            console.log(vue1.registerVos);
 
                         }
                     })
 
-                    $.ajax({
-                        url:"comment/showAllComment/"+id,
-                        type:"get",
-                        success:function (data) {
-                            vue1.pageInfo=data
-                            vue1.lists=vue1.pageInfo.list
-
-
-
-
-
-                        }
-                    })
-
-
-
-                },
-                methods:{
-
                 }
-            })
 
-
-        })
-    </script>
-    <!-- end inject -->
-    <script src="js/vue.js"></script>
-
-    <script>
-        $(function () {
-            //点击头像，页面跳转到个人中心;
-            let vue0 = new Vue({
-                el: "#vue0",
-                data: {
-                    userImg: user.userImg,
-                    userId: user.userId
-                },
-                mounted: function () {
-                    console.log("asdfasd");
-                    if(this.userImg===null){
-                        this.userImg="未登录.jpg";
-                    }
-                }
             })
         })
     </script>
@@ -152,11 +98,6 @@
                             <ul class="contact-info d-flex align-items-center">
                                 <li><a href="#"><span class="la la-phone"></span> 123-456-789</a> </li>
                                 <li><a href="#"><span class="la la-envelope-o"></span> find@hospital.com</a></li>
-                                <!--用户个人中心-->
-                                <li id="vue0"><a v-bind:href="'singleMan.html?'+userId" target="_blank">个人中心：<img
-                                        v-bind:src="'http://39.105.180.116:9901/images/'+userImg"
-                                        class="rounded-circle shadow"
-                                        width="33px" height="33px"> </a></li>
                             </ul>
                         </div><!-- end header-widget -->
                     </div><!-- end col-lg-6 -->
@@ -347,217 +288,73 @@
         </div><!-- end container-fluid -->
     </div><!-- end header-menu-fluid -->
 </section><!-- end header-menu-area -->
+<!--======================================
+        END HEADER AREA
+======================================-->
+
+<!-- ================================
+    START BREADCRUMB AREA
+================================= -->
+<section class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-content">
+                    <h2 class="breadcrumb__title">我的订单</h2>
+                    <ul class="breadcrumb__list">
+                        <li class="active__list-item"><a href="index.html">主页</a></li>
+                        <li>订单</li>
+                    </ul>
+                    <div class="text-outline">订单</div>
+                </div><!-- end breadcrumb-content -->
+            </div><!-- end col-lg-12 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end breadcrumb-area -->
 <!-- ================================
     END BREADCRUMB AREA
 ================================= -->
 
 <!--======================================
-        START BLOG AREA
+        START PACKAGE AREA
 ======================================-->
-<section class="blog-area4" id="vue1">
+<section class="package-area" id="vue1">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-sm-12">
-                <div class="blog-content-wrap">
-                    <div class="blog-item">
-                        <div class="blog-img-box">
-                            <img src="images/img14.jpg" alt="">
-                            <span class="blog__date" v-model="msgDate">{{msgDate}}</span>
-                        </div>
-                        <div class="blog-content">
-                            <h3 class="blog__title" v-model="msgTitle">{{msgTitle}}</h3>
-                            <ul class="blog__list">
-                                <li><span class="la la-user"></span>作者:<a href="#" v-model="msgAbout">{{msgAbout}}</a></li>
-                                <li><span class="la la-tags"></span>
-                                    <a href="#" v-model="msgLable">{{msgLable}}</a> <!-- 文章的标签 -->
-                                </li>
-                                <li><span class="la la-heart-o" v-model="msgLike"></span>点赞数:{{msgLike}}</li><!-- 收藏人数 -->
-                            </ul>
-                            <p class="blog__desc" v-model="msgInfo">
-                              {{msgInfo}}
-                            </p>
-                            <div class="tags-item">
-                                <ul class="tag__list">
-                                    <li><span>标签:</span></li>
-                                    <li><a href="#" v-model="msgLable">{{msgLable}}</a></li>
+        <div class="row package-content-wrap">
 
-                                </ul>
-                                <ul class="social__links">
-                                    <li><span>Share:</span></li>
-                                    <li><a href="#"><i class="fa fa-qq"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-weibo"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-weixin"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-tencent-weibo"></i></a></li>
-                                </ul>
-                            </div><!-- end tags-item -->
-                        </div><!-- end blog-content -->
-                        <div class="instructor-wrap">
-                            <h3 class="instructor-wrap__title">关于作者</h3>
-                            <div class="instructor-content d-flex">
-                                <div class="instructor-img">
-                                    <a href="teacher-detail.html" class="instructor__avatar">
-                                        <img src="images/team4.jpg" alt="">
-                                    </a>
-                                </div><!-- end instructor-img -->
-                                <div class="instructor-details">
-                                    <div class="instructor-titles">
-                                        <h3 class="instructor__title">Alex Smith</h3>
-                                    </div><!-- end instructor-titles -->
-                                    <div class="instructor-desc">
-                                        <p class="instructor__text">
-                                            I'm a growth-oriented digital marketer with a passion for content marketing,
-                                            social media marketing wonders, conversion rate optimization, and keyword research.
-                                            I strongly support permission marketing and earned media. More than anything,
-                                        </p>
-                                        <a href="#" class="instructor__links">www.techydevs.com</a>
-                                    </div><!-- end instructor-desc -->
-                                </div><!-- end instructor-details -->
-                            </div><!-- end instructor-content -->
-                        </div><!-- end instructor-wrap -->
-                        <div class="comments-wrapper">
-                            <h3 class="comments-title">评论</h3>
-                            <ul class="comments-list">
+            <div class="col-lg-4" v-for="registerVo in registerVos" >
+                <div class="package-item package-item2">
+                    <div class="package-tooltip">
+                        <span class="package__tooltip">预约编号：{{registerVo.registerId}}</span>
+                    </div><!-- end package-tooltip -->
+                    <div class="package-title">
+                        <h3 class="package__title">挂号单</h3>
+                    </div><!-- end package-title -->
+                    <ul class="package-list">
+                        <li><span class="la la-drug"></span>预约医生:{{registerVo.doctorLastname}}</li>
+                        <li><span class="la la-keyboard-o"></span>预约时间:{{registerVo.registerDay}}</li>
+                        <li><span class="la la-neuter"></span>{{registerVo.registerTime}}</li>
+                        <li><span class="la la-calendar-check-o"></span>挂号状态:{{registerVo.registerStatus}}</li>
+                        <li><span class="la la-money"></span> 挂号价格￥{{registerVo.registPayPrice}}</li>
+                    </ul>
+                    <div class="package-price">
+                        <a  class="theme-btn" v-if="registerVo.registerStatus=='挂号成功'">挂号成功</a>
+                        <a  class="theme-btn" v-if="registerVo.registerStatus=='未挂号'">未挂号</a>
+                        <hr>
 
-                                <li >
+                        <p class="package__meta">订单状态:{{registerVo.registPayStatus}}</p>
+
+                    </div>
 
 
-                                    <ul class="comments-reply"   >
+                </div><!-- end package-item -->
 
-                                        <li>
-                                            <div class="comment" v-for="(list,index) in lists">
-                                                <img class="avatar__img" alt="" src="images/team8.jpg">
-                                                <div class="comment-body">
-                                                    <div class="meta-data">
-                                                        <h3 class="comment__author">Jhon doe</h3>
-                                                        <p class="comment__date">{{list.commentDate}}</p>
-                                                    </div>
-                                                    <p class="comment-content">
-                                                       {{list.commentName}}
-                                                    </p>
-                                                    <div class="comment-reply">
-                                                        <a class="comment__btn" href="#">
-                                                            <span class="la la-mail-reply"></span> 回复
-                                                        </a>
-                                                        <p class="helpful__action">
-                                                            <span class="helpful__action-text">这条评论如何？</span>
-                                                            <a href="#">太赞了</a>
-                                                            <a href="#">就那样</a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-
-                                    </ul><!-- end comment -->
-
-                                </li>
-                            </ul>
-                            <div class="see-more-review-btn text-center">
-                                <div class="button-shared">
-                                    <button type="button" class="theme-btn">查看更多评论</button>
-                                </div><!-- end button-shared -->
-                            </div><!-- end see-more-review-btn -->
-                            <div class="review-form">
-                                <div class="contact-form-action">
-                                    <h3 class="contact-title">去评论</h3>
-                                    <!--Contact Form-->
-                                    <form method="post">
-                                        <div class="row">
-                                            <div class="col-lg-6 form-group">
-                                                <input class="form-control" type="text" name="name" placeholder="Your Name">
-                                                <span class="la la-user input-icon"></span><!-- 到时候展示的是登录的user name -->
-                                            </div><!-- end col-lg-6 -->
-                                            <div class="col-lg-12 form-group">
-                                                <textarea class="message-control form-control" name="message" placeholder="在此处写下你的评论"></textarea>
-                                                <span class="la la-pencil input-icon"></span>
-                                            </div><!-- end col-lg-12 -->
-                                            <div class="col-lg-12">
-                                                <button class="theme-btn" type="submit">提交评论</button>
-                                            </div><!-- end col-md-12 -->
-                                        </div><!-- end row -->
-                                    </form>
-                                </div><!-- end contact-form-action -->
-                            </div><!-- end review-form -->
-                        </div><!-- end comments-wrapper -->
-                    </div><!-- end blog-post-item -->
-                </div><!-- end blog-post-wrapper -->
-            </div><!-- end col-md-8-->
-            <div class="col-lg-4 col-sm-12">
-                <div class="sidebar">
-                    <div class="sidebar-widget">
-                        <h3 class="widget__title">查找文章</h3>
-                        <span class="section__divider"></span>
-                        <div class="contact-form-action">
-                            <form method="post">
-                                <div class="form-group">
-                                    <input class="form-control" type="search" name="search" placeholder="搜索...">
-                                    <button type="button" class="search__btn"><span class="la la-search"></span></button>
-                                </div>
-                            </form>
-                        </div><!-- end contact-form-action -->
-                    </div><!-- end sidebar-widget -->
-                    <div class="sidebar-widget category-widget">
-                        <h3 class="widget__title">分类</h3>
-                        <span class="section__divider"></span>
-                        <ul class="widget__list">
-                            <li><a href="#">文章类型</a></li>
-                            <li><a href="#">文章类型</a></li>
-                            <li><a href="#">文章类型</a></li>
-                            <li><a href="#">文章类型</a></li>
-                            <li><a href="#">文章类型</a></li>
-                        </ul>
-                    </div><!-- end sidebar-widget -->
-                    <div class="sidebar-widget archive-widget">
-                        <h3 class="widget__title">Archives</h3>
-                        <span class="section__divider"></span>
-                        <ul class="widget__list">
-                            <li><a href="#">February 2019</a></li>
-                            <li><a href="#">January 2018</a></li>
-                            <li><a href="#">December 2017</a></li>
-                            <li><a href="#">November 2017</a></li>
-                        </ul>
-                    </div><!-- end sidebar-widget -->
-                    <div class="sidebar-widget recent-widget">
-                        <h3 class="widget__title">相关医生</h3>
-                        <span class="section__divider"></span>
-                        <div class="recent-item">
-                            <div class="recent-img">
-                                <a href="course-details.html">
-                                    <img src="images/img21.jpg" alt="blog image">
-                                </a>
-                            </div><!-- end recent-img -->
-                            <div class="recentpost-body">
-                                <span class="recent__meta"> 15 Jan, 2019 by <a href="#">Mark Doe</a></span>
-                                <h4 class="recent__link">
-                                    <a href="course-details.html">Introduction LearnPress – LMS plugin</a>
-                                </h4>
-                                <p class="recent-course__price">Free</p>
-                            </div><!-- end recent-img -->
-                        </div><!-- end recent-item -->
-                        <div class="recent-item">
-                            <div class="button-shared text-center">
-                                <a href="course-grid.html" class="theme-btn">查看所有医生</a>
-                            </div><!-- end button-shared -->
-                        </div><!-- end recent-item -->
-                    </div><!-- end sidebar-widget -->
-                    <div class="sidebar-widget tag-widget">
-                        <h3 class="widget__title">全部标签</h3>
-                        <span class="section__divider"></span>
-                        <ul class="widget__list">
-                            <li><a href="#">文章标签</a></li>
-                            <li><a href="#">文章标签</a></li>
-                            <li><a href="#">文章标签</a></li>
-                            <li><a href="#">文章标签</a></li>
-                            <li><a href="#">文章标签</a></li>
-                        </ul>
-                    </div><!-- end sidebar-widget -->
-                </div><!-- end sidebar -->
-            </div><!-- end col-md-4 -->
+            </div><!-- end col-lg-4 -->
         </div><!-- end row -->
     </div><!-- end container -->
-</section><!-- end blog-area -->
+</section><!-- end package-area -->
 <!--======================================
-        END BLOG AREA
+        END PACKAGE AREA
 ======================================-->
 
 <!-- ================================
@@ -680,17 +477,6 @@
 
 
 <!-- theme js files -->
-<script src="js/jquery-1.10.2.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/magnific-popup.min.js"></script>
-<script src="js/isotope.js"></script>
-<script src="js/waypoint.min.js"></script>
-<script src="js/jquery.counterup.min.js"></script>
-<script src="js/lightgallery.js"></script>
-<script src="js/wow.js"></script>
-<script src="js/smooth-scrolling.js"></script>
-<script src="js/main.js"></script>
+
 </body>
 </html>

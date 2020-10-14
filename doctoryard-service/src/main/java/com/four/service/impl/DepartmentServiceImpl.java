@@ -33,6 +33,11 @@ public class DepartmentServiceImpl implements DepartmentService {
         return this.departmentDao.queryById(departmentId);
     }
 
+    @Override
+    public Integer queryDepartmentNumByHospitalId(Integer hospitalId) {
+        return departmentDao.queryDepartmentNumByHospitalId(hospitalId);
+    }
+
     /**
      * 查询多条数据
      *

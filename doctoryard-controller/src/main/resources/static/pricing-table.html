@@ -14,7 +14,7 @@
     <link rel="icon" sizes="16x16" href="images/favicon.png">
 
     <!-- inject:css -->
-    <link rel="stylesheet" href="http://cdn.bootstrapmb.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/line-awesome.css">
     <link rel="stylesheet" href="css/animate.min.css">
@@ -25,6 +25,53 @@
     <link rel="stylesheet" href="css/lightgallery.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- end inject -->
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/magnific-popup.min.js"></script>
+    <script src="js/isotope.js"></script>
+    <script src="js/waypoint.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/lightgallery.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/smooth-scrolling.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/vue.js"></script>
+    <script>
+        $(function () {
+
+            let vue1 = new Vue({
+                el:"#vue1",
+                data:{
+                  orderVos:[],
+                },
+                mounted:function () {
+
+                    $.ajax({
+                        url:"lists/showListsByUserId/1",
+                        type:"get",
+                        success:function (data) {
+
+                            vue1.orderVos=data;
+
+                        }
+                    })
+
+                },
+                methods:{
+                    goDetail:function (a) {
+
+                        this.listId=a;
+                        let hos="orderDetail.html?listId="+this.listId;
+                        window.location.assign(encodeURI(hos));
+                    }
+                }
+
+            })
+        })
+    </script>
 </head>
 <body>
 
@@ -273,32 +320,37 @@
 <!--======================================
         START PACKAGE AREA
 ======================================-->
-<section class="package-area">
+<section class="package-area" id="vue1">
     <div class="container">
         <div class="row package-content-wrap">
 
-            <div class="col-lg-4">
+            <div class="col-lg-4" v-for="orderVo in orderVos" >
                 <div class="package-item package-item2">
                     <div class="package-tooltip">
-                        <span class="package__tooltip">订单编号：</span>
+                        <span class="package__tooltip">订单编号：{{orderVo.listId}}</span>
                     </div><!-- end package-tooltip -->
                     <div class="package-title">
-                        <h3 class="package__price"><span>￥</span>此订单的价格</h3>
-                        <h3 class="package__title">Business Plan</h3>
+                        <h3 class="package__price"><span>￥</span>{{orderVo.listPrice}}</h3>
+                        <h3 class="package__title">购药单</h3>
                     </div><!-- end package-title -->
                     <ul class="package-list">
-                        <li><span class="la la-check"></span> 12 Full Courses</li>
-                        <li><span class="la la-close"></span> 18 Days Time</li>
+                        <li><span class="la la-"></span>{{orderVo.addressName}}</li>
+                        <li><span class="la la-phone"></span>{{orderVo.addressTel}}</li>
+                        <li><span class="la la-location-arrow"></span> {{orderVo.addressCity}}</li>
+                        <li><span class="la la-long-arrow-down"></span> {{orderVo.addressLocation}}</li>
                     </ul>
-                    <ul class="package-list">
-                        <li><span class="la la-check"></span> 12 Full Courses</li>
-                        <li><span class="la la-close"></span> 18 Days Time</li>
-                    </ul>
+
                     <div class="package-price">
-                        <a href="#" class="theme-btn">去支付</a>
-                        <p class="package__meta">订单状态:</p>
+                        <a  class="theme-btn" v-if="orderVo.listStatus!=='已付款'">去支付</a>
+                        <a  class="theme-btn" v-if="orderVo.listStatus=='已付款'">已支付</a>
+                        <hr>
+                        <a  class="theme-btn" @click="goDetail(orderVo.listId)">查看订单详情</a>
+
+                        <p class="package__meta">订单状态:{{orderVo.listStatus}}</p>
+
                     </div>
                 </div><!-- end package-item -->
+
             </div><!-- end col-lg-4 -->
         </div><!-- end row -->
     </div><!-- end container -->
@@ -427,17 +479,6 @@
 
 
 <!-- theme js files -->
-<script src="js/jquery-1.10.2.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/magnific-popup.min.js"></script>
-<script src="js/isotope.js"></script>
-<script src="js/waypoint.min.js"></script>
-<script src="js/jquery.counterup.min.js"></script>
-<script src="js/lightgallery.js"></script>
-<script src="js/wow.js"></script>
-<script src="js/smooth-scrolling.js"></script>
-<script src="js/main.js"></script>
+
 </body>
 </html>

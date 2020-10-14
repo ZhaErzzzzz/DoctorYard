@@ -1,1395 +1,166 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <!-- viewport meta -->
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,  initial-scale=1.0">
-    <meta name="description" content="Aduca - Learning & Online Education HTML Template">
-    <meta name="keywords" content="Aduca - Learning & Online Education HTML Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <title>vue</title>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="https://www.jq22.com/jquery/vue.min.js"></script>
+<!--    <script src="js/vue.js"></script>-->
 
-    <title>医苑 - 在线预约平台</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/order.css">
 
-    <!-- Favicon -->
-    <link rel="icon" sizes="16x16" href="images/favicon.png">
 
-    <!-- inject:css -->
-    <link rel="stylesheet" href="http://cdn.bootstrapmb.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/line-awesome.css">
-    <link rel="stylesheet" href="css/animate.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/jquery.countdown.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/style.css">
-    <!-- end inject -->
-    <style>
-
-
-
-
-
-
-        .cart-tbody .item-header {
-            padding: 5px 10px;
-            line-height: 26px;
-            color: #999;
-            display: inline-block;
-            display: block;
-        }
-        .item-header .f-txt {
-            float: left;
-            width: 750px;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-        .item-header .full-icon {
-            position: relative;
-            display: inline-block;
-            *display: inline;
-            *zoom: 1;
-            vertical-align: middle;
-            background: #f48719;
-            border: 1px solid #f48719;
-            color: #fff;
-            padding: 1px 10px;
-            height: 16px;
-            line-height: 16px;
-            margin: 0 10px 0 5px;
-        }
-
-        .cart-tbody .item-header .btn-1 {
-            height: 19px;
-            line-height: 19px;
-            padding: 0 5px;
-            -webkit-border-radius: 2px;
-            -moz-border-radius: 2px;
-            border-radius: 2px;
-        }
-
-        .item-header a.ftx-05 {
-            color: #333;
-        }
-
-        .item-header .f-price {
-            float: left;
-            min-width: 100px;
-            text-align: right;
-            font-family: verdana;
-            line-height: 13px;
-            color: #333;
-        }
-        .item-header .f-price strong {
-            color: #333;
-            font-weight: 400;
-        }
-
-        /*��������������*/
-        .div3 {
-            width:990px;
-            display: inline-block;
-            display: block;
-            height: 32px;
-            line-height: 32px;
-            margin:10px auto;
-            margin-top:0px;
-            padding: 5px 0;
-            background: #f3f3f3;
-            border: 1px solid #e9e9e9;
-            border-top: 0;
-            background-color: #f3f3f3;
-            margin-bottom: 11px;
-        }
-
-        .jdcheckbox {
-            float: left;
-            position: relative;
-            vertical-align: middle;
-            _vertical-align: 0px;
-            margin: 0px 5px 2px 12px;
-            padding: 0;
-        }
-
-
-
-        .cart-checkbox div {
-            display: inline-block;
-            position: relative;
-            top:0px;
-        }
-
-        .t-goods {
-            margin-left: 74px;
-        }
-
-        .t-price {
-            margin-left: 437px;
-        }
-
-        .t-quantity {
-            margin-left: 65px;
-        }
-
-        .t-sum {
-            margin-left: 81px;
-        }
-
-        .t-action {
-            margin-left: 37px;
-        }
-
-        /*������Ʒ��Ϣ*/
-        .goods {
-            width: 990px;
-            margin: 0px auto;
-            /*height: 141px;*/
-        }
-        .shop{
-
-            line-height: 30px;
-            height: 30px;
-            font-weight: 700;
-            border-bottom: solid 2px;
-        }
-        .shop-mes {
-            position: relative;
-            top:-1px;
-        }
-        .self-shop {
-            position: relative;
-            left: -1px;
-        }
-        .shop-a {
-            display: inline-block;
-            position: relative;
-            top:4px;
-            left: -1px;
-            height: 18px;
-            line-height: 18px;
-        }
-
-        .shop div {
-            float:right;
-            display: inline-block;
-            position: relative;
-            font-weight: 400;
-        }
-
-
-
-        .item-list {
-            border-style: solid;
-            border-width: 1px 1px 1px;
-            _border-width: 1px;
-            border-color: #aaa #f1f1f1 #f1f1f1;
-            background: #fff;
-        }
-        .buygoods {
-            position: relative;
-            top:-1px;
-            height: 108px;
-            width:990px;
-            margin:0px auto;
-
-        }
-        .buygoodsselected {
-            background: #fff4e8;
-        }
-
-        .cell {
-            float: left;
-            padding: 15px 0 10px;
-        }
-        .p-checkbox {
-            position: absolute;
-            /*left: -960px;*/
-            top: 5;
-            width: 30px;
-            min-height: 10px;
-            _height: 10px;
-        }
-
-        .p-goods {
-            width: 300px;
-            height: 86px;
-            display: inline-block;
-            position: relative;
-            left: 312px;
-            top:-35px;
-        }
-
-        .p-img {
-            width: 80px;
-            height: 80px;
-            /*position: relative;
-            left: -209px;
-            top:1px;*/
-            margin-right: 10px;
-        /border: 1px solid #eee;
-        / background: #fff;
-            padding: 0;
-        / text-align: center;
-        / overflow: hidden;
-            position: absolute;
-            top: 10px;
-            left: 40px;
-        }
-
-        .p-name {
-            width:208px;
-            height: 40px;
-            line-height: 20px;
-            overflow: hidden;
-            position: absolute;
-            left: 145px;
-            top: 10px;
-        }
-
-        .p-name2 {
-            width:208px;
-            height: 40px;
-            line-height: 20px;
-            overflow: hidden;
-
-        }
-
-        .p-name a {
-            color: #333;
-            height: 20px;
-        }
-
-        .p-extend {
-            position: absolute;
-            left: 150px;
-            top: 50px;
-        }
-
-        .p-extend i {
-            display: inline-block;
-            *display: inline;
-            *zoom: 1;
-            width: 17px;
-            height: 16px;
-            vertical-align: middle;
-            overflow: hidden;
-            background: url(img/images2/all2.png) no-repeat;
-            background-position: -27px -23px;
-            margin-right: 7px;
-        }
-        .p-extend a {
-            color: #aaa;
-        }
-        .baozhang {
-
-            position: relative;
-            top:-9px;
-        }
-        .jd-service {
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-        .p-div2 {
-            width:100px;
-            height: 80px;
-            line-height: 20px;
-            overflow: hidden;
-            padding: 15px 10px 0;
-            position: absolute;
-            left: 355px;
-        }
-        .props-txt {
-            width: 100px;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            cursor: default;
-        }
-
-        .p-div3 {
-            position: absolute;
-            left: 590px;
-        }
-        .p-div3 strong{
-            color: #333;
-            font-family: verdana;
-            line-height: 20px;
-            text-align: right;
-            font-weight: 400;
-        }
-
-        /*������������*/
-        .quantity-form {
-            position: absolute;
-            overflow: hidden;
-            height: 22px;
-            width: 80px;
-            top: 14px;
-            left: 680px;
-        }
-
-
-        .decrement,.increment {
-            display:inline-block;
-            border: 1px solid #cacbcb;
-            border-right: 0;
-            height: 18px;
-            line-height: 18px;
-            padding: 1px 0;
-            width: 16px;
-            text-align: center;
-            color: #666;
-            margin: 0;
-            background: #fff;
-        }
-
-        .increment {
-            float: right;
-            border-right: 1px solid #cacbcb;
-            border-left: none;
-        }
-        .p-quantity-itxt {
-            border: 1px solid #cacbcb;
-            display:inline-block;
-            position: absolute;
-            left: 17px;
-            top: 0;
-            width: 46px;
-            line-height: 18px;
-            text-align: center;
-            padding: 1px;
-            margin: 0;
-            font-size: 12px;
-            font-family: verdana;
-            color: #333;
-            -webkit-appearance: none;
-
-        }
-
-        .p-sum {
-            text-align: right;
-            font-family: verdana;
-        }
-        .p-sum strong {
-            color: #333;
-            font-weight: 700;
-        }
-        .div4 {
-            position: absolute;
-            left: 815px;
-        }
-
-        /*����*/
-        .p-ops {
-            width: 75px;
-        }
-
-        .a1 {
-            display: inline-block;
-        }
-        .div5 {
-            position: absolute;
-            left: 900px;
-        }
-
-        /*����*/
-        .check {
-            width: 990px;
-            height: 52px;
-            margin: 0px auto;
-            margin-top:19px;
-
-            border: 1px solid #f0f0f0;
-            position: relative;
-        }
-        .selectall {
-            float: left;
-            height: 18px;
-            *width: 60px;
-            line-height: 18px;
-            padding: 16px 0 16px 9px;
-            white-space: nowrap;
-            position: relative;
-            left:-11px;
-        }
-
-        .selectall-box {
-            display: inline-block;
-            position:relative;
-            top:1px;
-        }
-        .check .operation {
-            float: left;
-            height: 50px;
-            width: 310px;
-            line-height: 50px;
-            position: relative;
-            top:-16px;
-        }
-        .operation a {
-            display:inline-block;
-            float: left;
-            margin-left: 20px;
-            color: #666;
-        }
-
-        /*�����Ұ벿��*/
-        .toolbar-right {
-            position: relative;
-            height: 52px;
-            right: 0;
-            top: -1px;
-            width: 610px;
-
-            top:-53px;
-            left: 561px;
-        }
-
-        .amount-sum {
-            float: right;
-            color: #999;
-            height: 44px;
-            line-height: 20px;
-            margin: 7px 0 0;
-            cursor: pointer;
-            position: relative;
-            left: -321px;
-            top:-1px;
-        }
-        .amount-sum em {
-            color: #e4393c;
-            font-family: verdana;
-            font-weight: 700;
-            margin: 0 3px;
-        }
-        .amount-sum b.up {
-            background-position: -45px -91px;
-        }
-        .amount-sum b {
-            display: inline-block;
-            *display: inline;
-            *zoom: 1;
-            width: 9px;
-            height: 5px;
-            background: url(img/images2/all2.png) -45px -91px;
-            overflow: hidden;
-            vertical-align: middle;
-            margin: -5px 0 0 5px;
-            -webkit-transition: all .2s ease-in 0s;
-            -moz-transition: all .2s ease-in 0s;
-            transition: all .2s ease-in 0s;
-        }
-        .txt {
-            float: left;
-            width: 110px;
-            text-align: right;
-            color: #999;
-        }
-
-        .toolbar-right-money {
-            position: absolute;
-            left: 299px;
-            top:7px;
-        }
-        .price {
-            display: inline-block;
-            *display: inline;
-            *zoom: 1;
-            text-align: right;
-            font-family: verdana;
-        }
-        .price-sum {
-            line-height: 20px;
-            color: #666;
-        }
-        .price-sum {
-            line-height: 20px;
-            color: #666;
-        }
-        .price-sum div {
-            white-space: nowrap;
-        }
-        .amount-sum {
-            float: right;
-            color: #999;
-            height: 44px;
-            line-height: 20px;
-            margin: 7px 0 0;
-            cursor: pointer;
-        }
-        .price em {
-            font-size: 16px;
-            color: #e4393c;
-            font-weight: 700;
-        }
-        .btn-area {
-            float: right;
-            position: relative;
-            left: 99px;
-        }
-        .submit-btn {
-            display: block;
-            position: relative;
-            width: 96px;
-            height: 52px;
-            line-height: 52px;
-            color: #fff;
-            text-align: center;
-            font-size: 18px;
-            font-family: "Microsoft YaHei";
-            background: #e54346;
-            overflow: hidden;
-        }
-        .submit-btn b {
-            display: block;
-            position: absolute;
-            width: 96px;
-            height: 52px;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-            background: url(img/images2/jiesuan.png) 0 0 no-repeat;
-        }
-        .toolbar-right-money-span {
-            display: inline-block;
-            position: relative;
-            top:3px;
-        }
-
-        /*����ϲ��*/
-        .w {
-            width: 990px;
-            margin: 0 auto;
-        }
-
-        #c-tabs-new {
-            overflow: visible;
-        }
-        #c-tabs-new {
-            position: relative;
-            top:-31px;
-        }
-
-        #c-tabs-new .mt {
-            margin-bottom: 10px;
-
-            position: relative;
-            top:-3px;
-        }
-
-        #c-tabs-new .c-item {
-            display: inline-block;
-            *display: inline;
-            *zoom: 1;
-            padding-bottom: 3px;
-            border-bottom: 2px solid #fff;
-        }
-        .extra-1-1 {
-            position: absolute;
-            left: 90px;
-        }
-        .extra-1-2 {
-            position: absolute;
-            left: 176px;
-        }
-        #c-tabs-new .c-item.curr {
-            color: #e4393c;
-            font-weight: 700;
-            border-color: #e4393c;
-        }
-
-        #c-tabs-new a:HOVER {
-            color: #e4393c;
-            font-weight: 700;
-            border-color: #e4393c;
-        }
-
-        /*�Ƽ��ֻ��*/
-        #c-tabs-new .mc {
-            overflow: visible;
-            height: 326px;
-        }
-
-        #c-tabs-new .c-panel {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        #c-tabs-new .goods-list ul {
-            display: inline-block;
-            display: block;
-            width: 100%;
-            height: 100%;
-            padding: 0px;
-
-        }
-        ul {
-            list-style: none;
-            padding: 0px;
-        }
-        #c-tabs-new .goods-list li {
-            float: left;
-            margin: 0px;
-            padding: 0px;
-        }
-        #c-tabs-new .goods-list-tab {
-            position: absolute;
-            right: 0;
-            top: -26px;
-            width: 52px;
-        }
-        #c-tabs-new .goods-list-tab .curr {
-            width: 26px;
-            background: #e4393c;
-        }
-        #c-tabs-new .goods-list-tab .s-item {
-            display: inline-block;
-            *display: inline;
-            *zoom: 1;
-            width: 8px;
-            height: 8px;
-
-            overflow: hidden;
-            background: #aaa;
-            vertical-align: middle;
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
-            border-radius: 4px;
-            position: relative;
-
-        }
-
-        #c-tabs-new .goods-list-tab .curr {
-            width: 26px;
-            background: #e4393c;
-        }
-
-        #c-tabs-new .goods-list .item {
-            position: relative;
-            width: 206px;
-            padding: 20px;
-            background: #fff;
-            margin: -1px 0 0 -1px;
-            border: 1px dashed #cacaca;
-            overflow: hidden;
-        }
-        .pp-img {
-            width: 160px;
-            margin: 0 auto;
-        }
-        img {
-            border: 0;
-            vertical-align: middle;
-        }
-        #c-tabs-new .goods-list .p-name {
-            height: 36px;
-            line-height: 18px;
-            margin: 5px 0;
-            overflow: hidden;
-            left: 0px;
-        }
-        #c-tabs-new .goods-list .p-price {
-            width: 100px;
-            margin: 5px 0 2px;
-        //overflow: hidden;
-            text-align: center;
-        }
-
-        .p-price-pos {
-            position: relative;
-            left: 55px;
-        }
-        #c-tabs-new .goods-list .p-price strong {
-            font-size: 14px;
-            color: #d91f20;
-            font-family: verdana;
-            font-weight: 400;
-        }
-        #c-tabs-new .goods-list .p-btn {
-            margin: 10px 0 0;
-            text-align: center;
-        }
-        #c-tabs-new .goods-list .btn-append {
-            display: inline-block;
-            *display: inline;
-            *zoom: 1;
-            height: 28px;
-            line-height: 28px;
-            padding: 0 20px;
-            border: 1px solid #999;
-            color: #666;
-            text-align: center;
-            -webkit-border-radius: 3px;
-            -moz-border-radius: 3px;
-            border-radius: 3px;
-        }
-        #c-tabs-new {
-            position: relative;
-
-        }
-        .btn-append b {
-            display: inline-block;
-            height: 18px;
-            width: 18px;
-            margin-right: 5px;
-            background-position: 0 -57px;
-            background-repeat: no-repeat;
-            overflow: hidden;
-            vertical-align: middle;
-        }
-        .btn-append b {
-            background-image: url(img/images2/gift.png);
-        }
-
-        .backpanel-inner {
-            position: fixed;
-            z-index: 999;
-            left: 50%;
-            margin-left: 495px;
-            bottom: 51px;
-
-        }
-        .backpanel-inner .bp-item {
-            width: 38px;
-            height: 38px;
-            background: #fff;
-        }
-        .backpanel-inner .bp-item .myfollow, .backpanel-inner .bp-item .survey, .backpanel-inner .bp-item .tohelp {
-            background-position: 0 0;
-            line-height: 14px;
-            background-image: none;
-            text-decoration: none;
-            background-color: #aaa;
-            color: #fff;
-        }
-
-        .backpanel-inner .bp-item {
-            width: 38px;
-            height: 38px;
-            background: #fff;
-        }
-
-        .backpanel-inner .bp-item .backtop {
-            background-position: 0 -55px;
-        }
-        .backpanel-inner .bp-item a {
-            display: block;
-            background-image: url(img/images2/xiangshang.png);
-            background-color: #aaa;
-            background-repeat: no-repeat;
-            padding: 5px 0 0 7px;
-            color: #fff;
-            height: 33px;
-            line-height: 1000px;
-            overflow: hidden;
-            margin-top: 5px;
-        }
-
-
-        /*����*/
-        #service-2014 {
-            margin-bottom: 20px;
-            position: relative;
-            top:-30px;
-        }
-        #service-2014 .slogen .item {
-            display: inline-block;
-            position: absolute;
-            left: 50%;
-            top: 20px;
-            width: 245px;
-            height: 54px;
-            text-align: left;
-            vertical-align: middle;
-            font: 400 18px/50px "microsoft yahei";
-        }
-        .slogen {
-            position: relative;
-            height: 54px;
-            padding: 20px 0;
-            margin-bottom: 14px;
-            background: #F5F5F5;
-            text-align: center;
-        }
-
-        #service-2014 .slogen .fore1 {
-            margin-left: -490px;
-        }
-        #service-2014 .slogen .item i {
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 10px;
-            width: 220px;
-            height: 54px;
-            background-repeat: no-repeat;
-            background-position: 0 0;
-        }
-        #service-2014 .slogen .item b {
-            padding: 0 10px;
-            font-size: 24px;
-            color: #C81623;
-        }
-        #service-2014 .slogen .fore2 {
-            margin-left: -245px;
-        }
-        #service-2014 .slogen .fore3 {
-            margin-left: 0;
-        }
-        #service-2014 .slogen .fore4 {
-            margin-left: 245px;
-        }
-
-
-        #service-2014 dl {
-            float: left;
-            width: 222px;
-        }
-        #service-2014 dt {
-            padding: 6px 0;
-            font: 400 16px/24px "microsoft yahei";
-        }
-        #service-2014 dd {
-            line-height: 20px;
-        }
-        #service-2014 dl.fore5 {
-            width: 100px;
-        }
-        .clear, .clr {
-            display: block;
-            overflow: hidden;
-            clear: both;
-            height: 0;
-            line-height: 0;
-            font-size: 0;
-        }
-
-        /*�ײ���Ȩ��*/
-        #footer-2014 {
-            border-top: 1px solid #E5E5E5;
-            padding-top: 20px;
-            text-align: center;
-        }
-        #footer-2014 .links a {
-            margin: 0 10px;
-        }
-        #footer-2014 .copyright {
-            margin: 10px 0;
-        }
-        #footer-2014 .authentication a {
-            margin: 0 5px;
-            text-decoration: none;
-        }
-        img {
-            border: 0;
-            vertical-align: middle;
-        }
-        .all-bottom {
-            width: 0px;
-            height: 15px;
-        }
-
-    </style>
 </head>
 <body>
-
-<!-- start cssload-loader -->
-<div class="preloader">
-    <div class="cssload-loader">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+<div class="page-shopping-cart" id="shopping-cart">
+    <h4 class="cart-title">购物清单</h4>
+    <div class="cart-product clearfix">
+        <table>
+            <thead>
+            <tr class="cart-product-title">
+                <th class="td-check">
+                    <input type="checkbox" class="check-span fl check-all"  :class="{'check-true':isSelectAll}" @click="selectProduct(isSelectAll)" :checked="isSelectAll" id="checkAll"></input>全选</th>
+                <th class="td-product">商品</th>
+                <th class="td-num">数量</th>
+                <th class="td-price">单价(元)</th>
+                <th class="td-total">金额(元)</th>
+                <th class="td-do">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="(item,index) in productList" :key="index">
+                <td class="td-check"><input type="checkbox" class="check-span"  @click="item.select=!item.select" :class="{'check-true':item.select}" :checked="item.select"></input></td>
+                <td class="td-product"><img :src="item.pro_img" width="98" height="98">
+                    <div class="product-info">
+                        <h3>{{item.drugName}}</h3>
+<!--                        <p>：{{item.pro_brand}}&nbsp;&nbsp;产地：{{item.pro_place}}</p>-->
+<!--                        <p>规格/纯度:{{item.pro_purity}}&nbsp;&nbsp;起定量：{{item.pro_min}}</p>-->
+<!--                        <p>配送仓储：{{item.pro_depot}}</p>-->
+                    </div>
+                    <div class="clearfix"></div>
+                </td>
+                <td class="td-num">
+                    <div class="product-num">
+                        <a href="javascript:;" class="num-reduce num-do fl" @click="minus(index)"><span></span></a>
+                        <input type="text" class="num-input" v-model="item.orderDrugCount" @input="search($event,index)" @blur="check($event,index)">
+                        <a href="javascript:;" class="num-add num-do fr" @click="add(index)"><span></span></a>
+                    </div>
+                </td>
+                <td class="td-price">
+                    <p class="red-text">￥<span class="price-text">{{item.drugPrice.toFixed(2)}}</span></p>
+                </td>
+                <td class="td-total">
+                    <p class="red-text">￥<span class="total-text">{{(item.drugPrice*item.orderDrugCount).toFixed(2)}}</span></p>
+                </td>
+                <td class="td-do"><a href="javascript:;" class="product-delect"  @click="deleteOneProduct(index)">删除</a></td>
+            </tr>
+            </tbody></table>
+    </div>
+    <div class="cart-product-info">
+        <a class="delect-product" href="javascript:;" @click="deleteProduct">删除所选商品</a>
+        <a class="keep-shopping" href="drugs.html">继续购物</a>
+        <a class="btn-buy fr" href="javascript:;">去结算</a>
+        <p class="fr product-total">￥<span>{{getTotal.totalPrice}}</span></p>
+        <p class="fr check-num"><span>{{getTotal.totalNum}}</span>件商品总计（不含运费）：</p>
     </div>
 </div>
-<!-- end cssload-loader -->
-
-<!--======================================
-        START HEADER AREA
-    ======================================-->
-<section class="header-menu-area">
-    <div class="header-menu-fluid">
-        <div class="header-top">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="header-widget header-widget1">
-                            <ul class="contact-info d-flex align-items-center">
-                                <li><a href="#"><span class="la la-phone"></span> 123-456-789</a> </li>
-                                <li><a href="#"><span class="la la-envelope-o"></span> find@hospital.com</a></li>
-                            </ul>
-                        </div><!-- end header-widget -->
-                    </div><!-- end col-lg-6 -->
-                    <div class="col-lg-6">
-                        <div class="header-widget header-widget2 d-flex align-items-center justify-content-end">
-                            <div class="header-right-info">
-                                <ul class="social-info d-flex align-items-center">
-                                    <li><a href="#"><i class="fa fa-qq"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-wechat"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-weibo"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-tencent-weibo"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="header-right-info d-flex align-items-center">
-                                <ul class="user-cart d-flex align-items-center">
-                                    <li>
-                                        <span class="la la-shopping-cart user-cart-btn"></span>
-                                        <ul class="dropdown-menu-item">
-                                            <li>无购物信息，先去购物吧！</li>
-                                            <li><a href="#" class="theme-btn">继续购物</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul class="user-action d-flex align-items-center">
-                                    <li><a href="login.html">登录</a></li>
-                                    <li><span>/</span></li>
-                                    <li><a href="sign-up.html">注册</a></li>
-                                </ul>
-                            </div>
-                        </div><!-- end header-widget -->
-                    </div><!-- end col-lg-6 -->
-                </div><!-- end row -->
-            </div><!-- end container-fluid -->
-        </div><!-- end header-top -->
-        <div class="container-fluid">
-            <div class="row align-items-center estage-menu-content">
-                <div class="col-lg-3">
-                    <div class="logo-box">
-                        <a href="index.html" class="logo" title="Aduca"><img src="images/logo.png" alt="logo"></a>
-                        <div class="header-category">
-                            <ul>
-                                <li>
-                                    <a href="#"><i class="fa fa-th"></i> 全部分类</a>
-                                    <ul class="dropdown-menu-item">
-                                        <li>
-                                            <a href="#">发展历程 <span class="la la-angle-right"></span></a>
-                                            <ul class="sub-menu">
-                                                <li><a href="#">所有发展</a></li>
-                                                <li><a href="#">Web开发</a></li>
-                                                <li><a href="#">移动应用</a></li>
-                                                <li><a href="#">游戏开发</a></li>
-                                                <li><a href="#">资料库</a></li>
-                                                <li><a href="#">编程语言</a></li>
-                                                <li><a href="#">软件测试</a></li>
-                                                <li><a href="#">软件工程</a></li>
-                                                <li><a href="#">电子商务</a></li>
-                                            </ul>
-                                        </li>
-
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- end col-lg-3 -->
-                <div class="col-lg-9">
-                    <div class="menu-wrapper">
-                        <div class="contact-form-action">
-                            <!--Contact Form-->
-                            <form method="post">
-                                <div class="row">
-                                    <div class="col-lg-12 form-group">
-                                        <input class="form-control" type="text" name="search" placeholder="搜索">
-                                        <span class="la la-search search-icon"></span>
-                                    </div><!-- end col-lg-6 -->
-                                </div><!-- end row -->
-                            </form>
-                        </div><!-- end contact-form-action -->
-                        <nav class="main-menu">
-                            <ul>
-                                <li>
-                                    <a href="#">首页</a>
-                                    <ul class="dropdown-menu-item">
-                                        <li><a href="index.html">首页 01</a></li>
-                                        <li><a href="home-2.html">首页 02</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="about.html">关于</a></li>
-                                <li>
-                                    <a href="#">医生</a>
-                                    <ul class="dropdown-menu-item">
-                                        <li><a href="course-grid.html">医生·网格版</a></li>
-                                        <li><a href="course-details.html">医生详情</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">医院</a>
-                                    <ul class="dropdown-menu-item">
-                                        <li><a href="teachers.html">医院</a></li>
-                                        <li><a href="teacher-detail.html">医生</a></li>
-                                        <li><a href="faq.html">常见问题</a></li>
-                                        <li><a href="admission.html">admission</a></li>
-                                        <li><a href="gallery.html">gallery</a></li>
-                                        <li><a href="pricing-table.html">pricing tables</a></li>
-                                        <li><a href="sign-up.html">注册</a></li>
-                                        <li><a href="login.html">登录</a></li>
-                                        <li><a href="error.html">错误页面</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">博客</a>
-                                    <ul class="dropdown-menu-item">
-                                        <li><a href="blog-grid.html">网格版</a></li>
-                                        <li><a href="blog-single.html">单独版</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact.html">交流</a></li>
-                            </ul><!-- end ul -->
-                        </nav><!-- end main-menu -->
-                        <div class="logo-right-button">
-                            <ul>
-                                <li class="ticket-button-box"><a href="admission.html" class="theme-btn">admission</a></li>
-                            </ul>
-                            <div class="side-menu-open">
-                                <span class="menu__bar"></span>
-                                <span class="menu__bar"></span>
-                                <span class="menu__bar"></span>
-                            </div>
-                        </div><!-- end logo-right-button -->
-                        <div class="side-nav-container">
-                            <div class="humburger-menu">
-                                <div class="humburger-menu-lines side-menu-close"></div><!-- end humburger-menu-lines -->
-                            </div><!-- end humburger-menu -->
-                            <div class="side-menu-wrap">
-                                <ul class="side-menu-ul">
-                                    <li class="sidenav__item">
-                                        <a href="index.html">首页</a>
-                                        <span class="menu-plus-icon"></span>
-                                        <ul class="side-sub-menu">
-                                            <li><a href="index.html">首页 01</a></li>
-                                            <li><a href="home-2.html">首页 02</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="sidenav__item"><a href="about.html">关于</a></li>
-                                    <li class="sidenav__item">
-                                        <a href="#">医生</a>
-                                        <span class="menu-plus-icon"></span>
-                                        <ul class="side-sub-menu">
-                                            <li><a href="course-grid.html">医生·网格版</a></li>
-                                            <li><a href="course-details.html">医生详情</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="sidenav__item">
-                                        <a href="#">医院</a>
-                                        <span class="menu-plus-icon"></span>
-                                        <ul class="side-sub-menu">
-                                            <li><a href="teachers.html">医院</a></li>
-                                            <li><a href="teacher-detail.html">医生</a></li>
-                                            <li><a href="faq.html">常见问题</a></li>
-                                            <li><a href="admission.html">admission</a></li>
-                                            <li><a href="gallery.html">gallery</a></li>
-                                            <li><a href="pricing-table.html">pricing tables</a></li>
-                                            <li><a href="sign-up.html">注册</a></li>
-                                            <li><a href="login.html">登录</a></li>
-                                            <li><a href="error.html">错误页面</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="sidenav__item">
-                                        <a href="blog-grid.html">博客</a>
-                                        <span class="menu-plus-icon"></span>
-                                        <ul class="side-sub-menu">
-                                            <li><a href="blog-grid.html">博客</a></li>
-                                            <li><a href="blog-single.html">博客网·格版</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="sidenav__item">
-                                        <a href="contact.html">contact</a>
-                                    </li>
-                                </ul>
-                                <div class="side-btn-box">
-                                    <a href="admission.html" class="theme-btn">admission</a>
-                                </div>
-                            </div><!-- end side-menu-wrap -->
-                        </div><!-- end side-nav-container -->
-                    </div><!-- end menu-wrapper -->
-                </div><!-- end col-lg-9 -->
-            </div><!-- end row -->
-        </div><!-- end container-fluid -->
-    </div><!-- end header-menu-fluid -->
-</section><!-- end header-menu-area -->
-<!--======================================
-        END HEADER AREA
-======================================-->
-
-<!--================================
-         START SLIDER AREA
-=================================-->
-
-
-<section class="course-area">
-    <div class="course-wrapper">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-heading text-center">
-                        <h5 class="section__meta">订单页</h5>
-                        <h2 class="section__title">查看我的订单</h2>
-                        <span class="section__divider"></span>
-                    </div><!-- end section-heading -->
-                    <div id="buygoods">
-                        <div class="div3">
-                            <div class="cart-checkbox">
-                                <input checked="checked"  @click="choAll('#selectAll2')"  id="selectAll2" class="jdcheckbox" type="checkbox" style="position: relative;top:1px;">
-                                <label class="checked"  >全选</label>
-                                <div class="t-goods">商品</div>
-                                <div class="t-price">单价(元)</div>
-                                <div class="t-quantity">数量</div>
-                                <div class="t-sum">小计(元)</div>
-                                <div class="t-action">操作</div>
-                            </div>
-                        </div>
-
-
-                        <!-- 京东商店-->
-                        <div class="goods">
-                            <!--京东自营那一条-->
-                            <div class="shop">
-                                <input checked="checked" name="checkShop" id="selectShop" class="jdcheckbox self-shop " type="checkbox">
-                                <a class="self-shop-name shop-a"></a>
-                                <div class="shop-mes"><span>购满￥99.00&nbsp;已免运费</span>
-                                    <span class="tips-icon"></span>
-                                </div>
-                            </div>
-                            <!--单品-->
-
-                            <div class="buygoods buygoodsselected item-list" v-for="(item,index) in items">
-                                <!--图片及名称-->
-                                <div class="p-checkbox cell">
-                                    <input checked="checked"id="selectGoods" class="jdcheckbox"type="checkbox" v-model="item.selected"  @click="cho(index)"/>
-                                </div>
-                                <!-- 手机图片 -->
-                                <div class="p-img">
-                                    <a target="_blank" ><img v-bind:src="'http://123.57.7.108:81/'+item.skuImage"  /></a>
-                                </div>
-                                <div class="p-name">
-                                    <a  href="//item.jd.com/1601978.html" target="_blank">{{item.skuName}}</a>
-                                </div>
-                                <div class="p-extend">
-                                    <span class="promise"><i></i><a>购买礼品包装</a></span><br/>
-                                    <span class="promise" ><i style="background-position: 0 -23px;"></i><a class="jd-service" href="#none">购买增值保障</a></span>
-                                </div>
-                                <div class="p-div2">
-                                    <div class="props-txt" title="黑">颜色：黑</div>
-                                    <div class="props-txt" title="标准(16GB)">尺码：标准(16GB)</div>
-                                </div>
-                                <div class="cell p-price p-div3" ><strong>{{item.skuPrice}}</strong></div>
-                                <div class="quantity-form">
-                                    <a class="decrement" @click="down(index)">-</a>
-                                    <input value="1" type="text" autocomplete="off" class="p-quantity-itxt" v-model="item.skuCount" />
-                                    <a class="increment" @click="up(index)">+</a>
-                                </div>
-
-                                <div class="cell p-sum div4"><strong>{{item.skuPrice*item.skuCount}}</strong></div>
-                                <div class="cell p-ops div5">
-                                    <!--单品-->
-                                    <a @click="del(index)">删除</a>
-                                    <a class="a1">移到我的关注</a>
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                        <!-- 结算 -->
-                        <div class="check" id="selectall_div">
-                            <div class="selectall">
-                                <div style="float: left;"class="cart-checkbox">
-                                    <input  @click=choAll('#selectAll1') id="selectAll1" checked="checked"  class="jdcheckbox selectall-box" type="checkbox">
-                                    <label class="checked" >全选</label>
-                                </div>
-                                <div class="operation">
-                                    <a href="#none"  class="remove-batch">删除选中的商品</a>
-                                    <a href="#none" class="follow-batch" >移到我的关注</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="toolbar-right">
-                            <div class="amount-sum">
-                                已选择<em>1</em>件商品<b class="up"></b>
-                            </div>
-                            <div class="toolbar-right-money">
-                                <span class="txt">总价（不含运费）：</span>
-                                <span class="price sumPrice"><em id="price-Sum">￥0</em></span><br/>
-
-                                <span class="txt toolbar-right-money-span ">已节省：</span>
-                                <span class="price totalRePrice toolbar-right-money-span">-￥0.00</span>
-                            </div>
-                            <div class="btn-area" >
-                                <a class="submit-btn" href="order_settlement.html" @click="upd(index)">去结算<b></b></a>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-
-        </div><!-- end container -->
-    </div><!-- end course-wrapper -->
-
-</section><!-- end courses-area -->
-<!--======================================
-        END COURSE AREA
-======================================-->
-
-<!--======================================
-        START COURSE 2 AREA
-======================================-->
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-divider"></div>
-
-
-
-
-
-
-
-<!-- ================================
-         END FOOTER AREA
-================================= -->
-<section class="footer-area">
-    <div class="ocean">
-        <div class="wave"></div>
-        <div class="wave"></div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-sm-6">
-                <div class="footer-widget">
-                    <a href="index.html">
-                        <img src="images/logo2.png" alt="footer logo" class="footer__logo">
-                    </a>
-                    <ul class="footer-address">
-                        <li><a href="tel:+1631237884">+163 123 7884</a></li>
-                        <li><a href="mailto:support@wbsite.com" class="mail">support@website.com</a></li>
-                        <li>Melbourne, Australia, 105 South Park Avenue</li>
-                    </ul>
-                    <ul class="footer-social">
-                        <li>
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-google-plus"></i></a>
-                        </li>
-                    </ul>
-                </div><!-- end footer-widget -->
-            </div><!-- end col-lg-3 -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="footer-widget">
-                    <h3 class="footer-title">company</h3>
-                    <span class="section__divider"></span>
-                    <ul class="footer-link">
-                        <li><a href="#">about us</a></li>
-                        <li><a href="#">become a Teacher</a></li>
-                        <li><a href="#">support</a></li>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">blog</a></li>
-                    </ul>
-                </div><!-- end footer-widget -->
-            </div><!-- end col-lg-3 -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="footer-widget">
-                    <h3 class="footer-title">courses</h3>
-                    <span class="section__divider"></span>
-                    <ul class="footer-link">
-                        <li><a href="#">Web Development</a></li>
-                        <li><a href="#">PHP Learning</a></li>
-                        <li><a href="#">Spoken English</a></li>
-                        <li><a href="#">Self-Driving Car</a></li>
-                        <li><a href="#">Garbage Collectors</a></li>
-                    </ul>
-                </div><!-- end footer-widget -->
-            </div><!-- end col-lg-3 -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="footer-widget">
-                    <h3 class="footer-title">mobile</h3>
-                    <span class="section__divider"></span>
-                    <ul class="footer-link social-link">
-                        <li><a href="#"><i class="la la-apple"></i> App Store</a></li>
-                        <li><a href="#"><i class="la la-android"></i> Google Play</a></li>
-                    </ul>
-                </div><!-- end footer-widget -->
-            </div><!-- end col-lg-3 -->
-        </div><!-- end row -->
-        <div class="row copyright-content align-items-center">
-            <div class="col-lg-10">
-                <p class="copy__desc">&copy; 2019 Aduca. All Rights Reserved. by <a href="http://www.bootstrapmb.com/">TechyDevs.</a></p>
-            </div><!-- end col-lg-9 -->
-            <div class="col-lg-2">
-                <div class="language-select">
-                    <select class="target-lang">
-                        <option value="1">English</option>
-                        <option value="2">Deutsch</option>
-                        <option value="3">Español</option>
-                        <option value="4">Français</option>
-                        <option value="5">Bahasa Indonesia</option>
-                        <option value="6">Bangla</option>
-                        <option value="7">日本語</option>
-                        <option value="8">한국어</option>
-                        <option value="9">Nederlands</option>
-                        <option value="10">Polski</option>
-                        <option value="11">Português</option>
-                        <option value="12">Română</option>
-                        <option value="13">Русский</option>
-                        <option value="14">ภาษาไทย</option>
-                        <option value="15">Türkçe</option>
-                        <option value="16">中文(简体)</option>
-                        <option value="17">中文(繁體)</option>
-                        <option value="17">Hindi</option>
-                    </select>
-                </div>
-            </div>
-        </div><!-- end copyright-content -->
-    </div><!-- end container -->
-</section><!-- end footer-area -->
-<!-- ================================
-          END FOOTER AREA
-================================= -->
-
-<!-- start scroll top -->
-<div id="scroll-top">
-    <i class="fa fa-angle-up" title="Go top"></i>
-</div>
-<!-- end scroll top -->
-
-
-
-<!-- theme js files -->
-<script src="js/jquery-1.10.2.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/magnific-popup.min.js"></script>
-<script src="js/isotope.js"></script>
-<script src="js/waypoint.min.js"></script>
-<script src="js/jquery.counterup.min.js"></script>
-<script src="js/particles.min.js"></script>
-<script src="js/particlesRun.js"></script>
-<script src="js/lightgallery.js"></script>
-<script src="js/wow.js"></script>
-<script src="js/smooth-scrolling.js"></script>
-<script src="js/main.js"></script>
-<script src="js/layer.js"></script>
-
 </body>
+<script>
+    $(function () {
+        let vue1= new Vue({
+            el:'#shopping-cart',
+            data:{
+                productList:[
+
+                ],
+
+            },
+            computed: {
+                isSelectAll:function(){
+                    //如果productList中每一条数据的select都为true，返回true，否则返回false;
+                    return this.productList.every(function (val) { return val.select});
+                },
+                getTotal:function(){
+                    //获取productList中select为true的数据。
+                    var _proList=this.productList.filter(function (val) { return val.select}),
+                       totalPrice=0;
+                    for(var i=0,len=_proList.length;i<len;i++){
+                        //总价累加
+                        totalPrice+=_proList[i].orderDrugCount*_proList[i].drugPrice;
+                    }
+                    //选择产品的件数就是_proList.length，总价就是totalPrice
+                    return {totalNum:_proList.length,totalPrice:totalPrice}
+                }
+            },
+            methods:{
+                selectProduct:function(_isSelect){
+                    //遍历productList，全部取反
+                    for (var i = 0, len = this.productList.length; i < len; i++) {
+                        this.productList[i].select = !_isSelect;
+                    }
+                },//删除已经选中(select=true)的产品
+                deleteProduct:function () {
+                    this.productList=this.productList.filter(function (item) {return !item.select})
+                },
+                //删除单条产品
+                deleteOneProduct:function (index) {
+                    //根据索引删除productList的记录
+                    this.productList.splice(index,1);
+                },
+                search: function (event,index) {
+                    let flag = new RegExp("^[1-9]([0-9])*$").test(event.target.value);
+                    if(!flag){
+                        this.productList[index].orderDrugCount = '';
+                    }
+                },
+                check: function(event,index){
+                    if(event.target.value==''){
+                        this.productList[index].orderDrugCount = 0;
+                    }
+                },
+                //数量增加
+                add: function(index){
+                    this.productList[index].orderDrugCount++;
+                },
+                //数量减少
+                minus: function(index){
+                    if(this.productList[index].orderDrugCount>0){
+                        this.productList[index].orderDrugCount--;
+                    }else{
+                        this.productList[index].orderDrugCount = 0;
+                    }
+
+                }
+            },
+            mounted:function () {
+                //为productList添加select（是否选中）字段，初始值为true
+                var _this=this;
+                //为productList添加select（是否选中）字段，初始值为true
+                this.productList.map(function (item) {
+                    _this.$set(item, 'select', true);
+                })
+
+
+                $.ajax({
+                    url:"orderDrug/showOrderDrugByUserId/1",
+                    type:"get",
+                    success:function (data) {
+                        for(let i=0;i<data.length;i++){
+                            data[i].select=false;
+                        }
+                        vue1.productList = data
+                        console.log("vue1.cartOrder")
+                        console.log(vue1.productList)
+                    }
+                })
+            }
+        })
+    })
+
+</script>
 </html>

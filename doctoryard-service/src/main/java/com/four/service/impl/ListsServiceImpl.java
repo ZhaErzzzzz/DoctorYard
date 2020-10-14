@@ -2,6 +2,7 @@ package com.four.service.impl;
 
 import com.four.dao.ListsDao;
 import com.four.entity.Lists;
+import com.four.entity.OrderVo;
 import com.four.service.ListsService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,11 @@ public class ListsServiceImpl implements ListsService {
         return listsDao.queryAddressIdByUserId(userId);
     }
 
+    @Override
+    public Integer queryAddressIdByListId(Integer listId) {
+        return listsDao.queryAddressIdByListId(listId);
+    }
+
     /**
      * 查询多条数据
      *
@@ -58,6 +64,11 @@ public class ListsServiceImpl implements ListsService {
     @Override
     public List<Lists> queryAllByLimit(int offset, int limit) {
         return this.listsDao.queryAllByLimit(offset, limit);
+    }
+
+    @Override
+    public List<OrderVo> queryInformation(int userId) {
+        return listsDao.queryInformation(userId);
     }
 
     /**

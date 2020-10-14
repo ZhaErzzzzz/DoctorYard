@@ -1,6 +1,7 @@
 package com.four.dao;
 
 import com.four.entity.Lists;
+import com.four.entity.OrderVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -24,16 +25,23 @@ public interface ListsDao {
      * @param listId 主键
      * @return 实例对象
      */
+
     Lists queryById(Integer listId);
 
-    @Select("select * from lists where user_id={userId}")
+    @Select("select * from lists where user_id=#{userId}")
     List<Lists> queryByUserId(Integer userId);
 
-    @Select("select list_id from lists where user_id={userId}")
+    @Select("select list_id from lists where user_id=#{userId}")
     List<Integer> queryListIdByUserId(Integer userId);
 
-    @Select("select address_id from lists where user_id={userId}")
+    @Select("select address_id from lists where user_id=#{userId}")
     List<Integer> queryAddressIdByUserId(Integer userId);
+
+    @Select("select address_id from lists where list_id=#{listId}")
+    Integer queryAddressIdByListId(Integer listId);
+
+    @Select("SELECT * FROM (SELECT lists.list_id ,lists.user_id,lists.address_id,lists.list_num,lists.list_price,lists.list_status,address.address_name,address.address_tel,address.address_city,address.address_location FROM lists JOIN address WHERE address.address_id=lists.address_id) a WHERE a.user_id=#{userId}")
+    List<OrderVo> queryInformation(Integer userId);
 
     /**
      * 查询指定行数据

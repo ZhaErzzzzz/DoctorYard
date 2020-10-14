@@ -3,6 +3,7 @@ package com.four.dao;
 import com.four.entity.DrugDoctor;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,6 +25,10 @@ public interface DrugDoctorDao {
      * @return 实例对象
      */
     DrugDoctor queryById(Integer drugDoctorId);
+
+    @Select("select drug_id from drug_doctor where doctor_id=#{doctorId}")
+    List<Integer> queryDrugIdByDoctorId(Integer doctorId);
+
 
     /**
      * 查询指定行数据

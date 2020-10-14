@@ -49,6 +49,11 @@ public class DrugServiceImpl implements DrugService {
     }
 
     @Override
+    public String queryDrugNameById(Integer drugId) {
+        return drugDao.queryDrugNameById(drugId);
+    }
+
+    @Override
     public PageInfo<Drug> showDrugByType(int pageNum, int pageSize, String drugType) {
         PageHelper.startPage(pageNum, pageSize);
         List<Drug> list = drugDao.queryByType(drugType);

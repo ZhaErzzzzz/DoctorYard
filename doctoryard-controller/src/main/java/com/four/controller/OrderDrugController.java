@@ -1,13 +1,17 @@
 package com.four.controller;
 
 import com.four.entity.OrderDrug;
+import com.four.entity.OrderDrugVo;
+import com.four.entity.RegisterVo;
 import com.four.service.OrderDrugService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 加入购物车的药品(OrderDrug)表控制层
@@ -15,8 +19,8 @@ import javax.annotation.Resource;
  * @author makejava
  * @since 2020-10-06 15:36:50
  */
-//@RestController
-//@RequestMapping("orderDrug")
+@RestController
+@RequestMapping("orderDrug")
 public class OrderDrugController {
     /**
      * 服务对象
@@ -33,6 +37,13 @@ public class OrderDrugController {
     @GetMapping("selectOne")
     public OrderDrug selectOne(Integer id) {
         return this.orderDrugService.queryById(id);
+    }
+
+
+    @GetMapping(produces = "application/json; charset=utf-8",path ="showOrderDrugByUserId/{userId}")
+    public List<OrderDrugVo> showOrderDrugByUserId(@PathVariable int userId){
+        List<OrderDrugVo> orderDrugVoList=orderDrugService.queryByUserId(userId);
+        return  orderDrugVoList;
     }
 
 }

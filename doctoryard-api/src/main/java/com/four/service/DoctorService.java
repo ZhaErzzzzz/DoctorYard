@@ -28,6 +28,7 @@ public interface DoctorService {
 
     Integer queryHospitalIdByName(String doctorLastname);
 
+    Integer queryCountByHospitalId(Integer hospitalId);
     /**
      * 查询多条数据
      *

@@ -1,6 +1,8 @@
 package com.four.service;
 
 import com.four.entity.ListDetail;
+import com.four.entity.OrderDetailVo;
+import com.four.entity.RegisterVo;
 
 import java.util.List;
 
@@ -21,6 +23,14 @@ public interface ListDetailService {
     ListDetail queryById(Integer listDetailId);
 
    List <ListDetail> queryByListId(Integer listId);
+
+   List<Integer> queryDrugIdByListId(Integer listId);
+
+   List<Integer> queryListDetailIdByListId(Integer listId);
+
+   Integer queryDrugIdByListDetailId(Integer listDetailId);
+
+   List<OrderDetailVo> queryDetailByListId(Integer listId);
 
     /**
      * 查询多条数据
@@ -54,5 +64,8 @@ public interface ListDetailService {
      * @return 是否成功
      */
     boolean deleteById(Integer listDetailId);
+
+
+    List<RegisterVo> queryRegisterVoByUserId(Integer userId);
 
 }

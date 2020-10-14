@@ -1,8 +1,10 @@
 package com.four.dao;
 
 import com.four.entity.OrderDrug;
+import com.four.entity.OrderDrugVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,6 +26,9 @@ public interface OrderDrugDao {
      * @return 实例对象
      */
     OrderDrug queryById(Integer orderDrugId);
+
+    @Select("SELECT * FROM (SELECT order_drug.order_drug_id,order_drug.drug_id,order_drug.user_id,order_drug.order_drug_status,order_drug.order_drug_count,drug.drug_name,drug.drug_price FROM drug,order_drug WHERE drug.drug_id=order_drug.drug_id) a  WHERE a.user_id=#{userId}")
+    List<OrderDrugVo>  queryByUserId(Integer userId);
 
     /**
      * 查询指定行数据

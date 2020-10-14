@@ -1,6 +1,7 @@
 package com.four.service;
 
 import com.four.entity.OrderDrug;
+import com.four.entity.OrderDrugVo;
 
 import java.util.List;
 
@@ -19,6 +20,8 @@ public interface OrderDrugService {
      * @return 实例对象
      */
     OrderDrug queryById(Integer orderDrugId);
+
+    List<OrderDrugVo>  queryByUserId(Integer userId);
 
     /**
      * 查询多条数据

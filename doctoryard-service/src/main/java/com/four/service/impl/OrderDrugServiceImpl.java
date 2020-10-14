@@ -2,6 +2,7 @@ package com.four.service.impl;
 
 import com.four.dao.OrderDrugDao;
 import com.four.entity.OrderDrug;
+import com.four.entity.OrderDrugVo;
 import com.four.service.OrderDrugService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:34:25
  */
-//@Service
-//@Component
+@Service
+@Component
 public class OrderDrugServiceImpl implements OrderDrugService {
     @Autowired
     private OrderDrugDao orderDrugDao;
@@ -31,6 +32,11 @@ public class OrderDrugServiceImpl implements OrderDrugService {
     @Override
     public OrderDrug queryById(Integer orderDrugId) {
         return this.orderDrugDao.queryById(orderDrugId);
+    }
+
+    @Override
+    public List<OrderDrugVo> queryByUserId(Integer userId) {
+        return orderDrugDao.queryByUserId(userId);
     }
 
     /**
