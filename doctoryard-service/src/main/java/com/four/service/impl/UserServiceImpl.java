@@ -42,6 +42,11 @@ public class UserServiceImpl implements UserService {
         return this.userDao.queryById(userId);
     }
 
+    @Override
+    public Integer updateImg(String userImg, Integer userId) {
+      return   this.userDao.updateImg(userImg,userId);
+    }
+
     /**
      * 查询多条数据
      *

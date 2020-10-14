@@ -18,8 +18,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:29:01
  */
-@Service
-@Component
+//@Service
+//@Component
 public class CommentServiceImpl implements CommentService {
     @Autowired
     private CommentDao commentDao;

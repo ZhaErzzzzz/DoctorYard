@@ -1,9 +1,9 @@
 package com.four.service.impl;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.four.dao.HeathyfileDao;
 import com.four.entity.Heathyfile;
 import com.four.service.HeathyfileService;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,8 +16,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:32:00
  */
-//@Service
-//@Component
+@Service
+@Component
 public class HeathyfileServiceImpl implements HeathyfileService {
     @Autowired
     private HeathyfileDao heathyfileDao;
@@ -31,6 +31,11 @@ public class HeathyfileServiceImpl implements HeathyfileService {
     @Override
     public Heathyfile queryById(Integer heathyfileId) {
         return this.heathyfileDao.queryById(heathyfileId);
+    }
+
+    @Override
+    public List<Heathyfile> queryByRealinfoId(Integer realinfoId) {
+        return this.heathyfileDao.queryByRealinfoId(realinfoId);
     }
 
     /**

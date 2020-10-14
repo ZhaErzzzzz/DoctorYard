@@ -3,6 +3,7 @@ package com.four.dao;
 import com.four.entity.Heathyfile;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,8 +24,11 @@ public interface HeathyfileDao {
      * @param heathyfileId 主键
      * @return 实例对象
      */
+    @Select("select * from heathyfile where heathyfile_id=#{heathyfileId}")
     Heathyfile queryById(Integer heathyfileId);
 
+    @Select("select * from  heathyfile where realinfo_id=#{realinfoId} ORDER BY heathyfile_creatdate DESC")
+    List<Heathyfile> queryByRealinfoId(Integer realinfoId);
     /**
      * 查询指定行数据
      *

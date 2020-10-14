@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and() // 不需要session验证，加上token不好使。
                 .authorizeRequests()
                 .antMatchers("/*.html","/*.yml","/*.html**").permitAll()//不校验我们配置的html页面
-                .antMatchers("/user/**").permitAll()//不校验我们配置的userController
+                .antMatchers("/user/noToken/**").permitAll()//不校验我们配置的userController
                 .antMatchers("/hospital/**").permitAll()//不校验我们配置的userController
                 .antMatchers("/department/**").permitAll()//不校验我们配置的userController
                 .antMatchers("/doctor/**").permitAll()//不校验我们配置的userController

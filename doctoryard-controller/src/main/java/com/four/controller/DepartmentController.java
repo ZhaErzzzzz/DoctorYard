@@ -18,8 +18,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 11:37:12
  */
-@RestController
-@RequestMapping("department")
+//@RestController
+//@RequestMapping("department")
 public class DepartmentController {
     /**
      * 服务对象

@@ -1,10 +1,7 @@
 package com.four.dao;
 
 import com.four.entity.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -36,6 +33,9 @@ public interface UserDao {
     @Select("select * from user where user_id=#{userId}")
     User queryById(Integer userId);
 
+    @Update("update user set user_img=#{userImg} where user_id=#{userId}")
+    Integer updateImg(String userImg,Integer userId);
+
     /**
      * 查询指定行数据
      *
@@ -60,7 +60,8 @@ public interface UserDao {
      * @param user 实例对象
      * @return 影响行数
      */
-    @Insert("insert into user (user_name,user_pwd,user_tel,user_email) values(#{user.userName},#{user.userPwd},#{user.userTel},#{user.userEmail})")
+    @Insert("insert into user (user_name,user_pwd,user_tel,user_email,user_img,user_nickname) " +
+            "values(#{user.userName},#{user.userPwd},#{user.userTel},#{user.userEmail},#{user.userImg},#{user.userNickname})")
     int insert(@Param("user") User user);
 
     /**

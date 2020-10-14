@@ -103,7 +103,10 @@
                 el:"#vue3",
                 methods:{
                     loginOut:function () {
-
+                        alert(user.userNickname+",登出成功!")
+                        localStorage.clear();
+                        //重新加载页面
+                        window.location.reload();
                     }
                 }
             })
@@ -170,7 +173,7 @@
                                     <li><span>/</span></li>
                                     <li><a href="sign-up.html">注册</a></li>
                                     <li><span>/</span></li>
-                                    <li id="vue4"><a>登出</a></li>
+                                    <li id="vue3"><a @click="loginOut()">登出</a></li>
                                 </ul>
                             </div>
                         </div><!-- end header-widget -->
