@@ -1,6 +1,7 @@
 package com.four.controller;
 
 import com.four.entity.Drug;
+import com.four.service.DrugDoctorService;
 import com.four.service.DrugService;
 import com.github.pagehelper.PageInfo;
 import org.apache.dubbo.config.annotation.Reference;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 药品(Drug)表控制层
@@ -17,14 +20,16 @@ import javax.annotation.Resource;
  * @author makejava
  * @since 2020-10-06 15:36:02
  */
-//@RestController
-//@RequestMapping("drug")
+@RestController
+@RequestMapping("drug")
 public class DrugController {
     /**
      * 服务对象
      */
     @Reference
     private DrugService drugService;
+    @Reference
+    private DrugDoctorService drugDoctorService;
 
     /**
      * 通过主键查询单条数据
@@ -35,6 +40,18 @@ public class DrugController {
     public Drug selectOne(@PathVariable int drugId) {
 
         return this.drugService.queryById(drugId);
+    }
+    @GetMapping(produces = "application/json; charset=utf-8",path = "showDoctorDrugsById/{doctorId}")
+    public List<Drug> selectDoctorDrug(@PathVariable int doctorId) {
+
+        List<Integer> drugIdList = drugDoctorService.queryDrugIdByDoctorId(doctorId);
+        List<Drug> drugList=new ArrayList<>();
+        for (Integer drugId:drugIdList) {
+
+           Drug drug =drugService.queryById(drugId);
+           drugList.add(drug);
+        }
+        return drugList;
     }
 
 

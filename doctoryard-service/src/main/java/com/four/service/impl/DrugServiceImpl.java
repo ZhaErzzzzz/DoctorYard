@@ -19,8 +19,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 15:31:16
  */
-//@Service
-//@Component
+@Service
+@Component
 public class DrugServiceImpl implements DrugService {
     @Autowired
     private DrugDao drugDao;
@@ -46,6 +46,11 @@ public class DrugServiceImpl implements DrugService {
     @Override
     public List<Drug> queryAllByLimit(int offset, int limit) {
         return this.drugDao.queryAllByLimit(offset, limit);
+    }
+
+    @Override
+    public String queryDrugNameById(Integer drugId) {
+        return drugDao.queryDrugNameById(drugId);
     }
 
     @Override

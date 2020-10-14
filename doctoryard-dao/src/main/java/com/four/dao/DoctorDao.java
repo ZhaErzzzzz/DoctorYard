@@ -42,6 +42,9 @@ public interface DoctorDao {
     @Select("select hospital_id from doctor where doctor_lastname=#{doctorLastname}")
     Integer queryHospitalIdByName(String doctorLastname);
 
+    @Select("select count(doctor_id) from doctor where hospital_id=#{hospitalId}")
+    Integer  queryCountByHospitalId(Integer hospitalId);
+
 
 
     /**

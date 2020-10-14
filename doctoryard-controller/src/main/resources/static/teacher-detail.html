@@ -38,11 +38,9 @@
     <script src="js/main.js"></script>
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/vue.js"></script>
+    <script src="js/token.js"></script>
     <script>
         $(function () {
-            let urlx=decodeURI(location.href)
-            let str = decodeURI(window.location.search);
-            let name=str.substr(14);
             //点击头像，页面跳转到个人中心;
             let vue0 = new Vue({
                 el: "#vue0",
@@ -57,6 +55,12 @@
                     }
                 }
             })
+            let urlx=decodeURI(location.href)
+            let str = decodeURI(window.location.search);
+            let name=str.substr(14);
+            console.log("name")
+            console.log(name)
+
             let vue1=new Vue({
                 el:"#vue1",
                 data:{
@@ -92,6 +96,8 @@
                     hospitalId:"",
                     pageInfo:[],
                     lists:[],
+                    doctorNum:"",
+                    departmentNum:"",
 
                 },
 
@@ -125,9 +131,31 @@
                                 vue2.hospitalBrief=data.hospitalBrief,
                                 vue2.hospitalId=data.hospitalId;
                             console.log(vue2.hospitalId);
+                            console.log("data");
+                            console.log(data);
 
                         }
 
+                    })
+
+
+                    $.ajax({
+                        url:"doctor/showCountByHospitalName/"+name,
+                        type:"get",
+                        success:function (data) {
+                                     vue2.doctorNum=data
+                            console.log("doctorNum")
+                            console.log(vue2.doctorNum)
+                        }
+                    })
+                    $.ajax({
+                        url:"department/showDepartmentNumByHospitalName/"+name,
+                        type:"get",
+                        success:function (data) {
+                                     vue2.departmentNum=data
+                            console.log("departmentNum")
+                            console.log(vue2.departmentNum)
+                        }
                     })
 
 
@@ -490,13 +518,13 @@
                         <div class="col-lg-4">
                             <div class="tsd-item">
                                 <h3 class="tsdi__title">医生</h3>
-                                <p class="tsdi__meta counter">7,107</p>
+                                <p class="tsdi__meta counter" v-model="doctorNum">{{doctorNum}}</p>
                             </div><!-- end tsd-item -->
                         </div><!-- end col-lg-4 -->
                         <div class="col-lg-4">
                             <div class="tsd-item">
                                 <h3 class="tsdi__title">科室</h3>
-                                <p class="tsdi__meta counter">24</p>
+                                <p class="tsdi__meta counter" v-model="departmentNum">{{departmentNum}}</p>
                             </div><!-- end tsd-item -->
                         </div><!-- end col-lg-4 -->
                     </div><!-- end tsd-box -->
@@ -528,8 +556,8 @@
             <div class="col-lg-12">
                <h3 class="instructor-all-course__title">这个医院的医生</h3>
             </div><!-- end col-lg-12 -->
-            <div class="col-lg-4" >
-                <div class="course-item" v-for="list in lists">
+            <div class="col-lg-4" v-for="list in lists">
+                <div class="course-item" >
                     <div class="course-img">
                         <a @click="goDoctor(list.doctorId)" class="course__img"><img src="images/img14.jpg" alt=""></a>
                         <div class="course-tooltip">

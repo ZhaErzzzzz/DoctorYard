@@ -20,6 +20,8 @@ public interface DepartmentService {
      */
     Department queryById(Integer departmentId);
 
+    Integer queryDepartmentNumByHospitalId(Integer hospitalId);
+
     /**
      * 查询多条数据
      *

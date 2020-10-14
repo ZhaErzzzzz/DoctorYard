@@ -16,8 +16,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-06 17:01:12
  */
-//@Service
-//@Component
+@Service
+@Component
 public class DrugAdmitServiceImpl implements DrugAdmitService {
     @Autowired
     private DrugAdmitDao drugAdmitDao;
@@ -31,6 +31,11 @@ public class DrugAdmitServiceImpl implements DrugAdmitService {
     @Override
     public DrugAdmit queryById(Integer drugAdmitId) {
         return this.drugAdmitDao.queryById(drugAdmitId);
+    }
+
+    @Override
+    public List<Integer> queryDrugIdByUserId(Integer userId) {
+        return drugAdmitDao.queryDrugIdByUserId(userId);
     }
 
     /**

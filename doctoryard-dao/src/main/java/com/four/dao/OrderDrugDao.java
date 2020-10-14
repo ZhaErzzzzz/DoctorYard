@@ -1,8 +1,11 @@
 package com.four.dao;
 
 import com.four.entity.OrderDrug;
+import com.four.entity.OrderDrugVo;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,6 +28,9 @@ public interface OrderDrugDao {
      */
     OrderDrug queryById(Integer orderDrugId);
 
+    @Select("SELECT * FROM (SELECT order_drug.order_drug_id,order_drug.drug_id,order_drug.user_id,order_drug.order_drug_status,order_drug.order_drug_count,drug.drug_name,drug.drug_price FROM drug,order_drug WHERE drug.drug_id=order_drug.drug_id) a  WHERE a.user_id=#{userId}")
+    List<OrderDrugVo>  queryByUserId(Integer userId);
+
     /**
      * 查询指定行数据
      *
@@ -32,6 +38,8 @@ public interface OrderDrugDao {
      * @param limit  查询条数
      * @return 对象列表
      */
+
+
     List<OrderDrug> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
 
@@ -50,6 +58,9 @@ public interface OrderDrugDao {
      * @return 影响行数
      */
     int insert(OrderDrug orderDrug);
+
+    @Insert("insert into order_drug(drug_id,user_id,order_drug_status,order_drug_count) values(#{drugId},#{userId},#{orderDrugStatus},#{orderDrugCount})")
+    int insertOrder(OrderDrug orderDrug);
 
     /**
      * 修改数据

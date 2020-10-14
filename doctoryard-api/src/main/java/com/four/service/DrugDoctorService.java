@@ -20,6 +20,9 @@ public interface DrugDoctorService {
      */
     DrugDoctor queryById(Integer drugDoctorId);
 
+
+    List<Integer> queryDrugIdByDoctorId(Integer doctorId);
+
     /**
      * 查询多条数据
      *

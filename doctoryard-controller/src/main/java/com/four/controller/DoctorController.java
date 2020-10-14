@@ -152,4 +152,11 @@ public class DoctorController {
 
     }
 
+    @GetMapping(produces = "application/json; charset=utf-8",path = "showCountByHospitalName/{hospitalName}")
+    public Integer showCountByHospitalName(@PathVariable String hospitalName){
+      Integer hospitalId =  hospitalService.queryByName1(hospitalName);
+       Integer num=doctorService.queryCountByHospitalId(hospitalId);
+       return  num;
+    }
+
 }

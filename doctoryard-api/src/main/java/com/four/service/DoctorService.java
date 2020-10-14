@@ -26,6 +26,7 @@ public interface DoctorService {
     Integer queryByName(String doctorLastname);
     Integer queryHospitalIdByName(String doctorLastname);
 
+    Integer queryCountByHospitalId(Integer hospitalId);
     //更换头像
     Integer updateImg(String doctorImg,String doctorNum);
     /**

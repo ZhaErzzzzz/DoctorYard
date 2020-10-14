@@ -39,6 +39,8 @@
     <script src="js/smooth-scrolling.js"></script>
     <script src="js/main.js"></script>
     <script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/token.js"></script>
     <!--<script>-->
     <!--    var player = new Plyr('#player');-->
     <!--    var player = new Plyr('#player2');-->
@@ -120,7 +122,8 @@
                     hospitalCity: "",
                     hospitalImg: "",
                     doctors: [],
-                    li1:[]
+                    li1:[],
+                    doctorId:"",
                 },
                 methods: {
                     view1: function () {
@@ -150,6 +153,11 @@
                         let hos="course-details.html?doctorId="+this.doctorId;
                         window.location.assign(encodeURI(hos));
                     },
+                    goDoctorDrugs:function () {
+
+                        let hos="doctor_drugs.html?doctorId="+id;
+                        window.location.assign(encodeURI(hos));
+                    },
                     goHospital:function (a) {
                         this.hospitalName=a;
                         // window.location.href="teacher-detail.html?hospitalName="+encodeURI(encodeURI(this.hospitalName));
@@ -170,7 +178,7 @@
                     });
                     $.ajax({
                         // async:false,
-                        url:"doctor/showOneDoctor/1",
+                        url:"doctor/showOneDoctor/"+id,
                         type:"get",
                         success:function (data) {
                             vue2.doctorBrief=data.doctorBrief
@@ -206,6 +214,8 @@
                             vue2.doctors = res.data;
                             Vue.nextTick(function(){
                                 a();
+                                console.log("data")
+                                console.log(data)
                             });
                             vue2.view1();
                             // .bind(vue2)
@@ -733,6 +743,9 @@
                                 </div>
                                 <div class="preview-course-content">
 
+                                    <div class="buy-course-btn">
+                                        <button class="theme-btn" type="button" @click="goDoctorDrugs()">查看可开非处方药</button>
+                                    </div>
                                     <div class="buy-course-btn">
                                         <button class="theme-btn" type="button">去预约</button>
                                     </div>

@@ -26,6 +26,9 @@ public interface DepartmentDao {
      */
     Department queryById(Integer departmentId);
 
+    @Select("select count(department_id)  from department where hospital_id=#{hospitalId}")
+    Integer queryDepartmentNumByHospitalId(Integer hospitalId);
+
     /**
      * 查询指定行数据
      *

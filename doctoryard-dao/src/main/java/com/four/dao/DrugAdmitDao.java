@@ -3,6 +3,7 @@ package com.four.dao;
 import com.four.entity.DrugAdmit;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,6 +25,9 @@ public interface DrugAdmitDao {
      * @return 实例对象
      */
     DrugAdmit queryById(Integer drugAdmitId);
+
+    @Select("SELECT drug_id FROM drug_admit WHERE user_id=#{userId}")
+    List<Integer> queryDrugIdByUserId(Integer userId);
 
     /**
      * 查询指定行数据

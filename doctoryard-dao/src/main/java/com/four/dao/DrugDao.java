@@ -30,6 +30,9 @@ public interface DrugDao {
     @Select("select * from drug where drug_type=#{drugType}")
     List<Drug> queryByType(String drugType);
 
+    @Select("select drug_name from drug where drug_id=#{drugId}")
+    String queryDrugNameById(Integer drugId);
+
 
 
 

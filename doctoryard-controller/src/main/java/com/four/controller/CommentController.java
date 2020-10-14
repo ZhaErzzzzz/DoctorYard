@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author makejava
  * @since 2020-10-06 15:35:47
  */
-//@RestController
-//@RequestMapping("comment")
+@RestController
+@RequestMapping("comment")
 public class CommentController {
     /**
      * 服务对象
