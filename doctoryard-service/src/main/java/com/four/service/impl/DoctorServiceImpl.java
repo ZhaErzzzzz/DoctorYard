@@ -58,6 +58,16 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorDao.queryHospitalIdByName(doctorLastname);
     }
 
+    @Override
+    public Integer queryCountByHospitalId(Integer hospitalId) {
+        return doctorDao.queryCountByHospitalId(hospitalId);
+    }
+
+    @Override
+    public Integer updateImg(String doctorImg, String doctorNum) {
+        return doctorDao.updateImg(doctorImg,doctorNum);
+    }
+
     /**
      * 查询多条数据
      *
