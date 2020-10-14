@@ -37,6 +37,13 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
+    public Doctor queryByNum(String doctorNum) {
+        return this.doctorDao.queryByNum(doctorNum);
+    }
+
+
+
+    @Override
     public Doctor queryByLastname(String doctorLastname) {
         return doctorDao.queryByLastname(doctorLastname);
     }
@@ -49,6 +56,11 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public Integer queryHospitalIdByName(String doctorLastname) {
         return doctorDao.queryHospitalIdByName(doctorLastname);
+    }
+
+    @Override
+    public Integer updateImg(String doctorImg, String doctorNum) {
+        return  doctorDao.updateImg(doctorImg,doctorNum);
     }
 
     /**

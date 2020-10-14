@@ -48,13 +48,26 @@
                 el: "#vue0",
                 data: {
                     userImg: user.userImg,
-                    userId: user.userId
+                    userId: user.userId,
+                    html:"singleMan"
+                    // token:token,
+                    // toMain:"",
                 },
                 mounted: function () {
                     console.log("asdfasd");
                     if (this.userImg === null) {
                         this.userImg = "未登录.jpg";
                     }
+                    if(token==null){
+                        this.html="doctorMain";
+                    }
+                    // else{
+                    //     if(this.token==null){
+                    //         this.toMain='doctorMan.html?'+vue0.userId;
+                    //     }else{
+                    //         this.toMain='singleMan.html?'+vue0.userId;
+                    //     }
+                    // }
                 }
             })
             let vue1 = new Vue({
@@ -133,7 +146,7 @@
                                 <li><a href="#"><span class="la la-phone"></span> 123-456-789</a></li>
                                 <li><a href="#"><span class="la la-envelope-o"></span> find@hospital.com</a></li>
                                 <!--用户个人中心-->
-                                <li id="vue0"><a v-bind:href="'singleMan.html?'+userId" target="_blank">个人中心：<img
+                                <li id="vue0"><a v-bind:href="html+'.html?'+userId" target="_blank">个人中心：<img
                                         v-bind:src="'http://39.105.180.116:9901/images/'+userImg"
                                         class="rounded-circle shadow"
                                         width="33px" height="33px"> </a></li>

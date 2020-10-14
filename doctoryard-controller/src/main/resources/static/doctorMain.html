@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--     viewport meta -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,  initial-scale=1.0">
+    <meta name="description" content="Aduca - Learning & Online Education HTML Template">
+    <meta name="keywords" content="Aduca - Learning & Online Education HTML Template">
+    <title>医苑 - 医师中心</title>
+    <!-- CSS
+    ================================================== -->
+    <!-- Favicon -->
+    <link rel="icon" sizes="16x16" href="images/favicon.png">
+    <!-- inject:css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/line-awesome.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/jquery.countdown.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- end inject -->
+    <link rel="stylesheet" href="css/baseSingle.css">
+    <link rel="stylesheet" href="css/vendorSingle.css">
+    <link rel="stylesheet" href="css/mainSingle.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <!-- script
+    ================================================== -->
+
+
+    <!--    图片-->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery.ui.widget.js"></script>
+    <script src="js/jquery.iframe-transport.js"></script>
+    <script src="js/jquery.fileupload.js"></script>
+    <!-- Java Script
+================================================== -->
+    <!--    会导致图片不能使用-->
+    <!--        <script src="js/jquery-2.1.3.min.js"></script>-->
+    <!--        <script src="js/jquery-1.10.2.min.js"></script>-->
+
+
+    <!--    <script src="js/jquery-3.5.1.js"></script>-->
+    <script src="js/modernizr.js"></script>
+    <script src="js/pace.min.js"></script>
+
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/magnific-popup.min.js"></script>
+    <script src="js/isotope.js"></script>
+    <script src="js/waypoint.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/particlesRun.js"></script>
+    <script src="js/particles.min.js"></script>
+    <script src="js/lightgallery.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/smooth-scrolling.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/layer.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/token.js"></script>
+
+    <!-- favicons
+    ================================================== -->
+    <script>
+
+        $(function () {
+            let userId = window.location.search.substr(1);
+            console.log(userId);
+            if (userId == "null") {
+                alert("请先登录！");
+                window.location.assign("login.html")
+            }
+            let vue1= new Vue({
+                el: "#vue1",
+                data: {
+                    //基本信息
+                    userImg:user.userImg,
+                    userNickname:user.userNickname
+                },
+                methods: {
+                    //获得userInfo
+                    getInfo: function () {
+                    }
+
+                },
+                mounted: function () {
+                    this.getInfo();
+                }
+            })
+            //上传头像
+            $('#uploadFile').fileupload({
+                url: 'http://39.105.180.116:9902/upload',//请求发送的目标地址,写完整地址,端口8085。
+                Type: 'POST',//请求方式 ，可以选择POST，PUT或者PATCH,默认POST
+                dataType: 'json',//服务器返回的数据类型
+                autoUpload: false,
+                acceptFileTypes: /(gif|jpe?g|png)$/i,//验证图片格式
+                maxNumberOfFiles: 1,//最大上传文件数目
+                maxFileSize: 1000000, // 文件上限1MB
+                minFileSize: 100,//文件下限  100b
+                messages: {//文件错误信息
+                    acceptFileTypes: '文件类型不匹配',
+                    maxFileSize: '文件过大',
+                    minFileSize: '文件过小'
+                },
+                //添加文件，关闭“选择文件模态窗口”后执行
+                add: function (e, data) {
+                    var url = null;
+                    var file = data.files[0];
+                    if (window.createObjectURL != undefined) {
+                        url = window.createObjectURL(file);
+                    } else if (window.URL != undefined) {
+                        url = window.URL.createObjectURL(file);
+                    } else if (window.webkitURL != undefined) {
+                        url = window.webkitURL.createObjectURL(file);
+                    }
+                    // $("#uploadPreview").attr("src", url);
+                    data.submit();
+                },
+                done: function (e, data) {
+                    // $("#imgName").val(data.result.data);
+                    user.userImg = data.result.data;
+                    localStorage.setItem("userImg",  user.userImg );
+                    $.ajax({
+                        url: "/doctor/updateImg/" +  user.userImg + "/" + user.userId.toString(),
+                        type: "GET",
+                        contentType: "application/json;charset=utf-8",
+                        // dataType:"json",
+                        success: function (data) {
+                            console.log(data.msg)
+                            // window.location.reload();
+                        }
+                    })
+                }
+            });
+            //点击头像触发点击input
+            $(document).ready(function () {
+                $('#clickImg').click(function () {
+                    $('#uploadFile').click();
+                });
+            });
+        })
+    </script>
+</head>
+<!-- header
+================================================== -->
+<header>
+
+    <div class="header-logo">
+        <a href="index.html">医苑</a>
+    </div>
+    <a id="header-menu-trigger" href="#0">
+        <span class="header-menu-text">Menu</span>
+        <span class="header-menu-icon"></span>
+    </a>
+
+    <nav id="menu-nav-wrap">
+
+        <a href="#0" class="close-button" title="close"><span>Close</span></a>
+
+        <h3>医 苑.</h3>
+
+        <ul class="nav-list">
+            <li class="current"><a class="smoothscroll" href="#home" title="">Home</a></li>
+            <!--            <li><a class="smoothscroll" href="#about" title="">About</a></li>-->
+            <!--            <li><a class="smoothscroll" href="#skills" title="">Skills</a></li>-->
+            <li><a class="smoothscroll" href="#credentials" title="">你的详细信息</a></li>
+            <!--            <li><a class="smoothscroll" href="#portfolio" title="">Works</a></li>-->
+            <li><a class="smoothscroll" href="#stats" title="">关于我们</a></li>
+            <li><a class="smoothscroll" href="#contact" title="">如何联系</a></li>
+        </ul>
+
+        <ul class="header-social-list">
+            <li>
+                <a href="https://www.facebook.com/profile.php?id=100015257477506" target="_blank"><i
+                        class="fa fa-facebook-square"></i></a>
+            </li>
+            <li>
+                <a href="https://twitter.com/zhangzaq" target="_blank"><i class="fa fa-twitter"></i></a>
+            </li>
+            <li>
+                <a href="#" target="_blank"><i class="fa fa-weibo"></i></a>
+            </li>
+            <li>
+                <a href="#" target="_blank"><i class="fa fa-qq"></i></a>
+            </li>
+            <li>
+                <a href="#" target="_blank"><i class="fa fa-wechat"></i></a>
+            </li>
+            <li>
+                <a href="https://www.instagram.com/neil_zhn/" target="_blank"><i class="fa fa-instagram"></i></a>
+            </li>
+        </ul>
+
+    </nav>  <!-- end #menu-nav-wrap -->
+
+</header> <!-- end header -->
+<!-- home
+================================================== -->
+<video id="bgVideo" autoplay loop muted>
+    <source src="./video/background.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+<section id="home">
+
+    <div class="overlay"></div>
+    <div class="gradient-overlay"></div>
+
+    <div class="home-content-table">
+
+        <div class="home-content-tablecell">
+            <div class="row" id="vue1">
+                <div class="col-twelve">
+                    <div class="home-bottom-text " style="text-align: center">
+                        <a><img id="clickImg"
+                                :src="'http://39.105.180.116:9901/images/'+userImg"
+                                class="rounded-circle"
+                                width="100px" height="100px">
+                            <input style="display: none" type="file" id="uploadFile" name="uploadFile"
+                                   accept="image/*"/>
+                            <h5 class="animate-intro"></h5>
+                        </a>
+
+                        <br>
+                        <h3 class="animate-intro">hello，这是你的个人空间 ！
+
+                        </h3>
+                        <h1 class="animate-intro">
+                            {{userNickname}}
+                            <br>
+                            <!-- Graphic &amp; UI/UX Designer <br>
+                            Based in Manila Philippines.  -->
+                        </h1>
+
+                        <ul class="home-section-links">
+                            <li class="animate-intro">More <a href="#about" class="smoothscroll">你的 => 更多信息</a></li>
+                            <li class="animate-intro">View <a href="#portfolio" class="smoothscroll">About 医苑.</a></li>
+                            <li class="animate-intro">Contact <a href="#contact" class="smoothscroll">By Email</a></li>
+                        </ul>
+
+                    </div> <!-- end home-bottom-text -->
+                </div> <!-- end col-twelve -->
+            </div> <!-- end row -->
+        </div> <!-- end home-content-tablecell -->
+    </div> <!-- end home-content-table -->
+
+    <a href="#about" class="scroll-icon smoothscroll">
+        <span class="icon-DownArrow"></span>
+    </a>
+
+</section> <!-- end home -->
+
+
+
+<!--医苑的个人用户详细信息-->
+<!-- credentials
+================================================== -->
+<section id="credentials">
+
+    <div class="row narrow section-intro with-bottom-sep">
+        <div class="col-twelve">
+            <h3 class="animate-this">病例与信息</h3>
+            <h1 class="animate-this">更多关于你的信息.</h1>
+
+            <p class="lead">
+                只有你可以访问到这里，这是您的真实信息和病例信息，当然您也可以用它作为凭证，在生活中使用它，以便让医苑为您服务。
+            </p>
+        </div>
+    </div> <!-- end section-intro -->
+
+    <div class="row wide credentials-content">
+
+        <div class="col-six tab-full left">
+
+            <h2 class="animate-this">真实信息</h2>
+
+            <div class="timeline-wrap" id="vue2">
+
+                <div class="timeline-block animate-this">
+                    <div class="timeline-ico" @click="addInfo()">
+                        <i class="fa fa-briefcase"></i>
+                    </div>
+                    <div class="timeline-header">
+                        <p class="timeframe">{{realinfo.realinfoWorktype}}</p>
+                        <h3>{{realinfo.realinfoName}}</h3>
+                        <h4>{{realinfo.realinfoBirthday}}</h4>
+                    </div>
+                    <div class="timeline-content">
+                        <p>
+                            性别:{{realinfo.realinfoSex}}<br>
+                            血型：{{realinfo.realinfoBloodtype}}<br>
+                            籍贯：{{realinfo.realinfoLocation}}<br>
+                            职业：{{realinfo.realinfoWorktype}}<br>
+                            现居住地：{{realinfo.realinfoLocation}}<br>
+                            是否婚配：{{realinfo.realinfoMarried}}<br>
+                            联系方式：{{realinfo.realinfoTel}}<br>
+                            身份证号：{{realinfo.realinfoIdcard}}<br>
+                            公司单位：{{realinfo.realinfoCompany}}<br>
+
+                        </p>
+                    </div>
+                </div> <!-- end timeline-block -->
+
+            </div> <!-- end timeline-wrap -->
+
+        </div> <!-- end col-six -->
+
+        <div class="col-six tab-full right">
+
+            <h2 class="animate-this">病例信息</h2>
+
+            <div class="timeline-wrap" id="vue3">
+
+                <div class="timeline-block animate-this" v-for="h in heathyfiles">
+                    <div class="timeline-ico">
+                        <i class="fa fa-graduation-cap"></i>
+                    </div>
+                    <div class="timeline-header">
+                        <p class="timeframe">病例时间：{{h.heathyfileCreatdate}}</p>
+                        <h3>主治医生：{{h.doctor.doctorLastname}}</h3>
+                        <h4>联系方式：{{h.doctor.doctorTel}}</h4>
+                    </div>
+                    <div class="timeline-content">
+                        <p>
+                            历史症状：{{h.heathyfileHistory}}
+                            <br><br>
+                            如今症状：{{h.heathyfileNow}}
+                        </p>
+                    </div>
+                </div> <!-- end timeline-block -->
+
+
+            </div> <!-- end timeline-wrap -->
+
+        </div> <!-- end col-six -->
+
+    </div> <!-- end row wide -->
+
+</section> <!-- end credentials -->
+
+
+<!--医苑资助的人数-->
+<!-- stats
+================================================== -->
+<section id="stats">
+
+    <div class="row">
+        <div class="col-twelve">
+            <div class="block-1-4 block-tab-1-2 block-mob-full stats-list">
+
+                <div class="bgrid stat">
+                    <div class="icon-part">
+                        <i class="icon-Briefcase"></i>
+                    </div>
+                    <h5 class="stat-title">
+                        合作医院
+                    </h5>
+                    <h3 class="stat-count">430</h3>
+                </div> <!-- end stat -->
+
+                <div class="bgrid stat">
+                    <div class="icon-part">
+                        <i class="icon-AddressBook"></i>
+                    </div>
+                    <h5 class="stat-title">
+                        救助患者
+                    </h5>
+                    <h3 class="stat-count">8291</h3>
+                </div> <!-- end stat -->
+
+                <div class="bgrid stat">
+                    <div class="icon-part">
+                        <i class="icon-Diploma1"></i>
+                    </div>
+                    <h5 class="stat-title">
+                        累计获奖
+                    </h5>
+                    <h3 class="stat-count">62</h3>
+                </div> <!-- end stat -->
+
+                <div class="bgrid stat">
+                    <div class="icon-part">
+                        <i class="icon-Idea"></i>
+                    </div>
+                    <h5 class="stat-title">
+                        捐款
+                    </h5>
+                    <h3 class="stat-count">79108012</h3>
+                </div> <!-- end stat -->
+
+            </div> <!-- end stats-list -->
+        </div> <!-- end col-twelve -->
+    </div> <!-- end row -->
+
+</section> <!-- end stats -->
+
+
+<!-- contact
+================================================== -->
+<section id="contact">
+
+    <div class="overlay"></div>
+
+    <div class="row narrow section-intro">
+        <div class="col-twelve">
+            <h3 class="animate-this">Contact</h3>
+            <h1 class="animate-this">我们是医苑的设计者，你可以通过以下方式联系我们</h1>
+
+            <p class="lead animate-this">
+                详细描述你想回复的信息，可以是对我们设计的提问，也可以是对我们医苑建设的意见，当然，你可以给我们一些批评，或者当做你生活发泄的一个秘密的地方，我们会保证这些内容不会公开。
+            </p>
+        </div>
+    </div> <!-- end section-intro -->
+
+    <div class="row contact-form">
+        <div class="col-twelve">
+
+            <!-- form -->
+            <form name="contactForm" id="contactForm" method="post">
+
+
+                <div class="form-field animate-this">
+                    <input name="contactName" type="text" id="contactName" placeholder="Name" value="" minlength="2"
+                           required="">
+                </div>
+                <div class="form-field animate-this">
+                    <input name="contactEmail" type="email" id="contactEmail" placeholder="Email" value="" required="">
+                </div>
+                <div class="form-field animate-this">
+                    <input name="contactSubject" type="text" id="contactSubject" placeholder="Subject" value="">
+                </div>
+                <div class="form-field animate-this">
+                    <textarea name="contactMessage" id="contactMessage" placeholder="message" rows="10" cols="50"
+                              required=""></textarea>
+                </div>
+
+                <div class="form-field animate-this">
+                    <button class="submitform">Submit</button>
+
+                    <div id="submit-loader">
+                        <div class="text-loader">Sending...</div>
+                        <div class="s-loader">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </form> <!-- Form End -->
+
+            <!-- contact-warning -->
+            <div id="message-warning"></div>
+
+            <!-- contact-success -->
+            <div id="message-success">
+                <i class="fa fa-check"></i>Your message was sent, thank you!<br>
+            </div>
+
+        </div> <!-- end col-twelve -->
+    </div> <!-- end row contact-form -->
+
+    <div class="row contact-info">
+
+        <div class="col-four tab-full">
+            <h5 class="animate-this">Where to find me</h5>
+
+            <p class="animate-this">
+                Somewhere in Shanghai<br>
+                China
+            </p>
+        </div> <!-- end col-four -->
+
+        <div class="col-four tab-full collapse">
+            <h5 class="animate-this">Email Me At</h5>
+
+            <p class="animate-this">
+                824695591@QQ.com<br>
+                zhanghaonan@eigpay.com
+            </p>
+        </div> <!-- end col-four -->
+
+        <div class="col-four tab-full">
+            <h5 class="animate-this">Contact Me At</h5>
+
+            <p class="animate-this">
+                Phone: (+86) 13065183253<br>
+            </p>
+        </div> <!-- end col-four -->
+
+    </div> <!-- end row contact-info -->
+
+</section> <!-- end contact -->
+
+
+<!-- footer
+================================================== -->
+<footer>
+    <div class="row">
+
+        <div class="col-twelve tab-full social">
+            <ul class="footer-social">
+                <li><a href="https://www.facebook.com/profile.php?id=100015257477506" target="_blank">Facebook</a></li>
+                <li><a href="https://twitter.com/zhangzaq" target="_blank">Twitter</a></li>
+                <li><a href="#" target="_blank">Weibo</a></li>
+                <li><a href="#" target="_blank">QQ</a></li>
+                <li><a href="#" target="_blank">WeChat</a></li>
+                <li><a href="https://www.instagram.com/neil_zhn/" target="_blank">Instagram</a></li>
+            </ul>
+        </div>
+
+        <div class="col-twelve tab-full">
+            <div class="copyright">
+                <span>© Copyright Eric Zhang 2017.</span>
+            </div>
+        </div>
+
+    </div> <!-- end row -->
+
+    <div id="go-top">
+        <a class="smoothscroll" title="Back to Top" href="#top"><i class="icon-UpArrow"></i></a>
+    </div>
+</footer>
+
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+<script src="js/plugins.js"></script>
+<script src="js/mainSingle.js"></script>
+
+</body>
+
+</html>

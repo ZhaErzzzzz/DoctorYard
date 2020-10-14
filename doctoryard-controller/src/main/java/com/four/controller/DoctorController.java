@@ -1,15 +1,20 @@
 package com.four.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.four.entity.Doctor;
+import com.four.entity.User;
 import com.four.service.DepartmentService;
 import com.four.service.DoctorService;
 import com.four.service.HospitalService;
+import com.four.util.RedisUtil;
+import com.four.util.Result;
+import com.four.util.ResultCode;
+import com.four.util.ResultFactory;
 import com.github.pagehelper.PageInfo;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +40,8 @@ public class DoctorController {
     @Reference
     private HospitalService hospitalService;
 
+    @Autowired
+    private RedisUtil redisUtil;
     /**
      * 通过主键查询单条数据
      *
@@ -44,6 +51,44 @@ public class DoctorController {
     @GetMapping("selectOne")
     public Doctor selectOne(Integer doctorId) {
         return this.doctorService.queryById(doctorId);
+    }
+
+    //更换头像
+    @GetMapping(produces = "application/json; charset=utf-8",path ="noToken/updateImg/{doctorImg}/{doctorNum}")
+    public Result updateImg(@PathVariable String doctorImg,@PathVariable String doctorNum) {
+        int len=doctorService.updateImg(doctorImg,doctorNum);
+        if(len==1){
+            return ResultFactory.setResultSuccess();
+        }else {
+            return  ResultFactory.setResultError();
+        }
+
+    }
+    @PostMapping("noToken/login")
+    public Result login(@RequestBody Doctor doctor) {
+        Doctor d=doctorService.queryByNum(doctor.getDoctorNum());
+        if(d==null){
+            //账户错误
+            return  ResultFactory.setResultError(ResultCode.HTTP_RES_CODE_500,"用户名或密码错误，请重新登录");
+        }else{
+            //1、验证密码
+            if(!d.getDoctorPwd().equals(doctor.getDoctorPwd())){
+                //账号正确，密码错误
+                return ResultFactory.setResultError(ResultCode.HTTP_RES_CODE_500,"用户名或密码错误，请重新登录");
+            }else {
+                //2、账号正确，密码正确
+//                String token=BCrypt.hashpw(d.getDoctorNum(),BCrypt.gensalt());
+                //4、token存入redis
+//                redisUtil.set(token,d.getDoctorNum(),24*60*60*1000);//1天
+                JSONObject data = new JSONObject();
+//                //6、将只包含d和username的对象,存入data
+//                data.put("token",token);
+                data.put("doctor",d);
+                //7、返回数据
+                return ResultFactory.setResultSuccess(data);
+            }
+
+        }
     }
 
     @GetMapping("selectByHospitalId")

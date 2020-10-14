@@ -32,7 +32,6 @@
     ================================================== -->
 
 
-
     <!--    图片-->
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/jquery.ui.widget.js"></script>
@@ -40,12 +39,12 @@
     <script src="js/jquery.fileupload.js"></script>
     <!-- Java Script
 ================================================== -->
-<!--    会导致图片不能使用-->
-<!--        <script src="js/jquery-2.1.3.min.js"></script>-->
-<!--        <script src="js/jquery-1.10.2.min.js"></script>-->
+    <!--    会导致图片不能使用-->
+    <!--        <script src="js/jquery-2.1.3.min.js"></script>-->
+    <!--        <script src="js/jquery-1.10.2.min.js"></script>-->
 
 
-<!--    <script src="js/jquery-3.5.1.js"></script>-->
+    <!--    <script src="js/jquery-3.5.1.js"></script>-->
     <script src="js/modernizr.js"></script>
     <script src="js/pace.min.js"></script>
 
@@ -71,7 +70,6 @@
     <script>
 
         $(function () {
-
             let userId = window.location.search.substr(1);
             console.log(userId);
             if (userId == "null") {
@@ -87,21 +85,25 @@
                 methods: {
                     //获得userInfo
                     getInfo: function () {
-                        $.ajax({
-                            url: "/user/getInfo/" + user.userId.toString(),
-                            type: "GET",
-                            contentType: "application/json;charset=utf-8",
-                            // dataType:"json",
-                            beforeSend: function (request) {
-                                request.setRequestHeader("Authorization", token);
-                            },
-                            success: function (data) {
-                                console.log("vue1");
-                                console.log(data);
-                                vue1.userInfo = data.data.userInfo;
-                            }
-                        })
-                    },
+
+                            $.ajax({
+                                url: "/user/getInfo/" + user.userId.toString(),
+                                type: "GET",
+                                contentType: "application/json;charset=utf-8",
+                                // dataType:"json",
+                                beforeSend: function (request) {
+                                    request.setRequestHeader("Authorization", token);
+                                },
+                                success: function (data) {
+                                    console.log("vue1");
+                                    console.log(data);
+                                    vue1.userInfo = data.data.userInfo;
+
+                                }
+                            })
+
+                    }
+
                 },
                 mounted: function () {
                     this.getInfo();
@@ -116,17 +118,18 @@
                 },
                 methods: {
                     //添加信息
-                    addInfo:function(){
-                      if(vue2.realinfo!==null){
-                          alert("您已有信息，不可更改");
-                      }else {
-                          alert("点击确定，跳转到信息页");
-                          // Vue.$router.push({
-                          //     path: `/user.id`,
-                          // })
-                          // window.location.reload();
-                          window.location.href="my.html?"+user.userId;
-                      }
+                    addInfo: function () {
+                        if (vue2.realinfo !== null) {
+                            alert("您已有信息，不可更改");
+                        } else {
+                            alert("点击确定，跳转到信息页");
+                            // Vue.$router.push({
+                            //     path: `/user.id`,
+                            // })
+                            // window.location.reload();
+                            window.location.href = "my.html?" + user.userId;
+                        }
+
                     },
                     //获得userInfo
                     getRealInfo: function () {
@@ -142,9 +145,9 @@
                                 console.log("vue2");
                                 console.log(data);
                                 vue2.realinfo = data.data.realinfo;
-
                             }
                         })
+
                     }
                 },
                 mounted: function () {
@@ -162,7 +165,7 @@
                     //获得userInfo
                     getHeathyfiles: function () {
                         $.ajax({
-                            url: "heathyfile/getHeathyfile/"+user.userId,
+                            url: "heathyfile/getHeathyfile/" + user.userId,
                             type: "GET",
                             contentType: "application/json;charset=utf-8",
                             // dataType:"json",
@@ -188,6 +191,7 @@
                     this.getHeathyfiles();
                 }
             })
+
             //上传头像
             $('#uploadFile').fileupload({
                 url: 'http://39.105.180.116:9902/upload',//请求发送的目标地址,写完整地址,端口8085。

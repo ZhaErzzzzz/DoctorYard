@@ -111,7 +111,7 @@ public class UserController {
     //更换头像
 
     @GetMapping(produces = "application/json; charset=utf-8",path ="updateImg/{userImg}/{userId}")
-    public Result queryByUserId(@PathVariable String userImg,@PathVariable Integer userId) {
+    public Result updateImg(@PathVariable String userImg,@PathVariable Integer userId) {
         int len=userService.updateImg(userImg,userId);
         if(len==1){
             return ResultFactory.setResultSuccess();

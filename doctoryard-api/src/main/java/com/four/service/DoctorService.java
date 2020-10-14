@@ -21,13 +21,13 @@ public interface DoctorService {
      * @return 实例对象
      */
     Doctor queryById(Integer doctorId);
-
+    Doctor queryByNum(String doctorNum);
     Doctor queryByLastname(String doctorLastname);
-
     Integer queryByName(String doctorLastname);
-
     Integer queryHospitalIdByName(String doctorLastname);
 
+    //更换头像
+    Integer updateImg(String doctorImg,String doctorNum);
     /**
      * 查询多条数据
      *

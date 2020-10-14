@@ -4,6 +4,7 @@ import com.four.entity.Doctor;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -26,7 +27,11 @@ public interface DoctorDao {
      */
     @Select("select * from doctor where doctor_id=#{doctorId}")
     Doctor queryById(Integer doctorId);
+    @Select("select * from doctor where doctor_num=#{doctorNum}")
+    Doctor queryByNum(String doctorNum);
 
+    @Update("update doctor set doctor_img=#{doctorImg} where doctor_num=#{doctorNum}")
+    Integer updateImg(String doctorImg,String doctorNum);
 
     @Select("select * from doctor where doctor_lastname=#{doctorLastname}")
     Doctor queryByLastname(String doctorLastname);

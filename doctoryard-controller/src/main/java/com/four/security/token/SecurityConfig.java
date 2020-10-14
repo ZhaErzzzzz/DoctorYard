@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/noToken/**").permitAll()//不校验我们配置的userController
                 .antMatchers("/hospital/**").permitAll()//不校验我们配置的userController
                 .antMatchers("/department/**").permitAll()//不校验我们配置的userController
-                .antMatchers("/doctor/**").permitAll()//不校验我们配置的userController
+                .antMatchers("/doctor/**","/doctor/noToken/**").permitAll()//不校验我们配置的userController
                 .antMatchers("/drug/**").permitAll()//不校验我们配置的userController
                 .antMatchers("/dhonor/**").permitAll()//不校验我们配置的userController
                 .antMatchers("/msg/**").permitAll()//不校验我们配置的userController

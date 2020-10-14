@@ -12,6 +12,7 @@ public class Doctor implements Serializable {
     private static final long serialVersionUID = 360872334795912325L;
 
     private Integer doctorId;
+
     private Integer hospitalId;
 
     private Integer departmentId;
@@ -112,5 +113,30 @@ public class Doctor implements Serializable {
     public void setDoctorPwd(String doctorPwd) {
         this.doctorPwd = doctorPwd;
     }
+
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (this == obj) {
+//            return true;
+//        }
+//
+//        if (obj == null || getClass() != obj.getClass()) {
+//            return false;
+//        }
+//        Doctor doctor = (Doctor) obj;
+//        if (doctor == null) {
+//            if (doctor.getDoctorNum() != null) {
+//                return false;
+//            }
+//        }else if (!doctor.equals(doctor.getDoctorNum())) {
+//            return false;
+//        }
+//        return true;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return  doctorId.hashCode()+doctorNum.hashCode();
+//    }
 
 }

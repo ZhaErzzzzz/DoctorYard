@@ -51,7 +51,6 @@
                     userId: user.userId
                 },
                 mounted: function () {
-                    console.log("asdfasd");
                     if(this.userImg===null){
                         this.userImg="未登录.jpg";
                     }
@@ -87,11 +86,42 @@
                                 userPwd: vue1.userPwd,
                             }),
                             success: function (data) {
+                                alert(data.msg);
                                 console.log("data: ")
                                 console.log(data);
                                 vue1.setInfo(data.data)
                                 console.log(user);
+                                //重新加载页面
+                                window.location.reload();
+                            },
+                            // error:function(){
+                            //    alert()
+                            // }
+                        })
+                    },
+                    loginDocotr:function () {
+                        console.log(vue1.userName);
+                        console.log(vue1.userPwd);
+                        $.ajax({
+                            type: "post",
+                            url: "/doctor/noToken/login",
+                            contentType: "application/json;charset=utf-8",
+                            // dataType:"JSON",
+                            data: JSON.stringify({
+                                doctorNum: vue1.userName,
+                                doctorPwd: vue1.userPwd,
+                            }),
+                            success: function (data) {
                                 alert(data.msg);
+                                console.log("data:")
+                                console.log(data);
+                                localStorage.clear();
+                                // localStorage.setItem("token", "Bearer " + data.token);
+                                localStorage.setItem("userId", data.data.doctor.doctorNum);
+                                localStorage.setItem("userName", data.data.doctor.doctorPwd);
+                                localStorage.setItem("userNickname", data.data.doctor.doctorLastname);
+                                localStorage.setItem("userImg", data.data.doctor.doctorImg);
+                                console.log(user);
                                 //重新加载页面
                                 window.location.reload();
                             }
@@ -405,7 +435,8 @@
                                 </div>
                             </div>
                             <div class="col-lg-12 col-sm-12 col-xs-12 form-group">
-                                <button class="theme-btn" type="button" @click="login()">登录</button>
+                                <button class="theme-btn" type="button" @click="login()">用户登录</button>
+                                <button class="theme-btn" type="button" @click="loginDocotr()">医生登录</button>
                             </div><!-- end col-md-12 -->
                             <div class="col-lg-12 col-sm-12 col-xs-12 account-assist">
                                 <p class="account__desc">还没账号?<a href="sign-up.html"> 去注册</a></p>
